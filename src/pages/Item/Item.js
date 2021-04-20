@@ -1,5 +1,5 @@
 
-export default function ShoppingCart(){
+export default function Item(){
 
     return(
         <>
