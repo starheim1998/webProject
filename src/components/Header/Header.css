@@ -3,3 +3,15 @@
 .header_container{
     border: 1px solid black;
 }
+
+.first_row_header{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+/*a:hover, a:visited, a:link, a:active*/
+/*{*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*}*/
