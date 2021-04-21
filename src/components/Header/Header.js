@@ -6,11 +6,12 @@ import cart from "./../../img/cart.png";
 import {useState} from "react";
 import Login from "../Modal/Login/Login";
 import React from 'react';
+import Register from "../Modal/Register/Register";
 
 export default function Header(){
     {/*Keeping track of modal's state.*/}
-    const [isOpen, setIsOpen] = useState(false);
-
+    const [loginOpen, setLoginOpen] = useState(false);
+    const [registerOpen, setRegisterOpen] = useState(false);
 
     return(
         <div className="header_container">
@@ -20,9 +21,18 @@ export default function Header(){
 
                 <SearchBar/>
 
-                {/*Modal for Login/Register*/}
-                <button onClick={() => setIsOpen(true)}>Login | Register</button>
-                <Login open={isOpen} onClose={()=>setIsOpen(false)}/>
+                {/*Modals for Login/Register*/}
+                <button onClick={() => setLoginOpen(true)}>Login | Register</button>
+                <Login open={loginOpen} onClose={()=>setLoginOpen(false)} redirect={() =>{
+                    setLoginOpen(false);
+                    setRegisterOpen(true);
+                }} />
+                <Register onClose={()=>setRegisterOpen(false)}
+                          open={registerOpen}
+                          redirect={() =>{
+                              setLoginOpen(true);
+                              setRegisterOpen(false);
+                          }}/>
 
                 <Link to="/ShoppingCart/ShoppingCart">
                     <img src={cart} alt="cart link"/>

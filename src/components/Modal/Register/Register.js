@@ -1,12 +1,18 @@
 import React from 'react';
+import Modal from "../Modal";
 
 
-export default function Register({open, onClose}){
-    if (!open) return null /*Do nothing if not open*/
-
+export default function Register({open, onClose, redirect}){
     return(
-        <div>
-            <button onClick={onClose}> CLOSE </button>
-        </div>
+            <Modal title={"Register"}
+                   firstInput={"Email address:"}
+                   placeHolderFirst={"Your email address.."}
+                   secondInput={"Password:"}
+                   placeHolderSecond={"Your password.."}
+                   buttonName={"Register now!"}
+                   textUnder={"Already a member? Log in."}
+                   open={open}
+                   onClose={onClose}
+                   reDirect={redirect}/>
         )
 }
