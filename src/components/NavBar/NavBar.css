@@ -5,7 +5,7 @@
 :root {
     --bg: #242526;
     --bg-accent: gray;
-    --text-color: white;
+    --text-color: black;
     --nav-size: 60px;
     --border: 1px solid #47a4d;
     --border-radius: 8px;
@@ -26,6 +26,7 @@ a {
     background-color: var(--bg);
     padding: 0;
     border-bottom: var(--border);
+    --text-color: white;
 }
 
 .navbar-nav {
@@ -39,6 +40,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2vh;
 }
 .female-button, .male-button {
     --button-size: calc(var(--nav-size) * 0.5);
@@ -52,23 +54,23 @@ a {
     transition: filter 300ms;
 }
 .female-button {
-    justify-content: flex-start;
+    /*justify-content: flex-start;*/
 }
 .male-button {
-    justify-content: flex-end;
+    /*justify-content: flex-end;*/
+
 }
+
 .dropdown {
     position: absolute;
-    margin-top: 11vh;
-    /*margin-left: 15vw;*/
     left: 45%;
-    top: 58px;
+    top: 17vh;
     width: 56vw;
     transform: translateX(-45%);
     background-color: var(--bg);
     border: var(--border);
     border-radius: var(--border-radius);
-    padding: 1rem;
+    padding: 0.9rem;
     overflow: hidden;
     display: grid;
     grid-template-columns: 14vw 14vw 14vw 14vw;
