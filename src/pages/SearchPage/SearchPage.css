@@ -1,0 +1,17 @@
+
+.main_container{
+
+    width: 70%;
+    margin: auto;
+}
+
+.main_body{
+    display: flex;
+    justify-content: space-around;
+}
+
+.all_items_container{
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid black;
+}

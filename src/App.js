@@ -29,11 +29,11 @@ function App() {
     <div className="App">
       <Header/>
       <Switch>
-        <Route path="/item/:id" component={Item}/>
-        <Route path="/categoryPage/categoryPage" component={CategoryPage}/>
-        <Route path="/shoppingCart/shoppingCart" component={ShoppingCart}/>
-        <Route path="/search" component={SearchPage}/>
-        <Route exact path="/" component={Home}/>
+          <Route path="/item/:id" component={Item}/>
+          <Route path="/categoryPage/categoryPage" component={CategoryPage}/>
+          <Route path="/shoppingCart/shoppingCart" component={ShoppingCart}/>
+          <Route path="/search" component={SearchPage}/>
+          <Route exact path="/" component={Home}/>
       </Switch>
       <Footer/>
     </div>
