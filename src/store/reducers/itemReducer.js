@@ -12,7 +12,7 @@ const initialState = {
  * @param action
  * @returns {{items: *}|{items: *[]}}
  */
-export default function dataReducer(state = initialState, action){
+export default function itemReducer(state = initialState, action){
     switch(action.type){
         case "SET_ITEMS":
             return{

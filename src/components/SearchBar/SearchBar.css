@@ -2,11 +2,11 @@
 .search_container{
     display: flex;
     align-items: center;
-    width: 20%;
 }
 
 .search_container > input[type=text]{
-    padding: 3%;
+    padding: 5%;
     width: 80%;
 }
+
 

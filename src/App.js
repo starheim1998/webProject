@@ -10,9 +10,21 @@ import Home from "./pages/Home/Home";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {setItems} from "./store/actions/itemActions";
+
+import {initialItems} from "./initialItems";
 
 
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(setItems(initialItems))
+    }, [dispatch])
+
+
   return (
     <div className="App">
       <Header/>
@@ -20,7 +32,7 @@ function App() {
         <Route path="/item/:id" component={Item}/>
         <Route path="/categoryPage/categoryPage" component={CategoryPage}/>
         <Route path="/shoppingCart/shoppingCart" component={ShoppingCart}/>
-        <Route path="/searchPage/searchPage" component={SearchPage}/>
+        <Route path="/search" component={SearchPage}/>
         <Route exact path="/" component={Home}/>
       </Switch>
       <Footer/>

@@ -10,20 +10,21 @@ import {Provider} from 'react-redux';
 import {applyMiddleware, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 /**/
-import dataReducer from "./store/reducers/dataReducer";
+import itemReducer from "./store/reducers/itemReducer";
+import History from "./components/History/History";
 
 /**
  *
  */
 const reduxStore = createStore(
-    dataReducer,
+    itemReducer,
     compose(applyMiddleware(thunk))
 )
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={reduxStore}>
-            <BrowserRouter>
+            <BrowserRouter history={History}>
                 <App/>
             </BrowserRouter>
         </Provider>
