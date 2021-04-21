@@ -1,3 +1,4 @@
+
 import {useState} from "react";
 import './NavBar.css';
 export default function NavBar(){
@@ -29,9 +30,11 @@ function NavItem(props) {
                 Female
             </a>
             {open && props.children}
-        </li>
+            </li>
     );
 }
+
+
 function DropdownMenu() {
     function DropDownItem(props) {
         return (
@@ -69,3 +72,4 @@ function DropdownMenu() {
         </div>
     );
 }
+
