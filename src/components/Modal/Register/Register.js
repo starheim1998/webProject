@@ -13,6 +13,14 @@ export default function Register({open, onClose, redirect}){
                    textUnder={"Already a member? Log in."}
                    open={open}
                    onClose={onClose}
-                   reDirect={redirect}/>
+                   reDirect={redirect}>
+                <label>Email address:</label>
+                <input type={"text"} placeholder={"Your email address.."}/>
+                <label>Password:</label>
+                <input type={"text"} placeholder={"Your password.."}/>
+                <label>Confirm Password:</label>
+                <input type={"text"} placeholder={"Confirm password.."}/>
+                <input type={"submit"} value={"Register now!"}/>
+            </Modal>
         )
 }

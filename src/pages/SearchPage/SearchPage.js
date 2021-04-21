@@ -11,7 +11,6 @@ export default function SearchPage(){
     function getSearch(){
         const params = new URLSearchParams(window.location.search);
         return params.get('q');
-
     }
 
     return (

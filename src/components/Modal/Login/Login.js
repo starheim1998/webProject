@@ -13,6 +13,12 @@ export default function Login({open, onClose, redirect}) {
                open={open}
                onClose={onClose}
                reDirect={redirect}
-        />
+        >
+            <label>Email address:</label>
+            <input type={"text"} placeholder={"Your email address.."}/>
+            <label>Password:</label>
+            <input type={"text"} placeholder={"Your password.."}/>
+            <input type={"submit"} value={"Log in!"}/>
+        </Modal>
     )
 }
