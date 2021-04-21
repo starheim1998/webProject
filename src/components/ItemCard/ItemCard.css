@@ -1,0 +1,10 @@
+
+.card_container{
+    width: 25%;
+    border: 1px solid black;
+}
+
+.card_container > img{
+    width: 100%;
+    height: auto;
+}
