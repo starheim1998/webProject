@@ -1,8 +1,9 @@
 
-export default function CategoryPage(){
+export default function CategoryPage( {} ){
 
     return(
         <>
+
         </>
     )
 }
