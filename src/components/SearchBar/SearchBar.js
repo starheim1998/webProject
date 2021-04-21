@@ -1,14 +1,16 @@
 import search_icon from "../../img/search_icon.jpg";
 import "./SearchBar.css"
 import {useState} from "react";
-import History from "../History/History";
+import {useHistory} from "react-router";
 
 export default function SearchBar() {
     const [input, setInput] = useState("");
+    const history = useHistory()
+
 
     const handleSearch = (e) => {
         e.preventDefault();
-        History.push("/search?q=" + input);
+        history.push("/search?q=" + input);
 
         //clear search field
         setInput("");
@@ -20,6 +22,7 @@ export default function SearchBar() {
                 <input className="search_input"
                        type="text"
                        placeholder="search product.."
+                       value={input}
                        onChange={(e) => setInput(e.target.value)}
                 />
 

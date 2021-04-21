@@ -11,7 +11,6 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 /**/
 import itemReducer from "./store/reducers/itemReducer";
-import History from "./components/History/History";
 
 /**
  *
@@ -24,7 +23,7 @@ const reduxStore = createStore(
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={reduxStore}>
-            <BrowserRouter history={History}>
+            <BrowserRouter>
                 <App/>
             </BrowserRouter>
         </Provider>
