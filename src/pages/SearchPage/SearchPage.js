@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
 import ItemCard from "../../components/ItemCard/ItemCard";
+import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 
 export default function SearchPage(){
@@ -22,9 +23,12 @@ export default function SearchPage(){
         <div className="main_container">
             <h3>The following items matched the search: {search}</h3>
             <div className="main_body">
-                <div className="sidebar">
-
-                </div>
+                <Aside
+                    category1={"Topwear"}
+                    category2={"Bottomwear"}
+                    category3={"Shoes"}
+                    category4={"Sport"}
+                />
 
                 <div className="all_items_container">
                     {items.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))
