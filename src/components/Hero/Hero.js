@@ -1,14 +1,17 @@
 import React from 'react';
 import heroImage from "./../../img/hero-test.jpg"
 import "./Hero.css";
-import {initialItems} from "../../initialItems";
+import {useHistory} from "react-router";
 
 export default function Hero() {
-
+    /**
+     * TESTING REDIRECT
+     * */
+    const history = useHistory()
     function redirect(){
-
+        history.push("/item/0/");
     }
-
+/***/
     return (
         <div className={"hero-container"}>
             <img src={heroImage} alt={"hero image"}/>
