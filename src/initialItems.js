@@ -19,9 +19,22 @@ export const initialItems = [
         price: 1700,
         category: "shoes",
         color: "black",
-        size: "42",
+        // TODO: SHOE SIZE ????
+        size: "S",
         details: "200g",
         img: "https://i.imgur.com/PwoTdIy.jpg",
         counter: 5
+    },
+    {
+        id: 2,
+        name: "GAP sweater",
+        description: "Comfy cotton top",
+        price: 600,
+        category: "topwear",
+        color: "gray",
+        size: "L",
+        details: "normal fit",
+        counter: 5,
+        img: "https://down.imgspng.com/download/0720/sweater_PNG50.png"
     }
 ]

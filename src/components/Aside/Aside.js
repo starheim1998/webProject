@@ -1,44 +1,89 @@
 import "./Aside.css"
 
+
 export default function Aside(props){
 
-    const {category1, category2, category3, category4} = props
+    const {category1, category2, category3, category4, filterState, setFilterState} = props
 
 
+    const handleSizeChange = (e) => {
+        e.preventDefault();
+        setFilterState({
+            ...filterState,
+            size: e.target.value}
+        )
+    }
+
+    const handleColorChange = (e) => {
+        e.preventDefault();
+        setFilterState({
+            ...filterState,
+            color: e.target.value}
+        )
+    }
 
     return(
-        <div className="aside_container">
-            <div className="category_container">
-                <div className="title_container">
-                    <span className="title_span">Categories</span>
-                </div>
-                <div className="category">{category1}</div>
-                <div className="category">{category2}</div>
-                <div className="category">{category3}</div>
-                <div className="category">{category4}</div>
-            </div>
 
-            <div className="filter_container">
-                <div className="title_container">
-                    <span className="title_span">Filters</span>
+        <form>
+            <div id={"aside_main_container"}>
+                <p className={"aside_header"}>Categories</p>
+
+                <div id={"category_container"}>
+                    <div className={"category_item"}>
+                        <span>All products</span>
+                        <input className="checkbox" type="checkbox" value="" defaultChecked={true}/>
+                    </div>
+
+                    <div className={"category_item"}>
+                        <span>{category1}</span>
+                        <input className="checkbox" type="checkbox" value={category1.toLowerCase()}/>
+                    </div>
+
+                    <div className={"category_item"}>
+                        <span>{category2}</span>
+                        <input className="checkbox" type="checkbox" value={category2.toLowerCase()}/>
+                    </div>
+
+                    <div className={"category_item"}>
+                        <span>{category3}</span>
+                        <input className="checkbox" type="checkbox" value={category3.toLowerCase()}/>
+                    </div>
+
+                    <div className={"category_item"}>
+                        <span>{category4}</span>
+                        <input className="checkbox" type="checkbox" value={category4.toLowerCase()}/>
+                    </div>
                 </div>
-                <div>
-                    <select id="size_filter">
-                        <option value="small">S</option>
-                        <option value="medium">M</option>
-                        <option value="large">L</option>
+
+                <p className={"aside_header"}>Filters</p>
+                <div className={"select_container"}>
+                    <label>Size</label>
+                    <select onChange={(e) => handleSizeChange(e)}>
+                        <option value="">Select size</option>
+                        <option value="s">S</option>
+                        <option value="m">M</option>
+                        <option value="l">L</option>
+                        <option value="xl">XL</option>
+                        <option value="xxl">XLL</option>
                     </select>
                 </div>
-                
-                <div>
-                    <select id="color_selector">
+
+                <div className={"select_container"}>
+                    <label>Color</label>
+                    <select onChange={(e) => handleColorChange(e)}>
+                        <option value="">Select color</option>
                         <option value="black">Black</option>
                         <option value="white">White</option>
                         <option value="blue">Blue</option>
+                        <option value="gray">Gray</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="green">Green</option>
+                        <option value="red">Red</option>
                     </select>
                 </div>
-
+                
             </div>
-        </div>
+
+        </form>
     )
 }

@@ -1,10 +1,19 @@
 
-.card_container{
+
+/*TODO: NOT WORKING??? fix space between image and text*/
+#card_container{
     width: 25%;
     border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.img_container > img{
+.card_img > img{
     width: 100%;
     height: auto;
+}
+
+.card_body{
+    border: 1px solid blue;
 }
