@@ -6,6 +6,7 @@ export const initialItems = [
         description: "undertittel",
         price: 1200,
         category: "bottomwear",
+        subcategory: "jeans",
         color: "blue",
         size: "M",
         details: "slim fit",
@@ -18,6 +19,7 @@ export const initialItems = [
         description: "made for running",
         price: 1700,
         category: "shoes",
+        subcategory: "running",
         color: "black",
         // TODO: SHOE SIZE ????
         size: "S",
@@ -31,6 +33,7 @@ export const initialItems = [
         description: "Comfy cotton top",
         price: 600,
         category: "topwear",
+        subcategory: "sweater",
         color: "gray",
         size: "L",
         details: "normal fit",

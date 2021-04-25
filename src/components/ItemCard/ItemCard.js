@@ -9,7 +9,7 @@ export default function ItemCard( {item} ){
 
 
     return(
-        <div id="card_container">
+        <div className="card_container">
             <Link to={`/item/${id}`}>
                 <div className="card_img">
                     <img src={img} alt=".."/>
@@ -19,6 +19,7 @@ export default function ItemCard( {item} ){
                     <p>{price} kr</p>
                 </div>
             </Link>
+
         </div>
     )
 }

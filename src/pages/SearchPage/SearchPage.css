@@ -1,6 +1,5 @@
 
 .main_container{
-
     width: 90%;
     margin: auto;
 }
@@ -12,11 +11,4 @@
 
 .aside_container{
     width: 15%;
-}
-
-.all_items_container{
-    width: 85%;
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid black;
 }
