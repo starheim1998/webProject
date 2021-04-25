@@ -15,12 +15,15 @@ import {useEffect} from "react";
 import {setItems} from "./store/actions/itemActions";
 
 import {initialItems} from "./initialItems";
+import {initialAccounts} from "./initialAccounts";
+import {setAccount} from "./store/actions/accountActions";
 
 
 function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(setAccount(initialAccounts))
         dispatch(setItems(initialItems))
     }, [dispatch])
 

@@ -4,7 +4,7 @@ export default function CardList(props) {
     const {cards} = props;
 
     return(
-        <div id={"main_container"}>
+        <div id={"cardList_main_container"}>
             {cards.map((card) =>
                 <div className={"item_card_container"}>
                     {card}

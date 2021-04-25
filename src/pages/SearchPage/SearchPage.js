@@ -9,7 +9,7 @@ import CardList from "../../components/CardList/CardList";
 
 export default function SearchPage(props){
 
-    const items = useSelector((state) => state.itemReducer.items)
+    const itemsState = useSelector((state) => state.itemReducer.items)
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",
@@ -26,7 +26,7 @@ export default function SearchPage(props){
 
     const foundItemsCount = (query) =>{
         let counter = 0;
-        items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
+        itemsState.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
         return counter;
     }
 
@@ -46,7 +46,7 @@ export default function SearchPage(props){
     const foundItems = (query) => {
         let foundItemList = [];
         {
-            items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())
+            itemsState.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())
                 && (item.category === filterState.category || filterState.category === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
                     || filterState.size === ""

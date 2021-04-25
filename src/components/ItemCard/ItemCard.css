@@ -2,7 +2,6 @@
 
 /*TODO: NOT WORKING??? fix space between image and text*/
 .card_container{
-    /*width: 25%;*/
     border: 1px solid black;
     display: flex;
     flex-direction: row;
