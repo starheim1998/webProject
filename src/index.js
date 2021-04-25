@@ -7,17 +7,20 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 /*REDUX*/
 import {Provider} from 'react-redux';
-import {applyMiddleware, compose, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 /**/
 import itemReducer from "./store/reducers/itemReducer";
+import accountReducer from "./store/reducers/accountReducer";
 
 /**
  *
  */
 
+const rootReducer = combineReducers({itemReducer, accountReducer})
+
 const reduxStore = createStore(
-    itemReducer,
+    rootReducer,
     compose(applyMiddleware(thunk))
 )
 

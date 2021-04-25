@@ -9,7 +9,7 @@ import CardList from "../../components/CardList/CardList";
 
 export default function SearchPage(props){
 
-    const items = useSelector((state) => state.items)
+    const items = useSelector((state) => state.itemReducer.items)
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",
