@@ -7,7 +7,7 @@ import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
 
 
-export default function SearchPage(){
+export default function SearchPage(props){
 
     const items = useSelector((state) => state.items)
     const [search, setSearch] = useState("");
@@ -16,6 +16,9 @@ export default function SearchPage(){
         size: "",
         color: ""
     });
+    //TODO: implement this functionality
+    // get selected category from navbar
+    const {selectedCategory} = props;
 
     useEffect(() => {
         setSearch(getSearch)
@@ -27,6 +30,19 @@ export default function SearchPage(){
         return counter;
     }
 
+    const getHeader = () => {
+        if(search !== "") {
+            return (
+                <h3>Search result: "{search}" ({foundItemsCount(search)})</h3>
+            );
+        } else {
+            //TODO: category header
+            return (
+                <h3> {selectedCategory} </h3>
+            )
+        }
+    }
+
     const foundItems = (query) => {
         let foundItemList = [];
         {
@@ -34,7 +50,6 @@ export default function SearchPage(){
                 && (item.category === filterState.category || filterState.category === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
                     || filterState.size === ""
-                    // shoes has empty size field
                     // TODO: discuss shoe size issue
                     || item.size === "")
                 && (item.color === filterState.color || filterState.color === ""))
@@ -46,14 +61,14 @@ export default function SearchPage(){
     }
 
 
-        function getSearch() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('q');
-        }
+    function getSearch() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('q');
+    }
 
         return (
             <div className="main_container">
-                <h3>Search result: "{search}" ({foundItemsCount(search)})</h3>
+                {getHeader()}
                 <div className="main_body">
                     <div className={"aside_container"}>
                         <Aside
