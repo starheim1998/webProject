@@ -20,6 +20,7 @@ export default function Checkout({open, onClose, redirect}) {
         }
         dispatch(emptyCart());
         console.log(shoppingCartItems);
+        onClose();
     }
 
     return(

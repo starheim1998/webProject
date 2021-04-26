@@ -8,3 +8,9 @@
     margin: 1% auto;
 }
 
+
+.home-container #cardList_main_container{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
