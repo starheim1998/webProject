@@ -1,16 +1,25 @@
 import React from 'react';
 import './Checkout.css';
 import Modal from "../Modal";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {emptyCart} from "../../../store/actions/cartActions";
 
 export default function Checkout({open, onClose, redirect}) {
+     const shoppingCartItems = useSelector(state => state.cartReducer.cartItems);
+     const dispatch = useDispatch();
+
     if (!open) return null /*Do nothing if not open*/
 
-    // const shoppingCart = useSelector(state => state.cartReducer.cartItems);
     /*TODO: Items in shopping cart is removed from the database*/
 
-    function handleSubmit(e){
-        alert("handle submit");
+    function handleCheckout(e){
+        e.preventDefault();
+        if(shoppingCartItems.length === 0){
+            alert("No items in cart.");
+            return null;
+        }
+        dispatch(emptyCart());
+        console.log(shoppingCartItems);
     }
 
     return(
@@ -18,7 +27,7 @@ export default function Checkout({open, onClose, redirect}) {
                open={open}
                onClose={onClose}
                reDirect={redirect}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleCheckout}>
                 <label>Name:</label>
                 <input type={"text"} placeholder={"Your name here.."}/>
                 <label>Address:</label>
