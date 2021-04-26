@@ -7,7 +7,6 @@ export default function SearchBar() {
     const [input, setInput] = useState("");
     const history = useHistory()
 
-
     const handleSearch = (e) => {
         e.preventDefault();
         if(input.trim() !== ""){
