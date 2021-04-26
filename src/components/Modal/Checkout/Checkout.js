@@ -10,7 +10,6 @@ export default function Checkout({checkout, children}) {
      * event delegation.*/
     return ReactDom.createPortal(
         <>
-
         </>,
         document.getElementById('portal')
     )

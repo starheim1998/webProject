@@ -19,9 +19,7 @@ export default function Modal({reDirect,
             <div className={"modal-wrapper"}>
                 <button onClick={onClose} id={"exitButton"}>x</button>
                 <h2>{title}</h2>
-                <form>
                     {children}
-                </form>
                 <p onClick={reDirect}>{textUnder}</p>
             </div>
         </>,
