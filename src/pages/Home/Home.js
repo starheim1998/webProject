@@ -1,7 +1,7 @@
 import Hero from "../../components/Hero/Hero";
 import "./Home.css";
 import CardList from "../../components/CardList/CardList";
-import {frontpageDummyItems} from "../../frontpageDummyItems";
+import {useSelector} from "react-redux";
 
 /**
  * Home menu. We hardcoded the items for sale / trending categories as we did not see the implementation of it to
@@ -10,6 +10,8 @@ import {frontpageDummyItems} from "../../frontpageDummyItems";
  * @constructor
  */
 export default function Home(){
+    const itemState = useSelector((state) => state.itemReducer.items)
+
     return(
         <div>
             <Hero/>
@@ -17,12 +19,12 @@ export default function Home(){
                 <h2>Trending right now...</h2>
                 <div className={"contentBox"}>
                     <p>Items trending!</p>
-                    <CardList cards={frontpageDummyItems}/>
+                    <CardList cards={itemState.find(x => x.id > 100) }/>
                 </div>
                 <h2>For sale ..</h2>
                 <div className={"contentBox"}>
                     <p>Items for sale!</p>
-                    <CardList cards={frontpageDummyItems}/>
+                    <CardList cards={itemState.find(x => x.id >100)}/>
                 </div>
             </div>
         </div>

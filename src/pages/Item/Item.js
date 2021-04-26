@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
-import {initialItems} from "../../initialItems";
 import {useDispatch, useSelector} from "react-redux";
 
 import {setCartItem} from "../../store/actions/cartActions";

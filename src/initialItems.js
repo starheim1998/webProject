@@ -1,3 +1,6 @@
+import reddress from "./img/red-dress.jpg";
+import converse from "./img/converse.jpg";
+import shoes from "./img/a-big-shoe.jpg";
 
 export const initialItems = [
     {
@@ -39,5 +42,32 @@ export const initialItems = [
         details: "normal fit",
         counter: 5,
         img: "https://down.imgspng.com/download/0720/sweater_PNG50.png"
+    },
+    {
+        id: 102,
+        img: reddress,
+        name: "Converse!",
+        price: 1200,
+        category: "",
+        size: "",
+        color:""
+    },
+    {
+        id: 103,
+        img: converse,
+        name: "Red dress!!!",
+        price: 100000,
+        category: "",
+        size: "",
+        color:""
+    },
+    {
+        id: 104,
+        img: shoes,
+        name: "Shoes!!",
+        price: 100000,
+        category: "",
+        size: "",
+        color:""
     }
 ]
