@@ -14,7 +14,6 @@ export default function Item(){
 
     useEffect(()=> {
         const foundItem = itemsState.find((item) => {
-            console.log("item: ", item, "id: ", item.id)
                 return item.id === parseInt(id);
             });
 

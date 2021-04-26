@@ -25,15 +25,15 @@ export default function ShoppingCart(){
 
     const addBody = () => {
         if(cartState.length === 0){
-            return <p>The shopping cart is empty</p>
+            return <p>The shopping cart is empty </p>
         } else {
             return (
                 cartState.map((itemID) =>
-                        <div className={"cart_item_container"}>
-                            <div className={"cart_img"}>
+                        <div className={"cart_item_container"} key={getItem(itemID).id}>
+                            <div className={"cart_img_container"}>
                                 <img src={getItem(itemID).img} alt={getItem(itemID).name}/>
                             </div>
-                            <div className={"cart_body"}>
+                            <div className={"cart_body_container"}>
                                 <p>{getItem(itemID).name}</p>
                                 <p>{getItem(itemID).price}</p>
                             </div>

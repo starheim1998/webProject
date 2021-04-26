@@ -11,9 +11,11 @@ export default function cartReducer(state = initialState, action){
                 cartItems: action.cartItem
             }
         case "DELETE_CART_ITEM":
+            console.log(state.cartItems)
             return {
                 ...state,
-                cartItems: state.cartItem.filter((item) => item !== action.payload)
+                cartItems: state.cartItems.filter((id) => id !== action.payload)
+
             }
         case "EMPTY_CART":
             return {
