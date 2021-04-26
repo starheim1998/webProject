@@ -58,10 +58,10 @@ export default function Register({open, onClose, redirect}){
                     <input type={"text"} placeholder={"Your email address.."} value={email}
                            onChange={(e) => setEmail(e.target.value)}/>
                     <label>Password:</label>
-                    <input type={"text"} placeholder={"Your password.."} value={password}
+                    <input type={"password"} placeholder={"Your password.."} value={password}
                            onChange={(e) => setPassword(e.target.value)}/>
                     <label>Confirm Password:</label>
-                    <input type={"text"} placeholder={"Confirm password.."}
+                    <input type={"password"} placeholder={"Confirm password.."}
                            value={confirmPassword}
                            onChange={(e) => setConfirmPassword(e.target.value)}/>
                     <input type={"submit"} value={"Register now!"}/>

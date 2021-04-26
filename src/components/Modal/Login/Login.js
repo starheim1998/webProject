@@ -34,7 +34,7 @@ export default function Login({open, onClose, redirect}) {
                 <input type={"text"} placeholder={"Your email address.."} value={email}
                        onChange={(e) => setEmail(e.target.value)}/>
                 <label>Password:</label>
-                <input type={"text"} placeholder={"Your password.."} value={password}
+                <input type={"password"} placeholder={"Your password.."} value={password}
                        onChange={(e) => setPassword(e.target.value)}/>
                 <input type={"submit"} value={"Log in!"}/>
             </form>

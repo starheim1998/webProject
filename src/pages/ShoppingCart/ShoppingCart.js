@@ -1,7 +1,9 @@
 import {useSelector} from "react-redux";
+import Checkout from "../../components/Modal/Checkout/Checkout";
+import {useState} from "react";
 
 export default function ShoppingCart(){
-
+    const [checkoutOpen, setCheckoutOpen] = useState(false);
     const itemsState = useSelector((state) => state.itemReducer.items)
     const accountsState = useSelector((state) => state.accountReducer.accounts);
     // template account for testing
@@ -18,6 +20,10 @@ export default function ShoppingCart(){
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>
             {test()}
+            <button onClick={() => setCheckoutOpen(true)}>Checkout!</button>
+            <Checkout open={checkoutOpen} onClose={()=>setCheckoutOpen(false)}
+            redirect={() => console.log("GO BACK")}/>
+
         </div>
     )
 }
