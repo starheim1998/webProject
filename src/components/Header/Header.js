@@ -9,7 +9,7 @@ import React from 'react';
 import Register from "../Modal/Register/Register";
 
 export default function Header(){
-    {/*Keeping track of modal's state.*/}
+    // Keeping track of modal's state.
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
 
@@ -21,7 +21,7 @@ export default function Header(){
 
                 <SearchBar/>
 
-                {/*Modals for Login/Register*/}
+                {/*//Modals for Login/Register*/}
                 <button onClick={() => setLoginOpen(true)}>Login | Register</button>
                 <Login open={loginOpen} onClose={()=>setLoginOpen(false)} redirect={() =>{
                     setLoginOpen(false);

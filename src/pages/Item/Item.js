@@ -1,8 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {initialItems} from "../../initialItems";
+import {useDispatch, useSelector} from "react-redux";
+
+import {setCartItem} from "../../store/actions/cartActions";
 
 export default function Item(){
+    // cart redux state
+    const cartState = useSelector((state) => state.cartReducer.cartItems)
+
+    const dispatch = useDispatch();
     const [item, setItem] = useState({});
     let {id} = useParams();
 
@@ -12,7 +19,12 @@ export default function Item(){
                 return item.id === parseInt(id);
             });
         setItem(foundItem);
-        },[id])
+        },[])
+
+    const handleAddToCart = (id) => {
+        dispatch(setCartItem([...cartState, id]))
+        console.log("cart: ", cartState)
+    }
 
     return(
         <div className={"item-wrapper"}>
@@ -27,7 +39,7 @@ export default function Item(){
                 <div>COLOR DROPDOWN</div>
                 <h4>Product details:{item.details}</h4>
             </div>
-            <button>Add to shopping cart</button>
+            <button type="submit" onClick={() => handleAddToCart(item.id)}> Add to cart </button>
         </div>
     )
 }

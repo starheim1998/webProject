@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
-import ItemCard from "../../components/ItemCard/ItemCard";
 import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
@@ -54,9 +53,10 @@ export default function SearchPage(props){
                     || item.size === "")
                 && (item.color === filterState.color || filterState.color === ""))
                 .map((item) => {
-                    foundItemList.push(<ItemCard item={item}/>)
+                    foundItemList.push(item)
                 })
         }
+        console.log(foundItemList);
         return foundItemList;
     }
 

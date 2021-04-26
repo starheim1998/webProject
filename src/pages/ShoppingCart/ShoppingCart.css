@@ -1,0 +1,11 @@
+.cart_main_container{
+    width: 85%;
+    border: 1px solid black;
+    margin: auto;
+}
+
+
+.cart_item{
+    border: 1px solid black;
+
+}
