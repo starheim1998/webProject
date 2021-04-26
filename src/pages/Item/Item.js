@@ -8,13 +8,14 @@ import {setCartItem} from "../../store/actions/cartActions";
 export default function Item(){
     // cart redux state
     const cartState = useSelector((state) => state.cartReducer.cartItems)
+    const itemState = useSelector((state) => state.itemReducer.items)
 
     const dispatch = useDispatch();
     const [item, setItem] = useState({});
     let {id} = useParams();
 
     useEffect(()=>{
-        const foundItem = initialItems.find(
+        const foundItem = itemState.find(
             function (item){
                 return item.id === parseInt(id);
             });

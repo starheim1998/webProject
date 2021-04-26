@@ -10,13 +10,14 @@ import Home from "./pages/Home/Home";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchPage from "./pages/SearchPage/SearchPage";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {setItems} from "./store/actions/itemActions";
 
 import {initialItems} from "./initialItems";
 import {initialAccounts} from "./initialAccounts";
 import {setAccount} from "./store/actions/accountActions";
+import {frontpageDummyItems} from "./frontpageDummyItems";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
     useEffect(() => {
         dispatch(setAccount(initialAccounts))
         dispatch(setItems(initialItems))
+        dispatch(setItems(frontpageDummyItems))
     }, [dispatch])
 
 
