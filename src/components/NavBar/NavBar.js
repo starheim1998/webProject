@@ -38,7 +38,7 @@ function NavItem(props) {
 function DropdownMenu() {
     function DropDownItem(props) {
         return (
-            <a className="menu-itemm">
+            <a onClick={console.log("hei")} className="menu-itemm">
                 {props.children}
             </a>
         );

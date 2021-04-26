@@ -14,8 +14,6 @@ export default function ShoppingCart(){
         )
     }
 
-
-
     return(
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>
