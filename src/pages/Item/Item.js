@@ -1,32 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router";
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-
 import {setCartItem} from "../../store/actions/cartActions";
 
 export default function Item(){
-    // cart redux state
+    const [item, setItem] = useState([]);
+    const itemsState = useSelector((state) => state.itemReducer.items)
     const cartState = useSelector((state) => state.cartReducer.cartItems)
-    const itemState = useSelector((state) => state.itemReducer.items)
 
     const dispatch = useDispatch();
-    const [item, setItem] = useState({});
+
     let {id} = useParams();
 
-    useEffect(()=>{
-        const foundItem = itemState.find(
-            function (item){
+    useEffect(()=> {
+        const foundItem = itemsState.find((item) => {
+            console.log("item: ", item, "id: ", item.id)
                 return item.id === parseInt(id);
             });
+
         setItem(foundItem);
-        },[])
+        console.log(foundItem);
+
+    },[id, itemsState])
 
     const handleAddToCart = (id) => {
         dispatch(setCartItem([...cartState, id]))
-        console.log("cart: ", cartState)
+        alert(`Added ${item.name} to the shopping cart`);
     }
 
-    return(
+    return item != null ? (
         <div className={"item-wrapper"}>
             <div className={"left-item"}>
                 <img src={item.img} alt={item.name}/>
@@ -41,5 +43,5 @@ export default function Item(){
             </div>
             <button type="submit" onClick={() => handleAddToCart(item.id)}> Add to cart </button>
         </div>
-    )
+    ) :null
 }

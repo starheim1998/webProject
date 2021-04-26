@@ -1,15 +1,10 @@
 
 
-/**
- * Sets item list to the updated item list.
- * @param items
- * @returns {(function(*): void)|*}
- */
-export function setItems(items){
+export function setItems(item){
     return function(dispatch){
         dispatch({
             type: "SET_ITEMS",
-            items: items
+            items: item
         })
     }
 }

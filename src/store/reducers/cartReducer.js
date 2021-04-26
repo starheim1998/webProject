@@ -10,6 +10,11 @@ export default function cartReducer(state = initialState, action){
                 ...state,
                 cartItems: action.cartItem
             }
+        case "DELETE_CART_ITEM":
+            return {
+                ...state,
+                cartItems: state.cartItem.filter((item) => item !== action.payload)
+            }
         case "EMPTY_CART":
             return {
                 cartItems: []

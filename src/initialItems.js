@@ -45,7 +45,7 @@ export const initialItems = [
     },
     {
         id: 102,
-        img: reddress,
+        img: converse,
         name: "Converse!",
         price: 1200,
         category: "",
@@ -54,7 +54,7 @@ export const initialItems = [
     },
     {
         id: 103,
-        img: converse,
+        img: reddress,
         name: "Red dress!!!",
         price: 100000,
         category: "",
@@ -69,5 +69,5 @@ export const initialItems = [
         category: "",
         size: "",
         color:""
-    }
+    },
 ]

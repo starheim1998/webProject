@@ -6,9 +6,10 @@
 
 .main_body{
     display: flex;
-    justify-content: space-around;
+
 }
 
 .aside_container{
-    width: 15%;
+    flex-basis: 300px;
+    flex-grow: 1;
 }

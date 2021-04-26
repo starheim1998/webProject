@@ -25,7 +25,7 @@ export default function Aside(props){
     return(
 
         <form>
-            <div id={"aside_main_container"}>
+            <div id={"aside_wrapper"}>
                 <p className={"aside_header"}>Categories</p>
 
                 <div id={"category_container"}>

@@ -1,12 +1,12 @@
 
-#aside_main_container{
+#aside_wrapper{
     border: 1px solid red;
 }
 
 #category_container{
 }
 
-.category_item{
+#aside_wrapper .category_item{
     display: flex;
     justify-content: space-between;
     padding: 4%;
