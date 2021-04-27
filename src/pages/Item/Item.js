@@ -9,7 +9,6 @@ export default function Item(){
     const cartState = useSelector((state) => state.cartReducer.cartItems)
 
     const dispatch = useDispatch();
-
     let {id} = useParams();
 
     useEffect(()=> {

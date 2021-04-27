@@ -4,12 +4,14 @@ import {useState} from "react";
 
 import "./ShoppingCart.css"
 import {deleteCartItem} from "../../store/actions/cartActions";
+import {useHistory} from "react-router";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const itemsState = useSelector((state) => state.itemReducer.items);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
     const dispatch = useDispatch();
+    const history = useHistory();
     // template account for testing
 
     const deleteHandler = (id) => {
@@ -47,13 +49,20 @@ export default function ShoppingCart(){
     return(
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>
-
             {addBody()}
 
-            <button onClick={() => setCheckoutOpen(true)}>Checkout!</button>
-            <Checkout open={checkoutOpen} onClose={()=>setCheckoutOpen(false)}
-            redirect={() => console.log("GO BACK")}/>
-
+            <button onClick={() => {
+                setCheckoutOpen(true)
+                history.push("ShoppingCart/checkout");
+                history.replace("/ShoppingCart/ShoppingCart/checkout")
+            }
+            }>Checkout!</button>
+            <Checkout open={checkoutOpen}
+                      onClose={()=>{
+                          setCheckoutOpen(false)
+                          history.push("/ShoppingCart/ShoppingCart/")
+                      }}
+                      redirect={() => console.log("GO BACK")}/>
         </div>
     )
 }
