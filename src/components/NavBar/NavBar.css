@@ -1,15 +1,14 @@
-
 .navbar {
     --bg: #242526;
     --bg-accent: gray;
-    --nav-size: 60px;
+    --nav-size: 7vh;
     --border: 1px solid #47a4d;
     --border-radius: 8px;
     --speed: 500ms;
-    height: var(--nav-size);
+    --height: var(--nav-size);
+    height: var(--height);
     background-color: var(--bg);
     padding: 0;
-    border-bottom: var(--border);
     --text-color: #ffffff;
 }
 
@@ -31,7 +30,6 @@
 }
 .female-button, .male-button {
     --button-size: calc(var(--nav-size) * 0.5);
-    /*width: var(--button-size);*/
     height: var(--button-size);
     background-color: #484a4d;
     padding: 5px;
@@ -43,41 +41,39 @@
     text-decoration: none;
     font-size: 3vh;
 }
-.female-button {
-    /*justify-content: flex-start;*/
-}
-.male-button {
-    /*justify-content: flex-end;*/
-
-}
 
 .dropdown {
     position: absolute;
     left: 45%;
-    top: 17vh;
+    top: calc(var(--height)*1.9);
+    align-self: end;
     width: 56vw;
     transform: translateX(-45%);
     background-color: var(--bg);
-    border: var(--border);
     border-radius: var(--border-radius);
     padding: 0.9rem;
     overflow: hidden;
     display: grid;
     grid-template-columns: 14vw 14vw 14vw 14vw;
     grid-template-rows: 5vw 3vw 3vw 3vw;
-    align-self: center;
-    color: var(--text-color);
+    color: white;
+    z-index: 1000;
+
 }
 
 .menu-item {
-    height: 50px;
+    height: 5vh;
     align-items: center;
     border-radius: var(--border-radius);
     transition: background var(--speed);
     padding: 0.5rem;
     text-decoration: none;
-    font-size: 3vh;
+    font-size: 2.5vh;
 }
 .menu-item:hover {
     background-color: #525357;
+}
+.nav_modal {
+    z-index: 1;
+    overflow: auto;
 }
