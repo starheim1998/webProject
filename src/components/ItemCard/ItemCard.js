@@ -2,7 +2,7 @@ import "./ItemCard.css";
 import {Link} from "react-router-dom";
 
 
-export default function ItemCard( {item} ){
+export default function ItemCard({item}){
     // attributes of the product
     const {id, img, name, price} = item;
 

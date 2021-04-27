@@ -1,31 +1,44 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
-import {useSelector} from "react-redux";
 import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
+import {API_URL} from "../../config";
 
 
 export default function SearchPage(props){
 
-    const itemsState = useSelector((state) => state.itemReducer.items)
+    // const itemsState = useSelector((state) => state.itemReducer.items)
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",
         size: "",
         color: ""
     });
+
+    const [items, setItems] = useState([]);
+
+    function loadItems(){
+        fetch(API_URL + "/item")
+            .then((res) => res.json())
+            .then((json) => setItems(json))
+            .catch(function (err) {
+                alert("ERROR:" + err);
+            });
+    }
+
     //TODO: implement this functionality
     // get selected category from navbar
     const {selectedCategory} = props;
 
     useEffect(() => {
         setSearch(getSearch)
+        loadItems()
     }, [useParams()])
 
     const foundItemsCount = (query) =>{
         let counter = 0;
-        itemsState.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
+        items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
         return counter;
     }
 
@@ -45,7 +58,7 @@ export default function SearchPage(props){
     const foundItems = (query) => {
         let foundItemList = [];
         {
-            itemsState.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())
+            items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())
                 && (item.category === filterState.category || filterState.category === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
                     || filterState.size === ""
@@ -56,7 +69,6 @@ export default function SearchPage(props){
                     foundItemList.push(item)
                 })
         }
-        console.log(foundItemList);
         return foundItemList;
     }
 

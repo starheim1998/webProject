@@ -10,8 +10,7 @@ import {useSelector} from "react-redux";
  * @constructor
  */
 export default function Home(){
-    const itemState = useSelector((state) => state.itemReducer.items)
-
+    const itemState = useSelector((state) => state.itemReducer.items);
 
     const getFrontPageItems = () => {
         let list = [];
