@@ -61,7 +61,7 @@ export default function Register({open, onClose, redirect}){
 
         fetch("http://localhost:8080/api/v1" + "/registration", {
             method: "POST",
-            headers: {'Content-type:': 'application/json'},
+            headers: {'Content-type':'application/json'},
             body: JSON.stringify(newAccount)
         })
             // .then((response) => response.json())
