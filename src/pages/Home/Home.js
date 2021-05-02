@@ -12,6 +12,8 @@ import {useSelector} from "react-redux";
 export default function Home(){
     const itemState = useSelector((state) => state.itemReducer.items);
 
+    // const [item, setItem]
+
     const getFrontPageItems = () => {
         let list = [];
         itemState.filter((item) => item.id > 100).

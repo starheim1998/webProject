@@ -18,6 +18,9 @@ export default function SearchPage(props){
 
     const [items, setItems] = useState([]);
 
+    // Code adapted from:
+    // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
+    //TODO: Loading twice? fetch error
     function loadItems(){
         fetch(API_URL + "/item")
             .then((res) => res.json())

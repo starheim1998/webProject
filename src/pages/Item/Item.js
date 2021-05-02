@@ -2,44 +2,56 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setCartItem} from "../../store/actions/cartActions";
+import {API_URL} from "../../config";
 
 export default function Item(){
-    const [item, setItem] = useState([]);
-    const itemsState = useSelector((state) => state.itemReducer.items)
+    const [items, setItems] = useState([])
+    const [foundItem, setFoundItem] = useState([]);
+    // const itemsState = useSelector((state) => state.itemReducer.items)
     const cartState = useSelector((state) => state.cartReducer.cartItems)
 
     const dispatch = useDispatch();
     let {id} = useParams();
 
+    // Code adapted from:
+    // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
+    function loadItems(){
+        fetch(API_URL + "/item")
+            .then((response) => response.json())
+            .then((json) => setItems(json))
+            .catch(function (err) {
+                alert("ERROR: " + err);
+            })
+    }
+
     useEffect(()=> {
-        const foundItem = itemsState.find((item) => {
+        loadItems();
+        const foundItem = items.find((item) => {
                 return item.id === parseInt(id);
             });
 
-        setItem(foundItem);
-        console.log(foundItem);
-
-    },[id, itemsState])
+        setFoundItem(foundItem);
+    },[id, items])
 
     const handleAddToCart = (id) => {
         dispatch(setCartItem([...cartState, id]))
-        alert(`Added ${item.name} to the shopping cart`);
+        alert(`Added ${foundItem.name} to the shopping cart`);
     }
 
-    return item != null ? (
+    return foundItem != null ? (
         <div className={"item-wrapper"}>
             <div className={"left-item"}>
-                <img src={item.img} alt={item.name}/>
+                <img src={foundItem.img} alt={foundItem.name}/>
             </div>
             <div className={"right-item"}>
-                <h2>{item.name}</h2>
-                <h4>{item.description}</h4>
-                <h4>{item.price}</h4>
+                <h2>{foundItem.name}</h2>
+                <h4>{foundItem.description}</h4>
+                <h4>{foundItem.price}</h4>
                 <div>SIZE DROPDOWN</div>
                 <div>COLOR DROPDOWN</div>
-                <h4>Product details:{item.details}</h4>
+                <h4>Product details:{foundItem.details}</h4>
             </div>
-            <button type="submit" onClick={() => handleAddToCart(item.id)}> Add to cart </button>
+            <button type="submit" onClick={() => handleAddToCart(foundItem.id)}> Add to cart </button>
         </div>
     ) :null
 }
