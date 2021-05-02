@@ -42,7 +42,6 @@ export default function ShoppingCart(){
                             <div className={"delete_button_container"}>
                                 <button onClick={() => deleteHandler(getItem(itemID).id)}> DELETE</button>
                             </div>
-
                         </div>
                     ))}}
 
@@ -53,8 +52,7 @@ export default function ShoppingCart(){
 
             <button onClick={() => {
                 setCheckoutOpen(true)
-                history.push("ShoppingCart/checkout");
-                history.replace("/ShoppingCart/ShoppingCart/checkout")
+                history.replace("/ShoppingCart/ShoppingCart/Checkout");
             }
             }>Checkout!</button>
             <Checkout open={checkoutOpen}

@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {setAccount} from "../../../store/actions/accountActions";
 
 
+
 export default function Register({open, onClose, redirect}){
     const accounts = useSelector(state => state.accountReducer.accounts);
     const dispatch = useDispatch();
@@ -44,13 +45,46 @@ export default function Register({open, onClose, redirect}){
         setConfirmPassword("");
     }
 
+    function handleSubmitFetch(e){
+        e.preventDefault();
+        if (confirmPassword !== password){
+            alert("Passwords did not match!");
+            setPassword("");
+            setConfirmPassword("");
+            return null;
+        }
+        const newAccount = {
+            name: name,
+            email: email,
+            password: password,
+        };
+
+        fetch("http://localhost:8080/api/v1" + "/registration", {
+            method: "POST",
+            headers: {'Content-type:': 'application/json'},
+            body: JSON.stringify(newAccount)
+        })
+            // .then((response) => response.json())
+            .catch(function(err){
+                alert("ERROR:" + err)
+            });
+
+        alert("Account added!");
+        onClose();
+        /*RESET FORM*/
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+    }
+
     return(
             <Modal title={"Register"}
                    textUnder={"Already a member? Log in."}
                    open={open}
                    onClose={onClose}
                    reDirect={redirect}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitFetch}>
                     <label>Name:</label>
                     <input type={"text"} placeholder={"Your name here.."} value={name}
                            onChange={(e) => setName(e.target.value)}/>
