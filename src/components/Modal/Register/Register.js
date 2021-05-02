@@ -58,13 +58,11 @@ export default function Register({open, onClose, redirect}){
             email: email,
             password: password,
         };
-
         fetch("http://localhost:8080/api/v1" + "/registration", {
             method: "POST",
             headers: {'Content-type':'application/json'},
             body: JSON.stringify(newAccount)
         })
-            // .then((response) => response.json())
             .catch(function(err){
                 alert("ERROR:" + err)
             });
