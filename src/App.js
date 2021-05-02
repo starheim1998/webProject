@@ -19,6 +19,7 @@ import {initialAccounts} from "./initialAccounts";
 import {setAccount} from "./store/actions/accountActions";
 import {setCartItem} from "./store/actions/cartActions";
 import {initialCart} from "./initialCart";
+import AccountPage from "./pages/AccountPage/AccountPage";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
     }, [dispatch])
 
 
-  return (
+    return (
     <div className="App">
       <Header/>
       <Switch>
@@ -39,6 +40,7 @@ function App() {
           <Route path="/categoryPage/categoryPage" component={CategoryPage}/>
           <Route path="/shoppingCart/shoppingCart" component={ShoppingCart}/>
           <Route path="/search" component={SearchPage}/>
+          <Route path="/accountPage/accountPage" component={AccountPage}/>
           <Route exact path="/" component={Home}/>
       </Switch>
       <Footer/>

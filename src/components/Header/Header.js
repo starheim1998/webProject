@@ -13,8 +13,34 @@ export default function Header(){
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
 
-    const [isLoggedIn, setLoggedIn] = useState("");
-    const [name, setName] = useState("");
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [name, setName] = useState("test");
+
+    const loginComponent = () => {
+        if(!isLoggedIn) {
+            return (
+                <>
+                    {/*//Modals for Login/Register*/}
+                    <button onClick={() => setLoginOpen(true)}>Login | Register</button>
+                    <Login setLoggedIn = {setLoggedIn} setName = {setName} open={loginOpen} onClose={()=>setLoginOpen(false)} redirect={() =>{
+                        setLoginOpen(false);
+                        setRegisterOpen(true);
+                    }} />
+                    <Register onClose={()=>setRegisterOpen(false)}
+                              open={registerOpen}
+                              redirect={() =>{
+                                  setLoginOpen(true);
+                                  setRegisterOpen(false);
+                              }}/>
+                </>
+            )
+
+            } else if (isLoggedIn){
+            return (
+                <Link to="/accountPage/accountPage"> {name} </Link>
+            )
+        }
+    }
 
     return(
         <div className="header_container">
@@ -23,19 +49,7 @@ export default function Header(){
                 <Link to="/"> <h3>Home</h3> </Link>
 
                 <SearchBar/>
-
-                {/*//Modals for Login/Register*/}
-                <button onClick={() => setLoginOpen(true)}>Login | Register</button>
-                <Login open={loginOpen} onClose={()=>setLoginOpen(false)} redirect={() =>{
-                    setLoginOpen(false);
-                    setRegisterOpen(true);
-                }} />
-                <Register onClose={()=>setRegisterOpen(false)}
-                          open={registerOpen}
-                          redirect={() =>{
-                              setLoginOpen(true);
-                              setRegisterOpen(false);
-                          }}/>
+                {loginComponent()}
 
                 <Link to="/ShoppingCart/ShoppingCart">
                     <img src={cart} alt="cart link"/>

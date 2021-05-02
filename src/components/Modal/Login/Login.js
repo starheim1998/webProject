@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Modal from "../Modal";
 import {useSelector} from "react-redux";
 
-export default function Login({open, onClose, redirect}) {
+export default function Login({setLoggedIn, setName, open, onClose, redirect}) {
     const accounts = useSelector(state => state.accountReducer.accounts);
 
     const [email, setEmail] = useState("");
@@ -13,6 +13,9 @@ export default function Login({open, onClose, redirect}) {
         if (accounts.find(account => account.email.toLowerCase() === email.toLowerCase()
             && account.password === password)) {
             alert("Logged in!");
+            setLoggedIn(true);
+            // TODO: name?
+            setName(email);
             onClose();
         } else {
             alert("Login failed!");
