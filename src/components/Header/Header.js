@@ -13,6 +13,9 @@ export default function Header(){
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
 
+    const [isLoggedIn, setLoggedIn] = useState("");
+    const [name, setName] = useState("");
+
     return(
         <div className="header_container">
             {/*first row of the header*/}
