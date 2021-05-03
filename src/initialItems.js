@@ -4,7 +4,7 @@ import shoes from "./img/a-big-shoe.jpg";
 
 export const initialItems = [
     {
-        id: 0,
+        id: 1,
         name: "Levi's jeans",
         description: "undertittel",
         price: 1200,
@@ -17,7 +17,7 @@ export const initialItems = [
         counter: 3
     },
     {
-        id: 1,
+        id: 2,
         name: "Nike ultimate running",
         description: "made for running",
         price: 1700,
@@ -31,7 +31,7 @@ export const initialItems = [
         counter: 5
     },
     {
-        id: 2,
+        id: 3,
         name: "GAP sweater",
         description: "Comfy cotton top",
         price: 600,

@@ -21,13 +21,42 @@ export default function ShoppingCart(){
 
 
     const getItem = (id) => {
-        //TODO: ugly?
-        return itemsState.filter((item) => item.id === id)[0]
+        return itemsState.find((item) => item.id === id);
     }
 
-    const listCardItems = (id) => {
-
+    const getNumberOfItem = (id) => {
+        let counter = 0;
+        cartState.forEach((itemID) => {
+            if(itemID === id){
+                counter++;
+            }
+        })
+        console.log("counter", counter)
+        return counter;
     }
+
+    const renderItem = (id) => {
+        return (
+            <div className={"cart_item_container"} key={getItem(id).id}>
+                <div className={"cart_img_container"}>
+                    <img src={getItem(id).img} alt={getItem(id).name}/>
+                </div>
+                <div className={"cart_body_container"}>
+                    <p>{getItem(id).name}</p>
+                    <p>{getItem(id).price} kr</p>
+                </div>
+                <div className={"amount_container"}>
+                    Amount:
+                    <input type="number" min={1} defaultValue={getNumberOfItem(id)}/>
+                </div>
+                <div className={"delete_button_container"}>
+                    <button onClick={() => deleteHandler(getItem(id).id)}> DELETE</button>
+                </div>
+            </div>
+           )
+    }
+
+
 
     const addBody = () => {
         if(cartState.length === 0){
@@ -35,23 +64,9 @@ export default function ShoppingCart(){
         } else {
             return (
                 cartState.map((itemID) =>
-                        <div className={"cart_item_container"} key={getItem(itemID).id}>
-                            <div className={"cart_img_container"}>
-                                <img src={getItem(itemID).img} alt={getItem(itemID).name}/>
-                            </div>
-                            <div className={"cart_body_container"}>
-                                <p>{getItem(itemID).name}</p>
-                                <p>{getItem(itemID).price} kr</p>
-                            </div>
-                            <div className={"amount_container"}>
-                                Amount:
-                                <input type="number" min={1}/>
-                            </div>
-                            <div className={"delete_button_container"}>
-                                <button onClick={() => deleteHandler(getItem(itemID).id)}> DELETE</button>
-                            </div>
-                        </div>
-                    ))}}
+                renderItem(itemID)
+                ))
+           }}
 
     return(
         <div className={"cart_main_container"}>
