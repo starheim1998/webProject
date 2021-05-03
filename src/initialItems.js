@@ -44,15 +44,6 @@ export const initialItems = [
         img: "https://down.imgspng.com/download/0720/sweater_PNG50.png"
     },
     {
-        img: "https://cdn.betterttv.net/emote/5df0742ee7df1277b6070125/3x",
-        id: 3,
-        name: "aAAAAAAAAAAAAAAAAAA",
-        price: 1,
-        category: "",
-        size: "",
-        color:"black"
-    },
-    {
         id: 102,
         img: converse,
         name: "Converse!",

@@ -1,10 +1,24 @@
 import "./Aside.css"
+import {useEffect, useRef, useState} from "react";
 
 
 export default function Aside(props){
 
-    const {category1, category2, category3, category4, filterState, setFilterState} = props
+    const {filterState, setFilterState} = props
 
+    // let selectedCategory = null;
+    //
+    // const changeSelectedCategory = (span) => {
+    //     console.log(selectedCategory)
+    //     if(span === selectedCategory){
+    //         return;
+    //     }
+    //     if(selectedCategory !== null){
+    //         selectedCategory.classList.toggle("selectedCategory");
+    //     }
+    //     selectedCategory = span;
+    //     selectedCategory.classList.toggle("selectedCategory");
+    // }
 
     const handleSizeChange = (e) => {
         e.preventDefault();
@@ -18,8 +32,32 @@ export default function Aside(props){
         e.preventDefault();
         setFilterState({
             ...filterState,
-            color: e.target.value}
+            colors: e.target.value}
         )
+    }
+
+    const handleCategoryChange = (e) => {
+        e.preventDefault();
+        setFilterState({
+            ...filterState,
+            category: e.target.title,
+            subcategory: ""
+        })
+
+        // changeSelectedCategory(e.target);
+
+    }
+
+    const handleSubcategoryChange = (e) => {
+        e.preventDefault();
+        setFilterState({
+            ...filterState,
+            subcategory: e.target.title,
+            category: ""
+        })
+
+        // changeSelectedCategory(e.target);
+
     }
 
     return(
@@ -30,28 +68,60 @@ export default function Aside(props){
 
                 <div id={"category_container"}>
                     <div className={"category_item"}>
-                        <span>All products</span>
-                        <input className="checkbox" type="checkbox" value="" defaultChecked={true}/>
+                        <span className={"mainCategory category"} title={""}
+                        onClick={(e) => handleCategoryChange(e)}>All products</span>
                     </div>
 
                     <div className={"category_item"}>
-                        <span>{category1}</span>
-                        <input className="checkbox" type="checkbox" value={category1.toLowerCase()}/>
+                        <span className={"mainCategory category"} title={"topwear"}
+                               onClick={(e) => handleCategoryChange(e)}>Topwear</span>
+                        <span className={"subcategory category"} title={"sweater"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Sweater</span>
+                        <span className={"subcategory category"} title={"tshirt"}
+                              onClick={(e) => handleSubcategoryChange(e)}>T-shirt</span>
+                        <span className={"subcategory category"} title={"singlet"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Singlet</span>
+                        <span className={"subcategory category"} title={"cardigans"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Cardigans</span>
                     </div>
 
                     <div className={"category_item"}>
-                        <span>{category2}</span>
-                        <input className="checkbox" type="checkbox" value={category2.toLowerCase()}/>
+                         <span className={"mainCategory category"} title={"bottomwear"}
+                               onClick={(e) => handleCategoryChange(e)}>Bottomwear</span>
+                        <span className={"subcategory category"} title={"jeans"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Jeans</span>
+                        <span className={"subcategory category"} title={"joggers"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Joggers</span>
+                        <span className={"subcategory category"} title={"sweatpants"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Sweatpants</span>
+                        <span className={"subcategory category"} title={"shorts"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Shorts</span>
                     </div>
 
                     <div className={"category_item"}>
-                        <span>{category3}</span>
-                        <input className="checkbox" type="checkbox" value={category3.toLowerCase()}/>
+                         <span className={"mainCategory category"} title={"shoes"}
+                               onClick={(e) => handleCategoryChange(e)}>Shoes</span>
+                        <span className={"subcategory category"} title={"running"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Running</span>
+                        <span className={"subcategory category"} title={"lifestyle"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Lifestyle</span>
+                        <span className={"subcategory category"} title={"sneakers"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Sneakers</span>
+                        <span className={"subcategory category"} title={"golf"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Golf</span>
                     </div>
 
                     <div className={"category_item"}>
-                        <span>{category4}</span>
-                        <input className="checkbox" type="checkbox" value={category4.toLowerCase()}/>
+                        <span className={"mainCategory category"} title={"sport"}
+                              onClick={(e) => handleCategoryChange(e)}>Sport</span>
+                        <span className={"subcategory category"} title={"football"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Football</span>
+                        <span className={"subcategory category"} title={"weightlifting"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Weightlifting</span>
+                        <span className={"subcategory category"} title={"tennis"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Tennis</span>
+                        <span className={"subcategory category"} title={"basketball"}
+                              onClick={(e) => handleSubcategoryChange(e)}>Basketball</span>
                     </div>
                 </div>
 

@@ -1,16 +1,38 @@
 
 #aside_wrapper{
     border: 1px solid red;
+
 }
 
 #category_container{
 }
 
+
+
 #aside_wrapper .category_item{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding: 4%;
     border: 1px solid black;
+}
+
+.mainCategory{
+    font-size: larger;
+}
+
+.subcategory{
+    font-size: smaller;
+}
+
+.category:hover{
+    cursor: pointer;
+    color: gray;
+}
+
+.selectedCategory{
+    color: blue;
+    font-weight: bold;
 }
 
 .checkbox{
@@ -31,3 +53,4 @@
     display: flex;
     justify-content: space-between;
 }
+

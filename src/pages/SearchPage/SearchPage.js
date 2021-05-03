@@ -4,6 +4,7 @@ import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
 import {API_URL} from "../../config";
+import {f} from "react-select/dist/index-4bd03571.esm";
 
 
 export default function SearchPage(props){
@@ -12,8 +13,9 @@ export default function SearchPage(props){
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",
+        subcategory: "",
         size: "",
-        color: ""
+        colors: ""
     });
 
     const [items, setItems] = useState([]);
@@ -60,16 +62,22 @@ export default function SearchPage(props){
 
     const foundItems = (query) => {
         let foundItemList = [];
-        {
-            items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())
+        console.log(foundItemList);
+
+            {
+            items.filter((item) =>
+                item.name.toLowerCase().includes(query.toLowerCase())
                 && (item.category === filterState.category || filterState.category === "")
+                && (item.subcategory === filterState.subcategory || filterState.subcategory === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
                     || filterState.size === ""
                     // TODO: discuss shoe size issue
                     || item.size === "")
-                && (item.color === filterState.color || filterState.color === ""))
+                && (item.colors.toLowerCase().includes(filterState.colors.toLowerCase())
+                    || filterState.colors === ""))
                 .map((item) => {
                     foundItemList.push(item)
+                    console.log(item)
                 })
         }
         return foundItemList;

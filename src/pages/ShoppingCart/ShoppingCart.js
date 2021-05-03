@@ -25,6 +25,10 @@ export default function ShoppingCart(){
         return itemsState.filter((item) => item.id === id)[0]
     }
 
+    const listCardItems = (id) => {
+
+    }
+
     const addBody = () => {
         if(cartState.length === 0){
             return <p>The shopping cart is empty </p>
@@ -37,7 +41,11 @@ export default function ShoppingCart(){
                             </div>
                             <div className={"cart_body_container"}>
                                 <p>{getItem(itemID).name}</p>
-                                <p>{getItem(itemID).price}</p>
+                                <p>{getItem(itemID).price} kr</p>
+                            </div>
+                            <div className={"amount_container"}>
+                                Amount:
+                                <input type="number" min={1}/>
                             </div>
                             <div className={"delete_button_container"}>
                                 <button onClick={() => deleteHandler(getItem(itemID).id)}> DELETE</button>
