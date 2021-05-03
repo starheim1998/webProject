@@ -18,6 +18,15 @@ export function deleteCartItem(id){
     }
 }
 
+export function deleteOneItem(index){
+    return function (dispatch){
+        dispatch({
+            type: "DELETE_ONE_ITEM",
+            payload: index
+        })
+    }
+}
+
 export function emptyCart(){
     return function (dispatch) {
         dispatch({

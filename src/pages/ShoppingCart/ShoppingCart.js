@@ -1,9 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
 import Checkout from "../../components/Modal/Checkout/Checkout";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 import "./ShoppingCart.css"
-import {deleteCartItem} from "../../store/actions/cartActions";
+import {deleteCartItem, deleteOneItem, setCartItem} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 
 export default function ShoppingCart(){
@@ -18,6 +18,10 @@ export default function ShoppingCart(){
         console.log(id)
         dispatch(deleteCartItem(id))
     }
+
+    useEffect(() => {
+
+    },[dispatch])
 
 
     const getItem = (id) => {
@@ -35,6 +39,16 @@ export default function ShoppingCart(){
         return counter;
     }
 
+    const handleDecrement = (event, id) => {
+           const itemToDelete = cartState.findIndex((itemID) => itemID === id);
+           dispatch(deleteOneItem(itemToDelete));
+
+    }
+
+    const handleIncrement = (id) => {
+        dispatch(setCartItem([...cartState, id]));
+    }
+
     const renderItem = (id) => {
         return (
             <div className={"cart_item_container"} key={getItem(id).id}>
@@ -43,11 +57,22 @@ export default function ShoppingCart(){
                 </div>
                 <div className={"cart_body_container"}>
                     <p>{getItem(id).name}</p>
-                    <p>{getItem(id).price} kr</p>
+                    <p>Size: {getItem(id).size}</p>
+                    <p>Color: {getItem(id).color}</p>
+                </div>
+                <div>
+                    <p>Price: {getItem(id).price} kr</p>
+                </div>
+                <div>
+                    <p>Total: {getItem(id).price*getNumberOfItem(id)} kr</p>
+
                 </div>
                 <div className={"amount_container"}>
                     Amount:
-                    <input type="number" min={1} defaultValue={getNumberOfItem(id)}/>
+                    <input contentEditable={"false"} type="number" min={1} defaultValue={getNumberOfItem(id)}/>
+
+                    <button onClick={(e) => handleDecrement(id)}>-</button>
+                    <button onClick={(e) => handleIncrement(id)}>+</button>
                 </div>
                 <div className={"delete_button_container"}>
                     <button onClick={() => deleteHandler(getItem(id).id)}> DELETE</button>
@@ -62,8 +87,9 @@ export default function ShoppingCart(){
         if(cartState.length === 0){
             return <p>The shopping cart is empty </p>
         } else {
+            const uniqueCartItems = [...new Set(cartState)]
             return (
-                cartState.map((itemID) =>
+                uniqueCartItems.map((itemID) =>
                 renderItem(itemID)
                 ))
            }}
