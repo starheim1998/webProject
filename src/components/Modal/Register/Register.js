@@ -2,6 +2,7 @@ import Modal from "../Modal";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useState} from 'react';
 import {setAccount} from "../../../store/actions/accountActions";
+import {loginUser, registerUserAction} from "../../../store/actions/registerUserAction";
 
 
 
@@ -58,22 +59,9 @@ export default function Register({open, onClose, redirect}){
             email: email,
             password: password,
         };
-        fetch("http://localhost:8080/api/v1" + "/registration", {
-            method: "POST",
-            headers: {'Content-type':'application/json'},
-            body: JSON.stringify(newAccount)
-        })
-            .catch(function(err){
-                alert("ERROR:" + err)
-            });
-
+        registerUserAction(newAccount);
         alert("Account added!");
         onClose();
-        /*RESET FORM*/
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
     }
 
     return(

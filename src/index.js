@@ -13,12 +13,13 @@ import thunk from 'redux-thunk';
 import itemReducer from "./store/reducers/itemReducer";
 import accountReducer from "./store/reducers/accountReducer";
 import cartReducer from "./store/reducers/cartReducer";
+import registerReducer from "./store/reducers/registerReducer";
 
 /**
  *
  */
 
-const rootReducer = combineReducers({itemReducer, accountReducer, cartReducer})
+const rootReducer = combineReducers({itemReducer, accountReducer, cartReducer, registerReducer})
 
 const reduxStore = createStore(
     rootReducer,
