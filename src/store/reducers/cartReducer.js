@@ -11,17 +11,16 @@ export default function cartReducer(state = initialState, action){
                 cartItems: action.cartItem
             }
 
-        case "DELETE_ONE_ITEM":
-            return {
-                ...state,
-                cartItems:[...state.cartItems.slice(0, action._payload),
-                    ...state.cartItems.slice(action._payload++)]
-            }
+        case "UPDATE_QUANTITY":
+
+            const newState = {...state};
+            newState.cartItems.find((cartItem) => cartItem.itemId === action.payload.id).quantity = action.payload.quantity;
+            return newState;
 
         case "DELETE_CART_ITEM":
             return {
                 ...state,
-                cartItems: state.cartItems.filter((id) => id !== action.payload)
+                cartItems: state.cartItems.filter((cartItem) => cartItem.itemId !== action.payload)
             }
         case "EMPTY_CART":
             return {

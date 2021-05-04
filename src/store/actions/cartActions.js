@@ -1,3 +1,4 @@
+import {q} from "react-select/dist/index-4bd03571.esm";
 
 
 export function setCartItem(cartItem){
@@ -18,11 +19,11 @@ export function deleteCartItem(id){
     }
 }
 
-export function deleteOneItem(index){
+export function updateQuantity(id, quantity){
     return function (dispatch){
         dispatch({
-            type: "DELETE_ONE_ITEM",
-            payload: index
+            type: "UPDATE_QUANTITY",
+            payload: {"id": id, "quantity": quantity}
         })
     }
 }

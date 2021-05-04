@@ -11,15 +11,14 @@ import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 /**/
 import itemReducer from "./store/reducers/itemReducer";
-import accountReducer from "./store/reducers/accountReducer";
 import cartReducer from "./store/reducers/cartReducer";
-import registerReducer from "./store/reducers/registerReducer";
+import accountReducer from "./store/reducers/accountReducer";
 
 /**
  *
  */
 
-const rootReducer = combineReducers({itemReducer, accountReducer, cartReducer, registerReducer})
+const rootReducer = combineReducers({itemReducer, accountReducer, cartReducer, registerReducer: accountReducer})
 
 const reduxStore = createStore(
     rootReducer,

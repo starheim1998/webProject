@@ -3,8 +3,10 @@ import Checkout from "../../components/Modal/Checkout/Checkout";
 import {useEffect, useState} from "react";
 
 import "./ShoppingCart.css"
-import {deleteCartItem, deleteOneItem, setCartItem} from "../../store/actions/cartActions";
+import {deleteCartItem, deleteOneItem, setCartItem, updateQuantity} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
+import {API_URL} from "../../config";
+import {loginUser} from "../../store/actions/registerUserAction";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -14,68 +16,67 @@ export default function ShoppingCart(){
     const history = useHistory();
     // template account for testing
 
-    const deleteHandler = (id) => {
-        console.log(id)
-        dispatch(deleteCartItem(id))
+
+    const deleteHandler = (cartItem) => {
+        dispatch(deleteCartItem(cartItem.itemId))
+    }
+
+    function loadItems(){
+        fetch(API_URL + "/cart")
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                dispatch(setCartItem(json));
+            })
+            .catch(function (err) {
+                alert("ERROR: " + err);
+            })
+        console.log("ltest");
     }
 
     useEffect(() => {
-
+        loadItems();
     },[dispatch])
 
 
-    const getItem = (id) => {
-        return itemsState.find((item) => item.id === id);
+    const getItem = (cartItem) => {
+        return itemsState.find((item) => item.id === cartItem.itemId);
     }
 
-    const getNumberOfItem = (id) => {
-        let counter = 0;
-        cartState.forEach((itemID) => {
-            if(itemID === id){
-                counter++;
-            }
-        })
-        console.log("counter", counter)
-        return counter;
-    }
+   const handleQuantityChange = (cartItem, event) => {
+        const updatedValue = event.target.value;
+        dispatch((updateQuantity(cartItem.itemId, updatedValue)));
+        console.log(cartItem.quantity);
+   }
 
-    const handleDecrement = (event, id) => {
-           const itemToDelete = cartState.findIndex((itemID) => itemID === id);
-           dispatch(deleteOneItem(itemToDelete));
-
-    }
-
-    const handleIncrement = (id) => {
-        dispatch(setCartItem([...cartState, id]));
-    }
-
-    const renderItem = (id) => {
+    const renderItem = (cartItem) => {
+        const item = getItem(cartItem);
         return (
-            <div className={"cart_item_container"} key={getItem(id).id}>
+            <div className={"cart_item_container"} key={item.id}>
                 <div className={"cart_img_container"}>
-                    <img src={getItem(id).img} alt={getItem(id).name}/>
+                    <img src={item.img} alt={item.name}/>
                 </div>
                 <div className={"cart_body_container"}>
-                    <p>{getItem(id).name}</p>
-                    <p>Size: {getItem(id).size}</p>
-                    <p>Color: {getItem(id).color}</p>
+                    <p>{item.name}</p>
+                    <p>Size: {item.size}</p>
+                    <p>Color: {item.color}</p>
                 </div>
                 <div>
-                    <p>Price: {getItem(id).price} kr</p>
+                    <p>Price: {item.price} kr</p>
                 </div>
                 <div>
-                    <p>Total: {getItem(id).price*getNumberOfItem(id)} kr</p>
+                    <p>Total: {(cartItem.quantity)*(item.price)}kr</p>
 
                 </div>
                 <div className={"amount_container"}>
                     Amount:
-                    <input contentEditable={"false"} type="number" min={1} defaultValue={getNumberOfItem(id)}/>
+                    <input defaultValue={cartItem.quantity}
+                           onChange={(e) => handleQuantityChange(cartItem, e)}
+                           type="number" min={1} name={cartItem.quantity}/>
 
-                    <button onClick={(e) => handleDecrement(id)}>-</button>
-                    <button onClick={(e) => handleIncrement(id)}>+</button>
                 </div>
                 <div className={"delete_button_container"}>
-                    <button onClick={() => deleteHandler(getItem(id).id)}> DELETE</button>
+                    <button onClick={() => deleteHandler(cartItem)}> DELETE</button>
                 </div>
             </div>
            )
@@ -87,14 +88,13 @@ export default function ShoppingCart(){
         if(cartState.length === 0){
             return <p>The shopping cart is empty </p>
         } else {
-            const uniqueCartItems = [...new Set(cartState)]
             return (
-                uniqueCartItems.map((itemID) =>
-                renderItem(itemID)
+                cartState.map((cartItem) =>
+                renderItem(cartItem)
                 ))
            }}
 
-    return(
+    return (
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>
             {addBody()}

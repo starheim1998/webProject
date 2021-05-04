@@ -1,15 +1,22 @@
 
-
 const initialState = {
-    accounts: []
+    isLoggedIn: false,
+    currentUser: {}
 }
 
-export default function accountReducer(state = initialState, action){
-    switch (action.type){
-        case "SET_ACCOUNT":
+export default function accountReducer(state = initialState, action) {
+    switch (action.type) {
+        case 'LOGIN_USER':
             return {
                 ...state,
-                accounts: action.accounts
+                isLoggedIn: true,
+                currentUser: action.payload
+            }
+        case 'LOGOUT_USER':
+            return {
+                ...state,
+                isLoggedIn: false,
+                currentUser: {}
             }
         default:
             return state;

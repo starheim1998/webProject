@@ -26,8 +26,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setAccount(initialAccounts))
-        dispatch(setCartItem(initialCart))
+        // dispatch(setCartItem(initialCart))
         dispatch(setItems(initialItems))
     }, [dispatch])
 
