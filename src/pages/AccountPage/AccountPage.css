@@ -1,0 +1,8 @@
+.aboveOrders{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 50%;
+    margin: auto;
+    border-bottom: 1px solid black;
+}

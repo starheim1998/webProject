@@ -1,30 +1,13 @@
 import React, {useState} from 'react';
 import Modal from "../Modal";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {loginUserAction} from "../../../store/actions/loginUserAction";
 
-export default function Login({setLoggedIn, setName, open, onClose, redirect}) {
+export default function Login({open, onClose, redirect}) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
-
-    // const loginReducer = useSelector((state) => state.registerReducer.currentUser);
-    // function handleSubmit(e) {
-    //     e.preventDefault();
-    //     if (accounts.find(account => account.email.toLowerCase() === email.toLowerCase()
-    //         && account.password === password)) {
-    //         alert("Logged in!");
-    //         setLoggedIn(true);
-    //         setName(email);
-    //         onClose();
-    //     } else {
-    //         alert("Login failed!");
-    //         /*RESET FORM*/
-    //         setEmail("");
-    //         setPassword("");
-    //     }
-    // }
 
     function handleSubmitFetch(e) {
         e.preventDefault();
@@ -32,17 +15,13 @@ export default function Login({setLoggedIn, setName, open, onClose, redirect}) {
             email: email,
             password: password,
         };
-        // if(!loginReducer.find(user => user.email === email)) {
-        //     console.log("no user found");
-        //     return null;
-        // }
-        dispatch(loginUserAction(login));
-        alert("logged in!");
+        dispatch(loginUserAction(login))
         setEmail("");
         setPassword("");
         onClose();
     }
-        return (
+
+    return (
         <Modal title={"Login"}
                textUnder={"Not a member? Register now!"}
                open={open}

@@ -10,13 +10,13 @@ export const registerUserAction = newAccount => {
             body: JSON.stringify({newAccount})
         })
             .then(resp => resp.json())
-            .then(data => {
-                if (data.message) {
+            .then(json => {
+                if (json.message) {
                     console.log("ERROR")
                 } else {
-                    localStorage.setItem("token", data.token)
-                    dispatch(loginUser(data.user))
-                    console.log("Sent, token:" + data.token);
+                    localStorage.setItem("token", json)
+                    dispatch(loginUser(json.user))
+                    console.log("Sent, token:" + json);
                 }
             })
             .catch(function (err) {

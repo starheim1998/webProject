@@ -1,0 +1,9 @@
+.orders {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    width: 50%;
+    border-bottom: 1px solid black;
+}
+

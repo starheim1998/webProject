@@ -1,5 +1,6 @@
 
 const initialState = {
+    isLoggedIn: false,
     currentUser: {}
 }
 
@@ -8,11 +9,13 @@ export default function registerReducer(state = initialState, action) {
         case 'LOGIN_USER':
             return {
                 ...state,
+                isLoggedIn: true,
                 currentUser: action.payload
             }
         case 'LOGOUT_USER':
-            return{
+            return {
                 ...state,
+                isLoggedIn: false,
                 currentUser: {}
             }
         default:
