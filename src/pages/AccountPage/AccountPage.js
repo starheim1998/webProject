@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {logoutUser} from "../../store/actions/logoutAction";
+import {logoutUser} from "../../store/actions/userActions";
 import {useHistory} from "react-router";
 import Orders from "../../components/Orders/Orders";
 import "./AccountPage.css";

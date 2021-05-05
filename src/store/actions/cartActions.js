@@ -1,4 +1,3 @@
-import {q} from "react-select/dist/index-4bd03571.esm";
 
 
 export function setCartItem(cartItem){

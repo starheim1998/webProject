@@ -10,13 +10,10 @@ export default function cartReducer(state = initialState, action){
                 ...state,
                 cartItems: action.cartItem
             }
-
         case "UPDATE_QUANTITY":
-
             const newState = {...state};
             newState.cartItems.find((cartItem) => cartItem.itemId === action.payload.id).quantity = action.payload.quantity;
             return newState;
-
         case "DELETE_CART_ITEM":
             return {
                 ...state,

@@ -6,7 +6,6 @@ import "./ShoppingCart.css"
 import {deleteCartItem, deleteOneItem, setCartItem, updateQuantity} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 import {API_URL} from "../../config";
-import {loginUser} from "../../store/actions/registerUserAction";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -31,7 +30,7 @@ export default function ShoppingCart(){
             .catch(function (err) {
                 alert("ERROR: " + err);
             })
-        console.log("ltest");
+        console.log("test");
     }
 
     useEffect(() => {
@@ -81,8 +80,6 @@ export default function ShoppingCart(){
             </div>
            )
     }
-
-
 
     const addBody = () => {
         if(cartState.length === 0){

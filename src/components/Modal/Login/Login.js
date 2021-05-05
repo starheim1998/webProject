@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Modal from "../Modal";
 import {useDispatch} from "react-redux";
-import {loginUserAction} from "../../../store/actions/loginUserAction";
+import {loginUserAction} from "../../../store/actions/userActions";
 
 export default function Login({open, onClose, redirect}) {
 

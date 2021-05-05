@@ -4,12 +4,10 @@ import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
 import {API_URL} from "../../config";
-import {f} from "react-select/dist/index-4bd03571.esm";
-
 
 export default function SearchPage(props){
 
-    // const itemsState = useSelector((state) => state.itemReducer.items)
+    //const itemsState = useSelector((state) => state.itemReducer.items)
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",

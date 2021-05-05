@@ -1,8 +1,8 @@
 import Modal from "../Modal";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useState} from 'react';
-import {setAccount} from "../../../store/actions/accountActions";
-import {loginUser, registerUserAction} from "../../../store/actions/registerUserAction";
+// import {setAccount} from "../../../store/actions/userActions";
+import {registerUserAction} from "../../../store/actions/userActions";
 
 
 
@@ -20,31 +20,31 @@ export default function Register({open, onClose, redirect}){
         return maxId + 1;
     }
 
-    function handleSubmit(e){
-        e.preventDefault();
-            if (confirmPassword !== password){
-                alert("Passwords did not match!");
-                setPassword("");
-                setConfirmPassword("");
-                return null;
-            }
-        const newAccount = {
-            name: name,
-            email: email,
-            password: password,
-            id: getNextId()
-        };
-        let accountCopy = accounts;
-        accountCopy.push(newAccount);
-        dispatch(setAccount(accountCopy));
-        alert("Account added!");
-        onClose();
-        /*RESET FORM*/
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-    }
+    // function handleSubmit(e){
+    //     e.preventDefault();
+    //         if (confirmPassword !== password){
+    //             alert("Passwords did not match!");
+    //             setPassword("");
+    //             setConfirmPassword("");
+    //             return null;
+    //         }
+    //     const newAccount = {
+    //         name: name,
+    //         email: email,
+    //         password: password,
+    //         id: getNextId()
+    //     };
+    //     let accountCopy = accounts;
+    //     accountCopy.push(newAccount);
+    //     dispatch(setAccount(accountCopy));
+    //     alert("Account added!");
+    //     onClose();
+    //     /*RESET FORM*/
+    //     setName("");
+    //     setEmail("");
+    //     setPassword("");
+    //     setConfirmPassword("");
+    // }
 
     function handleSubmitFetch(e){
         e.preventDefault();
