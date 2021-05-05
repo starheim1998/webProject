@@ -11,7 +11,7 @@ export default function AccountPage() {
     const loggedInUser = useSelector(state => state.registerReducer.currentUser);
 
     function logout(){
-        dispatch(logoutUser())
+        localStorage.removeItem("token");
         history.push("/")
     }
 
@@ -29,3 +29,16 @@ export default function AccountPage() {
         </div>
     )
 }
+
+function authHeader() {
+    const user = JSON.parse(localStorage.getItem('token'));
+
+    if (user && user.accessToken) {
+        return { Authorization: 'Bearer ' + user.accessToken };
+    } else {
+        return {};
+    }
+}
+
+// https://bezkoder.com/react-hooks-redux-login-registration-example/
+//https://github.com/bezkoder/react-redux-hooks-jwt-auth/blob/master/src/reducers/auth.js

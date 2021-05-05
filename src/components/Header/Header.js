@@ -43,7 +43,7 @@ export default function Header() {
     }
 
     const shoppingCartButton = () => {
-        if (!loggedInState) {
+        if (localStorage.getItem("token")===null) {
             return (
                 <>
                     <img src={cart} alt="cart link" onClick={() => {
@@ -52,7 +52,7 @@ export default function Header() {
                     }}/>
                 </>
             )
-        } else if (loggedInState) {
+        } else {
             return (
                 <Link to="/ShoppingCart/ShoppingCart">
                     <img src={cart} alt="cart link"/>

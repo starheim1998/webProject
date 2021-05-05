@@ -15,10 +15,6 @@ import {useEffect} from "react";
 import {setItems} from "./store/actions/itemActions";
 
 import {initialItems} from "./initialItems";
-import {initialAccounts} from "./initialAccounts";
-import {setAccount} from "./store/actions/accountActions";
-import {setCartItem} from "./store/actions/cartActions";
-import {initialCart} from "./initialCart";
 import AccountPage from "./pages/AccountPage/AccountPage";
 
 
@@ -26,7 +22,6 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // dispatch(setCartItem(initialCart))
         dispatch(setItems(initialItems))
     }, [dispatch])
 
