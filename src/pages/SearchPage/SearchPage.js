@@ -83,7 +83,6 @@ export default function SearchPage(props){
         return foundItemList;
     }
 
-
     function getSearch() {
         const params = new URLSearchParams(window.location.search);
         return params.get('q');
