@@ -3,22 +3,35 @@ import {Link} from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import "./Header.css";
 import cart from "./../../img/cart.png";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
 import {useSelector} from "react-redux";
+import {useHistory} from "react-router";
 
 export default function Header() {
     // Keeping track of modal's state.
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
+    const history = useHistory();
+
 
     //Redux logged in state to track if the user is logged in or not.
     const loggedInState = useSelector(state => state.registerReducer.isLoggedIn);
     const loggedInUser = useSelector(state => state.registerReducer.currentUser);
 
+
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // useEffect(()=>{
+    //     if(loggedInState) {
+    //         setIsLoggedIn(true)
+    //     } else {
+    //         setIsLoggedIn(false);
+    //     }
+    // },[loggedInUser])
+
     const loginComponent = () => {
-        if (!loggedInState) {
+        if (!loggedInState) { // => loggedInState must refer to localstorage
             return (
                 <>
                     {/*//Modals for Login/Register*/}
@@ -48,7 +61,7 @@ export default function Header() {
                 <>
                     <img src={cart} alt="cart link" onClick={() => {
                         setLoginOpen(true)
-                        alert("You are not logged in!")
+                        history.push("/ShoppingCart/ShoppingCart")
                     }}/>
                 </>
             )

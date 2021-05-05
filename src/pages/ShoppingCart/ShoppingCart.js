@@ -3,9 +3,10 @@ import Checkout from "../../components/Modal/Checkout/Checkout";
 import {useEffect, useState} from "react";
 
 import "./ShoppingCart.css"
-import {deleteCartItem, deleteOneItem, setCartItem, updateQuantity} from "../../store/actions/cartActions";
+import {deleteCartItem, setCartItem, updateQuantity} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 import {API_URL} from "../../config";
+import {AuthHeader} from "../../auth/AuthHeader";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -21,11 +22,17 @@ export default function ShoppingCart(){
     }
 
     function loadItems(){
-        fetch(API_URL + "/cart")
+        fetch(API_URL + "/cart", {
+            headers: AuthHeader()
+        })
             .then((response) => response.json())
             .then((json) => {
+                if(json.message){ //if error
+                    alert("You are not logged in!")
+                } else {
                 console.log(json);
                 dispatch(setCartItem(json));
+                }
             })
             .catch(function (err) {
                 alert("ERROR: " + err);
@@ -81,8 +88,12 @@ export default function ShoppingCart(){
            )
     }
 
+    /*ONLY ACCESSIBLE FOR LOGGED IN USER*/
     const addBody = () => {
-        if(cartState.length === 0){
+        if(localStorage.getItem("token") === null){
+            history.push("/");
+        }
+        else if(cartState.length === 0){
             return <p>The shopping cart is empty </p>
         } else {
             return (

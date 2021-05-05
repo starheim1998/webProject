@@ -1,14 +1,12 @@
 import Modal from "../Modal";
 import {useDispatch, useSelector} from "react-redux";
 import React, {useState} from 'react';
-// import {setAccount} from "../../../store/actions/userActions";
 import {registerUserAction} from "../../../store/actions/userActions";
 
 
 
 export default function Register({open, onClose, redirect}){
     const accounts = useSelector(state => state.accountReducer.accounts);
-    const dispatch = useDispatch();
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");

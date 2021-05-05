@@ -32,6 +32,7 @@ function NavItem(props) {
             </a>
             {open && props.children}
             </li>
+
     );
 }
 

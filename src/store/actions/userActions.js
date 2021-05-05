@@ -1,11 +1,5 @@
 import {API_URL} from "../../config";
-
-/**
- * Logout user
- */
-export const logoutUser = () => {
-    localStorage.removeItem("token");
-}
+import {useDispatch} from "react-redux";
 
 /**
  * Register user
@@ -100,4 +94,15 @@ export const loginUser = userObject => ({
     type: "LOGIN_USER",
     payload: userObject
 })
+
+/**
+ * Logout user
+ */
+export const logoutUser = () => (dispatch) => {
+    localStorage.removeItem("token");
+    dispatch({
+        type: "LOGOUT_USER",
+    });
+};
+
 
