@@ -1,0 +1,24 @@
+.mainCategory{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.mainCategory:hover{
+}
+
+.dd-item{
+    font-family: "Helvetica Neue", serif;
+    font-size: 1em;
+    color: gray;
+}
+
+.dd-item:hover{
+    color: darkgray;
+}
+
+
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}

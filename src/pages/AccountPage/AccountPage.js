@@ -7,7 +7,7 @@ import "./AccountPage.css";
 export default function AccountPage() {
     const dispatch = useDispatch();
     const history = useHistory()
-    const loggedInUser = useSelector(state => state.registerReducer.currentUser);
+    const loggedInUser = useSelector(state => state.accountReducer.currentUser);
 
     function logout(){
         dispatch(logoutUser())

@@ -1,6 +1,7 @@
 import SearchBar from "../SearchBar/SearchBar";
 import {Link} from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import NavBar2 from "../NavBar/NavBar2"
 import "./Header.css";
 import cart from "./../../img/cart.png";
 import React, {useEffect, useState} from "react";
@@ -17,8 +18,8 @@ export default function Header() {
 
 
     //Redux logged in state to track if the user is logged in or not.
-    const loggedInState = useSelector(state => state.registerReducer.isLoggedIn);
-    const loggedInUser = useSelector(state => state.registerReducer.currentUser);
+    const loggedInState = useSelector(state => state.accountReducer.isLoggedIn);
+    const loggedInUser = useSelector(state => state.accountReducer.currentUser);
 
 
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -85,7 +86,7 @@ export default function Header() {
             </div>
             {/*navbar row*/}
             <div className="navbar_container">
-                <NavBar/>
+                <NavBar2/>
             </div>
         </div>
     )

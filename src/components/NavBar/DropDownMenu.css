@@ -1,0 +1,25 @@
+
+.desktop_menu{
+    border: 1px solid gray;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transform: translate(0px, 55px);
+    background-color: white;
+    padding: 10px 40px 40px 40px;
+}
+
+.categoryMenu{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.categoryMenu a:first-of-type{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.categoryMenu :not(a:first-of-type):hover{
+    color: lightgray;
+}

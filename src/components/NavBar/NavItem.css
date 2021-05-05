@@ -1,0 +1,13 @@
+
+
+.nav_item{
+    flex-basis: 100px;
+    color: black;
+    /*border: 1px solid black;*/
+}
+
+.nav_item:hover{
+    cursor: pointer;
+    /*background-color: lightgray;*/
+    text-decoration: underline;
+}

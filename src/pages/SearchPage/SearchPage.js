@@ -59,12 +59,17 @@ export default function SearchPage(props){
     }
 
     const foundItems = (query) => {
+        console.log(query)
+        console.log(filterState);
         let foundItemList = [];
         console.log(foundItemList);
+        const qry = query.toLowerCase();
 
             {
             items.filter((item) =>
-                item.name.toLowerCase().includes(query.toLowerCase())
+                (item.name.toLowerCase().includes(qry)
+                || (item.category.toLowerCase().includes(qry))
+                || (item.subcategory.toLowerCase().includes(qry)))
                 && (item.category === filterState.category || filterState.category === "")
                 && (item.subcategory === filterState.subcategory || filterState.subcategory === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
