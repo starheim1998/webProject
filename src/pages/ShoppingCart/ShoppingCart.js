@@ -12,6 +12,7 @@ export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const itemsState = useSelector((state) => state.itemReducer.items);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
+    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
     const dispatch = useDispatch();
     const history = useHistory();
     // template account for testing
@@ -22,7 +23,7 @@ export default function ShoppingCart(){
     }
 
     function loadItems(){
-        fetch(API_URL + "/cart", {
+        fetch(API_URL + "/cart/" + currentUserState.id, {
             headers: AuthHeader()
         })
             .then((response) => response.json())

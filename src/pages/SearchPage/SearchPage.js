@@ -64,7 +64,6 @@ export default function SearchPage(props){
         let foundItemList = [];
         console.log(foundItemList);
         const qry = query.toLowerCase();
-
             {
             items.filter((item) =>
                 (item.name.toLowerCase().includes(qry)
