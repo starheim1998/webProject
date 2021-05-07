@@ -1,5 +1,4 @@
 import {API_URL} from "../../config";
-import {useSelector} from "react-redux";
 
 export function setCartItem(userId, itemId){
     console.log("userID=", userId);

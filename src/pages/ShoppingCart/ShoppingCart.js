@@ -23,22 +23,24 @@ export default function ShoppingCart(){
     }
 
     function loadItems(){
-        fetch(API_URL + "/order/cart/" + currentUserState.id, {
-            headers: AuthHeader()
+        const userId = JSON.parse(currentUserState.id);
+        console.log(userId)
+        fetch(API_URL + "/order/cart/" + userId, {
+            method: "GET",
+            headers: {"Content-type": "application/json"}
         })
             .then((response) => response.json())
             .then((json) => {
+                console.log("JSON", (json))
                 if(json.message){ //if error
                     alert("You are not logged in!")
                 } else {
-                console.log(json);
-                dispatch(setCartItem(json));
+                // dispatch(setCartItem([userId, json.itemId]));
                 }
             })
             .catch(function (err) {
                 alert("ERROR: " + err);
             })
-        console.log("test");
     }
 
     useEffect(() => {

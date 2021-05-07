@@ -39,7 +39,7 @@ export default function Item(){
             console.log("userState= ", currentUserState);
             console.log(itemId);
         }
-        dispatch(setCartItem([...cartState, currentUserState.id, itemId]))
+        dispatch(setCartItem(currentUserState.id, itemId))
         alert(`Added ${foundItem.name} to the shopping cart`);
         console.log("foundItem", foundItem);
         console.log("cartstate", cartState);
