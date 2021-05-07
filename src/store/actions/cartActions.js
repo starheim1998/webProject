@@ -1,11 +1,20 @@
+import {API_URL} from "../../config";
+import {useSelector} from "react-redux";
 
-
-export function setCartItem(cartItem){
+export function setCartItem(userId, itemId){
+    console.log("userID=", userId);
+    console.log("itemID=", itemId);
     return function (dispatch){
-        dispatch({
-            type: "SET_CART_ITEM",
-            cartItem: cartItem
-        })
+        return fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
+            method: "POST",
+            headers: {'Content-type':'application/json'},
+            })
+            .then(
+                dispatch({
+                    type: "SET_CART_ITEM",
+                    cartItem: itemId
+                })
+            );
     }
 }
 

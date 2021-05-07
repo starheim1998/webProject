@@ -5,7 +5,8 @@ import {setCartItem} from "../../store/actions/cartActions";
 import {API_URL} from "../../config";
 
 export default function Item(){
-    const [items, setItems] = useState([])
+    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
+    const [item, setItem] = useState([])
     const [foundItem, setFoundItem] = useState([]);
     // const itemsState = useSelector((state) => state.itemReducer.items)
     const cartState = useSelector((state) => state.cartReducer.cartItems)
@@ -18,7 +19,7 @@ export default function Item(){
     function loadItems(){
         fetch(API_URL + "/item")
             .then((response) => response.json())
-            .then((json) => setItems(json))
+            .then((json) => setItem(json))
             .catch(function (err) {
                 alert("ERROR: " + err);
             })
@@ -27,14 +28,18 @@ export default function Item(){
     //TODO: fix double render issue - loop?
     useEffect(()=> {
         loadItems();
-        const foundItem = items.find((item) => {
+        const foundItem = item.find((item) => {
                 return item.id === parseInt(id);
             });
         setFoundItem(foundItem);
-    },[id, items])
+    },[id, item])
 
-    const handleAddToCart = (id) => {
-        dispatch(setCartItem([...cartState, id]))
+    const handleAddToCart = (itemId) => {
+        {
+            console.log("userState= ", currentUserState);
+            console.log(itemId);
+        }
+        dispatch(setCartItem([...cartState, currentUserState.id, itemId]))
         alert(`Added ${foundItem.name} to the shopping cart`);
         console.log("foundItem", foundItem);
         console.log("cartstate", cartState);

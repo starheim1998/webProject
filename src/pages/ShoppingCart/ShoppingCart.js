@@ -23,7 +23,7 @@ export default function ShoppingCart(){
     }
 
     function loadItems(){
-        fetch(API_URL + "/cart/" + currentUserState.id, {
+        fetch(API_URL + "/order/cart/" + currentUserState.id, {
             headers: AuthHeader()
         })
             .then((response) => response.json())
