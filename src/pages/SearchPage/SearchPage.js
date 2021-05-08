@@ -24,24 +24,16 @@ export default function SearchPage(props){
 
     // Code adapted from:
     // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
-    //TODO: Loading twice? fetch error
-    // function loadItems(){
-    //     fetch(API_URL + "/item")
-    //         .then((res) => res.json())
-    //         .then((json) => setItems(json))
-    //         .catch(function (err) {
-    //             alert("ERROR:" + err);
-    //         });
-    // }
 
     //TODO: implement this functionality
     // get selected category from navbar
     const {selectedCategory} = props;
 
     useEffect(() => {
-        setSearch(getSearch)
         // loadItems()
-        dispatch(getItems());
+        setSearch(getSearch)
+        dispatch(getItems())
+        console.log("itemstate", itemsState)
     }, [useParams()])
 
     const foundItemsCount = (query) =>{
@@ -64,10 +56,7 @@ export default function SearchPage(props){
     }
 
     const foundItems = (query) => {
-        console.log(query)
-        console.log(filterState);
         let foundItemList = [];
-        console.log(foundItemList);
         const qry = query.toLowerCase();
             {
             itemsState.filter((item) =>
@@ -84,7 +73,6 @@ export default function SearchPage(props){
                     || filterState.colors === ""))
                 .map((item) => {
                     foundItemList.push(item)
-                    console.log(item)
                 })
         }
         return foundItemList;

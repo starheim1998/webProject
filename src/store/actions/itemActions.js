@@ -10,13 +10,16 @@ export function setItems(item){
 }
 
 export function getItems(){
-    return function dispatch(){
-        return fetch(API_URL + "/item")
-            .then((response) => response.json())
-            .then((json) => dispatch(setItems(json)))
-            .catch(function (err) {
-                alert("ERROR: " + err);
-            })
+    return (dispatch) => {
+        fetch(API_URL + "/item")
+        .then((response) => response.json())
+        .then((json) => dispatch({
+            type: "SET_ITEMS",
+            items: json
+        }))
+        .catch(function (err) {
+            alert("ERROR: " + err);
+        })
     }
 }
 

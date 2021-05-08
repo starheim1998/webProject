@@ -8,15 +8,13 @@ export default function cartReducer(state = initialState, action){
         case "FETCH_CART":
             return {
                 ...state,
-                cartItems: action.payload.cartItems
+                cartItems: action.cartItems
             }
 
         case "SET_CART_ITEM":
-            console.log("TESTT");
-
             return {
                 ...state,
-                cartItems: action.cartItem
+                cartItems: action.cartItems
             }
         case "DELETE_CART_ITEM":
             return {

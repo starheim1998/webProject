@@ -8,6 +8,7 @@ import {useHistory} from "react-router";
 import {API_URL} from "../../config";
 import {AuthHeader} from "../../auth/AuthHeader";
 import {loginUser} from "../../store/actions/userActions";
+import {getItems} from "../../store/actions/itemActions";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function ShoppingCart(){
     }
 
     useEffect(() => {
+        dispatch(getItems())
         getCartItems(currentUserState.id);
     },[dispatch])
 

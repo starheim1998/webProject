@@ -18,9 +18,9 @@ export default function Item(){
 
     //TODO: fix double render issue - loop?
     useEffect(()=> {
-        getItems();
-        getCartItems(currentUserState.id);
-        console.log(cartState);
+        dispatch(getCartItems(currentUserState.id));
+        console.log("cart", cartState);
+
 
         const foundItem = itemsState.find((item) => {
                 return item.id === parseInt(id);
@@ -34,8 +34,8 @@ export default function Item(){
             console.log("itemid", itemId);
         }
         dispatch(setCartItem(currentUserState.id, itemId))
-        alert(`Added ${foundItem.name} to the shopping cart`);
         console.log("cartstate", cartState);
+        alert(`Added ${foundItem.name} to the shopping cart`);
     }
 
     return foundItem != null ? (

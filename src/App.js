@@ -12,7 +12,6 @@ import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
-import {setItems} from "./store/actions/itemActions";
 
 import {initialItems} from "./initialItems";
 import AccountPage from "./pages/AccountPage/AccountPage";

@@ -3,7 +3,7 @@ import {API_URL} from "../../config";
 export function setCartItem(userId, itemId){
     console.log("userID=", userId);
     console.log("itemID=", itemId);
-    return function (dispatch){
+    return (dispatch) => {
         return fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
             method: "POST",
             headers: {'Content-type':'application/json'},
@@ -11,24 +11,25 @@ export function setCartItem(userId, itemId){
             .then(
                 dispatch({
                     type: "SET_CART_ITEM",
-                    cartItem: itemId
+                    cartItems: itemId
                 })
             );
     }
 }
 
 export function getCartItems(userId){
-    return function (dispatch){
-        return fetch(API_URL + "/order/cart/" + userId)
+    return (dispatch) => {
+         fetch(API_URL + "/order/cart/" + userId)
         .then((response) => response.json())
         .then((json) => {
             console.log("JSON", (json))
             if(json.message){ //if error
-                alert("You are not logged in!")
+                alert("Failed to get cart items")
             } else {
-                dispatch(fetchCartItems(json))
-                dispatch(setCartItem(userId, json.items.id));
-            }
+               ((json.items.forEach((item) =>{
+                        dispatch(fetchCartItems(item.id))
+                    }
+                )))}
         })
         .catch(function (err) {
             alert("ERROR: " + err);
@@ -36,9 +37,9 @@ export function getCartItems(userId){
     }
 }
 
-export const fetchCartItems = (items) => ({
-    type: "FETCH_CART",
-    payload: items
+export const fetchCartItems = (item) => ({
+    type: "SET_CART_ITEM",
+    cartItems: item
 })
 
 
