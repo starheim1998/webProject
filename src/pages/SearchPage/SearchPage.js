@@ -4,10 +4,15 @@ import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
 import {API_URL} from "../../config";
+import {getCartItems} from "../../store/actions/cartActions";
+import {useDispatch, useSelector} from "react-redux";
+import {getItems} from "../../store/actions/itemActions";
 
 export default function SearchPage(props){
 
     //const itemsState = useSelector((state) => state.itemReducer.items)
+    const itemsState = useSelector((state) => state.itemReducer.items);
+    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",
@@ -15,20 +20,19 @@ export default function SearchPage(props){
         size: "",
         colors: ""
     });
-
-    const [items, setItems] = useState([]);
+    const dispatch = useDispatch();
 
     // Code adapted from:
     // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
     //TODO: Loading twice? fetch error
-    function loadItems(){
-        fetch(API_URL + "/item")
-            .then((res) => res.json())
-            .then((json) => setItems(json))
-            .catch(function (err) {
-                alert("ERROR:" + err);
-            });
-    }
+    // function loadItems(){
+    //     fetch(API_URL + "/item")
+    //         .then((res) => res.json())
+    //         .then((json) => setItems(json))
+    //         .catch(function (err) {
+    //             alert("ERROR:" + err);
+    //         });
+    // }
 
     //TODO: implement this functionality
     // get selected category from navbar
@@ -36,12 +40,13 @@ export default function SearchPage(props){
 
     useEffect(() => {
         setSearch(getSearch)
-        loadItems()
+        // loadItems()
+        dispatch(getItems());
     }, [useParams()])
 
     const foundItemsCount = (query) =>{
         let counter = 0;
-        items.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
+        itemsState.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
         return counter;
     }
 
@@ -65,7 +70,7 @@ export default function SearchPage(props){
         console.log(foundItemList);
         const qry = query.toLowerCase();
             {
-            items.filter((item) =>
+            itemsState.filter((item) =>
                 (item.name.toLowerCase().includes(qry)
                 || (item.category.toLowerCase().includes(qry))
                 || (item.subcategory.toLowerCase().includes(qry)))

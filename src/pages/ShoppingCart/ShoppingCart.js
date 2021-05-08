@@ -3,10 +3,11 @@ import Checkout from "../../components/Modal/Checkout/Checkout";
 import {useEffect, useState} from "react";
 
 import "./ShoppingCart.css"
-import {deleteCartItem, setCartItem, updateQuantity} from "../../store/actions/cartActions";
+import {deleteCartItem, getCartItems, setCartItem} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 import {API_URL} from "../../config";
 import {AuthHeader} from "../../auth/AuthHeader";
+import {loginUser} from "../../store/actions/userActions";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -22,44 +23,24 @@ export default function ShoppingCart(){
         dispatch(deleteCartItem(cartItem.itemId))
     }
 
-    function loadItems(){
-        const userId = JSON.parse(currentUserState.id);
-        console.log(userId)
-        fetch(API_URL + "/order/cart/" + userId, {
-            method: "GET",
-            headers: {"Content-type": "application/json"}
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                console.log("JSON", (json))
-                if(json.message){ //if error
-                    alert("You are not logged in!")
-                } else {
-                // dispatch(setCartItem([userId, json.itemId]));
-                }
-            })
-            .catch(function (err) {
-                alert("ERROR: " + err);
-            })
-    }
-
     useEffect(() => {
-        loadItems();
+        getCartItems(currentUserState.id);
     },[dispatch])
 
 
     const getItem = (cartItem) => {
-        return itemsState.find((item) => item.id === cartItem.itemId);
+        return itemsState.find((item) => item.id === cartItem);
     }
 
-   const handleQuantityChange = (cartItem, event) => {
-        const updatedValue = event.target.value;
-        dispatch((updateQuantity(cartItem.itemId, updatedValue)));
-        console.log(cartItem.quantity);
-   }
+   // const handleQuantityChange = (cartItem, event) => {
+   //      const updatedValue = event.target.value;
+   //      dispatch((updateQuantity(cartItem.itemId, updatedValue)));
+   //      console.log(cartItem.quantity);
+   // }
 
     const renderItem = (cartItem) => {
         const item = getItem(cartItem);
+        console.log("item", item)
         return (
             <div className={"cart_item_container"} key={item.id}>
                 <div className={"cart_img_container"}>
@@ -74,14 +55,12 @@ export default function ShoppingCart(){
                     <p>Price: {item.price} kr</p>
                 </div>
                 <div>
-                    <p>Total: {(cartItem.quantity)*(item.price)}kr</p>
+                    <p>Total: kr</p>
 
                 </div>
                 <div className={"amount_container"}>
                     Amount:
-                    <input defaultValue={cartItem.quantity}
-                           onChange={(e) => handleQuantityChange(cartItem, e)}
-                           type="number" min={1} name={cartItem.quantity}/>
+                    <input type="number" min={1} />
 
                 </div>
                 <div className={"delete_button_container"}>
@@ -91,6 +70,8 @@ export default function ShoppingCart(){
            )
     }
 
+
+
     /*ONLY ACCESSIBLE FOR LOGGED IN USER*/
     const addBody = () => {
         if(localStorage.getItem("token") === null){
@@ -99,10 +80,14 @@ export default function ShoppingCart(){
         else if(cartState.length === 0){
             return <p>The shopping cart is empty </p>
         } else {
+            console.log("cartstate", cartState);
             return (
-                cartState.map((cartItem) =>
-                renderItem(cartItem)
-                ))
+                // cartState.map((cartItem) =>
+                // renderItem(getItem(cartItem)))
+                <div>
+                    <h1>CARTSTATE = {cartState}</h1>
+                </div>
+            )
            }}
 
     return (

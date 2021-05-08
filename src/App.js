@@ -22,7 +22,7 @@ function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setItems(initialItems))
+        // dispatch(setItems(initialItems))
     }, [dispatch])
 
 

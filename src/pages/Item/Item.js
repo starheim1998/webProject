@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setCartItem} from "../../store/actions/cartActions";
-import {API_URL} from "../../config";
+import {fetchCartItems, getCartItems, setCartItem} from "../../store/actions/cartActions";
+import {getItems} from "../../store/actions/itemActions";
 
 export default function Item(){
     const currentUserState = useSelector((state) => state.accountReducer.currentUser);
-    const [item, setItem] = useState([])
     const [foundItem, setFoundItem] = useState([]);
-    // const itemsState = useSelector((state) => state.itemReducer.items)
+    const itemsState = useSelector((state) => state.itemReducer.items)
     const cartState = useSelector((state) => state.cartReducer.cartItems)
 
     const dispatch = useDispatch();
@@ -16,32 +15,26 @@ export default function Item(){
 
     // Code adapted from:
     // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
-    function loadItems(){
-        fetch(API_URL + "/item")
-            .then((response) => response.json())
-            .then((json) => setItem(json))
-            .catch(function (err) {
-                alert("ERROR: " + err);
-            })
-    }
 
     //TODO: fix double render issue - loop?
     useEffect(()=> {
-        loadItems();
-        const foundItem = item.find((item) => {
+        getItems();
+        getCartItems(currentUserState.id);
+        console.log(cartState);
+
+        const foundItem = itemsState.find((item) => {
                 return item.id === parseInt(id);
             });
         setFoundItem(foundItem);
-    },[id, item])
+    },[id])
 
     const handleAddToCart = (itemId) => {
         {
             console.log("userState= ", currentUserState);
-            console.log(itemId);
+            console.log("itemid", itemId);
         }
         dispatch(setCartItem(currentUserState.id, itemId))
         alert(`Added ${foundItem.name} to the shopping cart`);
-        console.log("foundItem", foundItem);
         console.log("cartstate", cartState);
     }
 
