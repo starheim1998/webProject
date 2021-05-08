@@ -2,11 +2,12 @@ import React from 'react';
 import './Checkout.css';
 import Modal from "../Modal";
 import {useDispatch, useSelector} from "react-redux";
-import {emptyCart} from "../../../store/actions/cartActions";
+import {checkOutCart} from "../../../store/actions/cartActions";
 
 export default function Checkout({open, onClose, redirect}) {
      const shoppingCartItems = useSelector(state => state.cartReducer.cartItems);
      const dispatch = useDispatch();
+    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
 
     if (!open) return null /*Do nothing if not open*/
 
@@ -18,7 +19,7 @@ export default function Checkout({open, onClose, redirect}) {
             alert("No items in cart.");
             return null;
         }
-        dispatch(emptyCart());
+        dispatch(checkOutCart(currentUserState.id));
         console.log(shoppingCartItems);
         onClose();
     }

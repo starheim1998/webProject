@@ -49,7 +49,7 @@ export function deleteCartItem(userId, itemId) {
     return dispatch => {
         return fetch(`${API_URL}/order/cart/delete/${userId}/${itemId}`, {
             method: "DELETE",
-            headers: {'Content-type': 'application/json'}
+            headers: {'Content-type':'application/json'}
         })
             .then(dispatch({
                 type: "DELETE_CART_ITEM",
@@ -59,11 +59,17 @@ export function deleteCartItem(userId, itemId) {
 }
 
 
-export function emptyCart() {
+export function checkOutCart(userId) {
     return dispatch => {
-        dispatch({
-            type: "EMPTY_CART"
-        })
-    }
+        return fetch(`${API_URL}/order/checkout/${userId}/`, {
+            method: "PUT",
+            headers: {'Content-type':'application/json'}
+            })
+            .then(dispatch({
+                type: "EMPTY_CART"
+            }))
+            .catch(function (err) {
+                alert("ERROR: " + err);
+            }
+        )}
 }
-
