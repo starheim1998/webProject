@@ -18,11 +18,11 @@ import AccountPage from "./pages/AccountPage/AccountPage";
 
 
 function App() {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        // dispatch(setItems(initialItems))
-    }, [dispatch])
+    // const dispatch = useDispatch();
+    //
+    // useEffect(() => {
+    //     dispatch(setItems(initialItems))
+    // }, [dispatch])
 
 
     return (

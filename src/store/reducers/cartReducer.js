@@ -5,16 +5,10 @@ const initialState = {
 
 export default function cartReducer(state = initialState, action){
     switch (action.type){
-        case "FETCH_CART":
-            return {
-                ...state,
-                cartItems: action.cartItems
-            }
-
         case "SET_CART_ITEM":
             return {
                 ...state,
-                cartItems: action.cartItems
+                cartItems: [...state.cartItems, action.payload]
             }
         case "DELETE_CART_ITEM":
             return {

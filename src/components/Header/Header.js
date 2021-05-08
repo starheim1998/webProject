@@ -9,6 +9,7 @@ import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router";
+import accountReducer from "../../store/reducers/accountReducer";
 
 export default function Header() {
     // Keeping track of modal's state.

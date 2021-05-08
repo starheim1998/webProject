@@ -1,13 +1,5 @@
 import {API_URL} from "../../config";
 
-export function setItems(item){
-    return function(dispatch){
-        dispatch({
-            type: "SET_ITEMS",
-            items: item
-        })
-    }
-}
 
 export function getItems(){
     return (dispatch) => {

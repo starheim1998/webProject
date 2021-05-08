@@ -1,5 +1,4 @@
 import {API_URL} from "../../config";
-import {useDispatch} from "react-redux";
 
 /**
  * Register user
@@ -48,6 +47,7 @@ export const loginUserAction = (loginUserInfo) => {
                     localStorage.setItem("token", JSON.stringify(json.jwt))
                     console.log("Jwt token:" + localStorage.getItem("token"));
                     dispatch(loginUser(json))
+                    createCartOnLogin(JSON.stringify(json.id))
                 }
             })
             .catch(function (err) {
@@ -57,13 +57,28 @@ export const loginUserAction = (loginUserInfo) => {
 }
 
 /**
+ * Create an empty cart on login, if user does not have one already.
+ * @param userId of the user involved.
+ */
+const createCartOnLogin = (userId) => {
+    fetch(`${API_URL}/order/createCart/${userId}`, {
+        method: "POST",
+        headers: {'Content-type': 'application/json'},
+    })
+        .catch(function (err) {
+            alert("Error:" + err)
+        })
+}
+
+
+/**
  * Get user
  * @returns {(function(*): (Promise<void>|undefined))|*}
  */
-export const getUserAction=()=>{
+export const getUserAction = () => {
     return dispatch => {
         const token = localStorage.getItem("token");
-        if(token){
+        if (token) {
             return fetch(API_URL + "/authenticate/user", {
                 method: "GET",
                 headers: {
@@ -72,12 +87,12 @@ export const getUserAction=()=>{
                     'Authorization': `Bearer ${token}`
                 }
             })
-                .then(response=>response.json())
+                .then(response => response.json())
                 .then(json => {
-                    if(json.message){
+                    if (json.message) {
                         console.log("get user error")
                         localStorage.removeItem("token");
-                    }else {
+                    } else {
                         dispatch(loginUser(json))
                     }
                 })

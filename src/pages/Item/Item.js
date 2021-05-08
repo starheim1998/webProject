@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchCartItems, getCartItems, setCartItem} from "../../store/actions/cartActions";
+import {getCartItems, setCartItem} from "../../store/actions/cartActions";
 import {getItems} from "../../store/actions/itemActions";
 
 export default function Item(){
     const currentUserState = useSelector((state) => state.accountReducer.currentUser);
-    const [foundItem, setFoundItem] = useState([]);
+    const loggedInState = useSelector((state) => state.accountReducer.isLoggedIn);
     const itemsState = useSelector((state) => state.itemReducer.items)
     const cartState = useSelector((state) => state.cartReducer.cartItems)
 
+    const [foundItem, setFoundItem] = useState([]);
     const dispatch = useDispatch();
     let {id} = useParams();
 
@@ -21,21 +22,24 @@ export default function Item(){
         dispatch(getCartItems(currentUserState.id));
         console.log("cart", cartState);
 
-
         const foundItem = itemsState.find((item) => {
                 return item.id === parseInt(id);
             });
         setFoundItem(foundItem);
     },[id])
 
-    const handleAddToCart = (itemId) => {
-        {
+    const handleAddToCart = (itemId) => {{
             console.log("userState= ", currentUserState);
             console.log("itemid", itemId);
         }
-        dispatch(setCartItem(currentUserState.id, itemId))
-        console.log("cartstate", cartState);
-        alert(`Added ${foundItem.name} to the shopping cart`);
+        if (loggedInState) {
+            dispatch(setCartItem(currentUserState.id, itemId))
+            alert(`Added ${foundItem.name} to the shopping cart`);
+            console.log("foundItem", foundItem);
+            console.log("cartstate", cartState);
+        } else {
+            alert('You must be logged in to add items to cart!')
+        }
     }
 
     return foundItem != null ? (

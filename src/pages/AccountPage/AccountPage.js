@@ -15,6 +15,7 @@ export default function AccountPage() {
     }
 
     /*ONLY ACCESSIBLE FOR LOGGED IN USER*/
+    // Alternativt?: "checkValidToken, if null or invalid -> history.push("/")";
     const loggedInCheck = () => {
         if(localStorage.getItem("token") === null){
             history.push("/");

@@ -11,11 +11,24 @@ export function setCartItem(userId, itemId){
             .then(
                 dispatch({
                     type: "SET_CART_ITEM",
-                    cartItems: itemId
+                    payload: itemId
                 })
             );
     }
 }
+
+
+export function deleteCartItem(userId, itemId) {
+    return dispatch =>  {
+        return fetch(`${API_URL}/order/cart/delete/${userId}/${itemId}`, {
+            method: "DELETE",
+            headers: {'Content-type':'application/json'}
+        })
+            .then(dispatch({
+                type: "DELETE_CART_ITEM",
+                payload: itemId
+            }));
+    }}
 
 export function getCartItems(userId){
     return (dispatch) => {
@@ -37,26 +50,16 @@ export function getCartItems(userId){
     }
 }
 
-export const fetchCartItems = (item) => ({
+export const fetchCartItems = item => ({
     type: "SET_CART_ITEM",
-    cartItems: item
+    payload: item
 })
 
-
-
-export function deleteCartItem(id){
-    return function (dispatch){
-        dispatch({
-            type: "DELETE_CART_ITEM",
-            payload: id
-        })
-    }
-}
-
 export function emptyCart(){
-    return function (dispatch) {
+    return dispatch =>  {
         dispatch({
             type: "EMPTY_CART"
         })
     }
 }
+
