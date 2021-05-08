@@ -19,7 +19,6 @@ export default function Item(){
 
     //TODO: fix double render issue - loop?
     useEffect(()=> {
-        dispatch(getCartItems(currentUserState.id));
         console.log("cart", cartState);
 
         const foundItem = itemsState.find((item) => {

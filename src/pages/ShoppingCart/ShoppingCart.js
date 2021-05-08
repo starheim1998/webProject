@@ -3,7 +3,7 @@ import Checkout from "../../components/Modal/Checkout/Checkout";
 import {useEffect, useState} from "react";
 
 import "./ShoppingCart.css"
-import {deleteCartItem, getCartItems, setCartItem} from "../../store/actions/cartActions";
+import {deleteCartItem, fetchCartItems, getCartItems, setCartItem} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 import {API_URL} from "../../config";
 import {AuthHeader} from "../../auth/AuthHeader";
@@ -20,17 +20,19 @@ export default function ShoppingCart(){
     // template account for testing
 
 
-    const deleteHandler = (cartItem) => {
-        dispatch(deleteCartItem(cartItem.itemId))
+    const deleteHandler = (item) => {
+        dispatch(deleteCartItem(currentUserState, item.id))
     }
 
     useEffect(() => {
-        dispatch(getItems())
-        getCartItems(currentUserState.id);
-    },[dispatch])
+        dispatch(getCartItems(currentUserState.id))
+    },[])
 
 
     const getItem = (cartItem) => {
+        console.log(itemsState)
+        console.log(cartItem)
+        console.log(itemsState.find((item) => item.id === cartItem))
         return itemsState.find((item) => item.id === cartItem);
     }
 
@@ -40,9 +42,7 @@ export default function ShoppingCart(){
    //      console.log(cartItem.quantity);
    // }
 
-    const renderItem = (cartItem) => {
-        const item = getItem(cartItem);
-        console.log("item", item)
+    const renderItem = (item) => {
         return (
             <div className={"cart_item_container"} key={item.id}>
                 <div className={"cart_img_container"}>
@@ -66,7 +66,7 @@ export default function ShoppingCart(){
 
                 </div>
                 <div className={"delete_button_container"}>
-                    <button onClick={() => deleteHandler(cartItem)}> DELETE</button>
+                    <button onClick={() => deleteHandler(item)}> DELETE</button>
                 </div>
             </div>
            )
@@ -84,11 +84,9 @@ export default function ShoppingCart(){
         } else {
             console.log("cartstate", cartState);
             return (
-                // cartState.map((cartItem) =>
-                // renderItem(getItem(cartItem)))
-                <div>
-                    <h1>CARTSTATE = {cartState}</h1>
-                </div>
+                cartState.map((cartItem) =>
+                renderItem(getItem(cartItem))
+                )
             )
            }}
 
