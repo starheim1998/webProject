@@ -3,12 +3,8 @@ import Checkout from "../../components/Modal/Checkout/Checkout";
 import {useEffect, useState} from "react";
 
 import "./ShoppingCart.css"
-import {deleteCartItem, fetchCartItems, getCartItems, setCartItem} from "../../store/actions/cartActions";
+import {deleteCartItem, getCartItems} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
-import {API_URL} from "../../config";
-import {AuthHeader} from "../../auth/AuthHeader";
-import {loginUser} from "../../store/actions/userActions";
-import {getItems} from "../../store/actions/itemActions";
 
 export default function ShoppingCart(){
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -42,7 +38,9 @@ export default function ShoppingCart(){
    //      console.log(cartItem.quantity);
    // }
 
-    const renderItem = (item) => {
+    const renderItem = (item, quantity) => {
+        console.log("ITEM", item)
+        console.log("QUANITYT", quantity)
         return (
             <div className={"cart_item_container"} key={item.id}>
                 <div className={"cart_img_container"}>
@@ -52,6 +50,7 @@ export default function ShoppingCart(){
                     <p>{item.name}</p>
                     <p>Size: {item.size}</p>
                     <p>Color: {item.color}</p>
+                    <p>Quantity: {quantity}</p>
                 </div>
                 <div>
                     <p>Price: {item.price} kr</p>
@@ -73,8 +72,14 @@ export default function ShoppingCart(){
     }
 
 
-
-    /*ONLY ACCESSIBLE FOR LOGGED IN USER*/
+    /**
+     * Add body to shopping cart. First if: it is only accessible by a logged in user.
+     * We count each item incoming from the database and increment them to the quantity field
+     * in our shopping cart <div>.
+     *
+     * @returns {JSX.Element|*[]} Renders the JSX of the shopping cart page with the items of the user,
+     * the quantity of equal items and an option to checkout.
+     */
     const addBody = () => {
         if(localStorage.getItem("token") === null){
             history.push("/");
@@ -82,14 +87,13 @@ export default function ShoppingCart(){
         else if(cartState.length === 0){
             return <p>The shopping cart is empty </p>
         } else {
-            console.log("cartstate", cartState);
-            return (
-                cartState.map((cartItem) =>
-                renderItem(getItem(cartItem))
-                )
-            )
-           }}
-
+            const counts = [];
+            cartState.forEach(function(itemId) {
+                counts[itemId] = (counts[itemId] || 0) +1;
+            });
+            const uniqueCart = new Set(cartState)
+            let uniqueList = [...uniqueCart]
+            return (uniqueList.map((cartItem) => renderItem(getItem(cartItem), counts[cartItem])))}}
     return (
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>
