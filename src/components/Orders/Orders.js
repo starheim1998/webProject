@@ -8,9 +8,9 @@ export default function Orders({items, sum, date, status}) {
                 <li>
                     {items}
                 </li>
-                <p>{sum}</p>
+                {/*<p>{sum}</p>*/}
                 <p>{date}</p>
-                <p>{status}</p>
+                {/*<p>{status}</p>*/}
             </div>
         </div>
     )

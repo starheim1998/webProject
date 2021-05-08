@@ -6,7 +6,7 @@ import "./ShoppingCart.css"
 import {deleteCartItem, getCartItems} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 
-export default function ShoppingCart(){
+export default function ShoppingCart() {
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const itemsState = useSelector((state) => state.itemReducer.items);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
@@ -17,26 +17,25 @@ export default function ShoppingCart(){
 
 
     const deleteHandler = (item) => {
-        dispatch(deleteCartItem(currentUserState, item.id))
+        dispatch(deleteCartItem(currentUserState.id, item.id))
     }
 
     useEffect(() => {
         dispatch(getCartItems(currentUserState.id))
-    },[])
+    }, [])
 
 
     const getItem = (cartItem) => {
         console.log(itemsState)
-        console.log(cartItem)
         console.log(itemsState.find((item) => item.id === cartItem))
         return itemsState.find((item) => item.id === cartItem);
     }
 
-   // const handleQuantityChange = (cartItem, event) => {
-   //      const updatedValue = event.target.value;
-   //      dispatch((updateQuantity(cartItem.itemId, updatedValue)));
-   //      console.log(cartItem.quantity);
-   // }
+    // const handleQuantityChange = (cartItem, event) => {
+    //      const updatedValue = event.target.value;
+    //      dispatch((updateQuantity(cartItem.itemId, updatedValue)));
+    //      console.log(cartItem.quantity);
+    // }
 
     const renderItem = (item, quantity) => {
         console.log("ITEM", item)
@@ -61,14 +60,14 @@ export default function ShoppingCart(){
                 </div>
                 <div className={"amount_container"}>
                     Amount:
-                    <input type="number" min={1} />
+                    <input type="number" min={1}/>
 
                 </div>
                 <div className={"delete_button_container"}>
                     <button onClick={() => deleteHandler(item)}> DELETE</button>
                 </div>
             </div>
-           )
+        )
     }
 
 
@@ -81,19 +80,23 @@ export default function ShoppingCart(){
      * the quantity of equal items and an option to checkout.
      */
     const addBody = () => {
-        if(localStorage.getItem("token") === null){
+        if (localStorage.getItem("token") === null) {
             history.push("/");
-        }
-        else if(cartState.length === 0){
+        } else if (cartState.length === 0) {
             return <p>The shopping cart is empty </p>
         } else {
             const counts = [];
-            cartState.forEach(function(itemId) {
-                counts[itemId] = (counts[itemId] || 0) +1;
+            cartState.forEach(function (itemId) {
+                counts[itemId] = (counts[itemId] || 0) + 1;
             });
             const uniqueCart = new Set(cartState)
             let uniqueList = [...uniqueCart]
-            return (uniqueList.map((cartItem) => renderItem(getItem(cartItem), counts[cartItem])))}}
+            return (
+                uniqueList.map((cartItem) =>
+                    renderItem(getItem(cartItem), counts[cartItem]))
+            )
+        }
+    }
     return (
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>
@@ -103,9 +106,10 @@ export default function ShoppingCart(){
                 setCheckoutOpen(true)
                 history.replace("/ShoppingCart/ShoppingCart/Checkout");
             }
-            }>Checkout!</button>
+            }>Checkout!
+            </button>
             <Checkout open={checkoutOpen}
-                      onClose={()=>{
+                      onClose={() => {
                           setCheckoutOpen(false)
                           history.push("/ShoppingCart/ShoppingCart/")
                       }}

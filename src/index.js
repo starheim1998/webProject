@@ -14,12 +14,13 @@ import itemReducer from "./store/reducers/itemReducer";
 import cartReducer from "./store/reducers/cartReducer";
 import accountReducer from "./store/reducers/accountReducer";
 import navBarReducer from "./store/reducers/navBarReducer";
-
+import orderReducer from "./store/reducers/orderReducer";
 /**
  *
  */
 
-const rootReducer = combineReducers({itemReducer, cartReducer, accountReducer, navBarReducer})
+const rootReducer = combineReducers({itemReducer, cartReducer,
+    accountReducer, navBarReducer, orderReducer})
 
 const reduxStore = createStore(
     rootReducer,

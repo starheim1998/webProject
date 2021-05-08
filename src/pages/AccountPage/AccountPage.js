@@ -3,11 +3,19 @@ import {logoutUser} from "../../store/actions/userActions";
 import {useHistory} from "react-router";
 import Orders from "../../components/Orders/Orders";
 import "./AccountPage.css";
+import {useEffect} from "react";
+import {getOrders} from "../../store/actions/orderActions";
 
 export default function AccountPage() {
     const dispatch = useDispatch();
     const history = useHistory()
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
+    const orderState = useSelector((state) => state.orderReducer.orderItems)
+
+    useEffect(() => {
+        dispatch(getOrders(loggedInUser.id))
+        console.log(orderState)
+    }, [])
 
     function logout(){
         dispatch(logoutUser())
@@ -25,16 +33,36 @@ export default function AccountPage() {
         )
     }
 
+    const addBody = () => {
+        console.log(orderState)
+        return (
+            orderState.map((order) => {
+                renderOrder(order)
+            })
+        )
+    }
+
+    const renderOrder = (order) => {
+        return(
+            <div>
+                <Orders items={order.items} date={order.date}/>
+            </div>
+        )
+    }
+
+
     return (
         <div>
             {loggedInCheck()}
+
             <div className={"aboveOrders"}>
             <h3>Order:</h3>
             <h3>Total sum:</h3>
             <h3>Date:</h3>
             <h3>Status:</h3>
             </div>
-            <Orders items={"test"} date={"20-02-12"} status={"Sent"} sum={1230}/>
+
+            {/*{addBody()}*/}
             <button onClick={logout}>LOGOUT</button>
         </div>
     )
