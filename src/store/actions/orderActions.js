@@ -1,20 +1,22 @@
 import {API_URL} from "../../config";
+import {AuthHeader} from "../../auth/AuthHeader";
 
 
 export function getOrders(userId){
     return (dispatch) => {
-        fetch(API_URL + "/order/" + userId)
+        fetch(API_URL + "/order/" + userId , {  headers: {'Authorization':AuthHeader(false).get('Authorization')}
+        })
             .then((response) => response.json())
             .then((json) => {
                 if(json.message) {
                     alert("Failed to fetch orders")
                 } else {
-                    console.log(json)
+                    console.log("response get orders: ", json)
                     let orders = []
                     json.forEach((item) => {
                         orders.push(item)
                     })
-                    console.log(orders)
+                    console.log("all orders: ", orders)
                     dispatch({
                         type: "FETCH_ORDERS",
                         payload: orders

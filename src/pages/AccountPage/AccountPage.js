@@ -15,7 +15,6 @@ export default function AccountPage() {
     useEffect(() => {
         if(localStorage.getItem("token") === null){
             history.push("/");
-            console.log("heiii")
         }
         dispatch(getOrders(loggedInUser.id))
         console.log(orderState)

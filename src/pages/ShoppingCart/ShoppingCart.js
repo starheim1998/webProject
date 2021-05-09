@@ -47,6 +47,8 @@ export default function ShoppingCart() {
         } else if (cartState.length === 0) {
             return <p>The shopping cart is empty </p>
         } else {
+            console.log("LENGTH:" , cartState.length)
+            console.log(cartState)
             const counts = [];
             cartState.forEach(function (itemId) {
                 counts[itemId] = (counts[itemId] || 0) + 1;

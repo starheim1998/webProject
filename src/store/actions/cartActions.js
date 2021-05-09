@@ -1,12 +1,13 @@
 import {API_URL} from "../../config";
+import {AuthHeader} from "../../auth/AuthHeader";
 
 export function setCartItem(userId, itemId) {
-    console.log("userID=", userId);
-    console.log("itemID=", itemId);
+
     return (dispatch) => {
         return fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
             method: "POST",
-            headers: {'Content-type': 'application/json'},
+            headers: {'Authorization': AuthHeader(true).get('Authorization'),
+                      'Content-type':AuthHeader(true).get('Content-type')}
         })
             .then(
                 dispatch({
@@ -19,7 +20,9 @@ export function setCartItem(userId, itemId) {
 
 export function getCartItems(userId) {
     return (dispatch) => {
-        fetch(API_URL + "/order/cart/" + userId)
+        fetch(API_URL + "/order/cart/" + userId, {
+            headers: {'Authorization':AuthHeader(false).get('Authorization')}
+        })
             .then((response) => response.json())
             .then((json) => {
                 console.log("JSON", (json))
@@ -49,7 +52,8 @@ export function deleteCartItem(userId, itemId) {
     return dispatch => {
         return fetch(`${API_URL}/order/cart/delete/${userId}/${itemId}`, {
             method: "DELETE",
-            headers: {'Content-type':'application/json'}
+            headers: {'Authorization': AuthHeader(true).get('Authorization'),
+                'Content-type':AuthHeader(true).get('Content-type')}
         })
             .then(dispatch({
                 type: "DELETE_CART_ITEM",
@@ -63,7 +67,8 @@ export function checkOutCart(userId) {
     return dispatch => {
         return fetch(`${API_URL}/order/checkout/${userId}/`, {
             method: "PUT",
-            headers: {'Content-type':'application/json'}
+            headers: {'Authorization': AuthHeader(true).get('Authorization'),
+                'Content-type':AuthHeader(true).get('Content-type')}
             })
             .then(dispatch({
                 type: "EMPTY_CART"

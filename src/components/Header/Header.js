@@ -3,23 +3,30 @@ import {Link} from "react-router-dom";
 import NavBar2 from "../NavBar/NavBar2"
 import "./Header.css";
 import cart from "./../../img/cart.png";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
+import {getOrders} from "../../store/actions/orderActions";
+import {getUserAction, loginUser, logoutUser} from "../../store/actions/userActions";
 
 export default function Header() {
     // Keeping track of modal's state.
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
     const history = useHistory();
-
+    const dispatch = useDispatch();
 
     //Redux logged in state to track if the user is logged in or not.
     const loggedInState = useSelector(state => state.accountReducer.isLoggedIn);
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
 
+    useEffect(() => {
+        if(localStorage.getItem("token") !== null){
+            dispatch(getUserAction())
+        }
+    }, [])
 
     const loginComponent = () => {
         if (!loggedInState) { // => loggedInState must refer to localstorage

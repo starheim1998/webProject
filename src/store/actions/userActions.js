@@ -1,4 +1,5 @@
 import {API_URL} from "../../config";
+import {AuthHeader} from "../../auth/AuthHeader";
 
 /**
  * Register user
@@ -63,7 +64,8 @@ export const loginUserAction = (loginUserInfo) => {
 const createCartOnLogin = (userId) => {
     fetch(`${API_URL}/order/createCart/${userId}`, {
         method: "POST",
-        headers: {'Content-type': 'application/json'},
+        headers: {'Authorization': AuthHeader(true).get('Authorization'),
+            'Content-type':AuthHeader(true).get('Content-type')}
     })
         .catch(function (err) {
             alert("Error:" + err)
@@ -90,8 +92,8 @@ export const getUserAction = () => {
                 .then(response => response.json())
                 .then(json => {
                     if (json.message) {
-                        console.log("get user error")
-                        localStorage.removeItem("token");
+                        console.log("'get user' error")
+                        dispatch(logoutUser())
                     } else {
                         dispatch(loginUser(json))
                     }
