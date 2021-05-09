@@ -1,11 +1,12 @@
 
 
-#cardList_main_container{
+#card_list_wrapper{
+    width: 100%;
+    padding: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     border: 1px solid black;
-}
+    gap: 25px;
 
-.item_card_container{
-    width: 30%;
 }

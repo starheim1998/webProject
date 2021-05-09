@@ -10,6 +10,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {getOrders} from "../../store/actions/orderActions";
 import {getUser} from "../../store/actions/userActions";
+import {getCartItems} from "../../store/actions/cartActions";
+
+//FontAwesome
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faShoppingCart, faStar, faUser} from "@fortawesome/free-solid-svg-icons";
 
 export default function Header() {
     // Keeping track of modal's state.
@@ -21,12 +26,14 @@ export default function Header() {
     //Redux logged in state to track if the user is logged in or not.
     const loggedInState = useSelector(state => state.accountReducer.isLoggedIn);
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
+    const cartState = useSelector((state) => state.cartReducer.cartItems);
+
 
     useEffect(() => {
         if(localStorage.getItem("token") === null){
             // logoutUser()
         } else (
-            dispatch(getUser())
+            dispatch(getUser(), getCartItems(loggedInUser.id))
         )
     }, [])
 
@@ -48,28 +55,36 @@ export default function Header() {
                               }}/>
                 </>
             )
-        } else if (loggedInState) {
+        } else {
             return (
-                <Link to="/accountPage/accountPage"> {loggedInUser.name} </Link>
+                <div onClick={() => goToAccountPage()} className={"user_wrapper"}>
+                    <FontAwesomeIcon className={"icon user_icon"} icon={faUser}/>
+                    <span>{loggedInUser.name}</span>
+                </div>
             )
         }
+    }
+
+    const goToAccountPage = () => {
+        history.push("/accountPage/accountPage")
     }
 
     const shoppingCartButton = () => {
         if (localStorage.getItem("token")===null) {
             return (
-                <>
-                    <img src={cart} alt="cart link" onClick={() => {
-                        setLoginOpen(true)
-                        history.push("/ShoppingCart/ShoppingCart")
-                    }}/>
-                </>
+                <FontAwesomeIcon  className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
+                    setLoginOpen(true)
+                }}/>
             )
         } else {
             return (
-                <Link to="/ShoppingCart/ShoppingCart">
-                    <img src={cart} alt="cart link"/>
-                </Link>
+                <div className={"cart_div"}>
+                    <FontAwesomeIcon  className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
+                        history.push("/shoppingCart/shoppingCart")
+                    }}/>
+                    <span id={"cart_number"}>{cartState.length}</span>
+                </div>
+
             )
         }
     }
@@ -78,7 +93,8 @@ export default function Header() {
         <div className="header_container">
             {/*first row of the header*/}
             <div className="first_row_header">
-                <Link to="/"><h3>Home</h3></Link>
+                <FontAwesomeIcon icon={faStar} className={"icon star_icon"}
+                                 onClick={() => history.push("/")}/>
                 <SearchBar/>
                 {loginComponent()}
                 {shoppingCartButton()}

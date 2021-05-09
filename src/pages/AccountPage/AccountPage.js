@@ -33,28 +33,25 @@ export default function AccountPage() {
             orderState.map((order) => {
                 // renderOrder(order)
                 return(
-                    renderOrder(order)
+                    <Order order={order}/>
                 )
             })
         )
     }
 
-    const renderOrder = (order) => {
-        // orderState.map(order)
-        console.log(order.items.name)
-        return(
-            <div key={order.id}>
-                <Order items={order.items}/>
-            </div>
-        )
-    }
+    // const renderOrder = (order) => {
+    //     // orderState.map(order)
+    //     console.log(order.items.name)
+    //     return(
+    //             <Order items={order.items} date={order.date}/>
+    //     )
+    // }
 
     return (
         <div className={""}>
             <h1>{loggedInUser.name}</h1>
             <div className={"aboveOrders"}>
             <h3>Items:</h3>
-            <h3>Quantity:</h3>
             <h3>Total sum:</h3>
             <h3>Date:</h3>
             <h3>Status:</h3>

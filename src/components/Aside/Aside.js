@@ -41,8 +41,7 @@ export default function Aside(props){
 
     return(
 
-        <form>
-            <div id={"aside_wrapper"}>
+        <form id={"aside_wrapper"}>
                 <p className={"aside_header"}>Categories</p>
 
                 <div id={"category_container"}>
@@ -130,9 +129,6 @@ export default function Aside(props){
                         <option value="red">Red</option>
                     </select>
                 </div>
-                
-            </div>
-
         </form>
     )
 }

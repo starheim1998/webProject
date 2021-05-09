@@ -1,23 +1,33 @@
 import "./Order.css";
 
-export default function Order({items, quantity, sum, date, status}) {
+export default function Order({order}) {
 
-    const itemList = []
-    items.forEach((item) => {
-        itemList.push(item.name)
-    })
-    console.log(itemList)
+
+    const getItems = ()  => {
+        return(
+            order.items.map((item) => {
+                return (
+                    <li>{item.name}</li>
+                )})
+        )
+    }
+
+    const getSum = () => {
+        let sum = 0
+        order.items.forEach((item) => {
+            sum += item.price
+        })
+        return sum
+    }
 
     return(
-        <div className={"ordersWrapper"}>
-            <div className={"orders"}>
-                <li>
-                    {itemList}
-                </li>
-                {/*<p>{sum}</p>*/}
-                <p>{date}</p>
-                {/*<p>{status}</p>*/}
-            </div>
+        <div className={"orders"} key={order.id}>
+            <ul>
+                {getItems()}
+            </ul>
+            <p>{getSum()} kr</p>
+            <p>{order.date}</p>
+            <p>In progress</p>
         </div>
     )
 }

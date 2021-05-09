@@ -9,7 +9,44 @@
     justify-content: space-around;
     align-items: center;
 }
+.user_wrapper{
+    padding: 10px;
+}
 
+.user_wrapper:hover{
+    cursor: pointer;
+}
+
+.icon{
+    color: #484a4d;
+}
+.icon:hover{
+    cursor: pointer;
+}
+
+.user_icon{
+    font-size: 50px;
+
+}
+.cart_div{
+    position: relative;
+}
+.cart_icon {
+    font-size: 60px;
+}
+
+#cart_number{
+    position: absolute;
+    transform: translate(50px, -15px);
+    width: 20px;
+    border-radius: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.star_icon{
+    font-size: 60px;
+}
 /*a:hover, a:visited, a:link, a:active*/
 /*{*/
 /*    text-decoration: none;*/

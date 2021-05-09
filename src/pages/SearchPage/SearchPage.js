@@ -8,6 +8,8 @@ import {getItems} from "../../store/actions/itemActions";
 
 export default function SearchPage(props){
 
+    const {selectedCategory} = props;
+    const dispatch = useDispatch();
     const itemsState = useSelector((state) => state.itemReducer.items);
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
@@ -16,14 +18,11 @@ export default function SearchPage(props){
         size: "",
         colors: ""
     });
-    const dispatch = useDispatch();
 
-    // Code adapted from:
-    // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
+
 
     //TODO: implement this functionality
     // get selected category from navbar
-    const {selectedCategory} = props;
 
     useEffect(() => {
         setSearch(getSearch)
@@ -31,9 +30,18 @@ export default function SearchPage(props){
         console.log("itemstate", itemsState)
     }, [useParams()])
 
+
+    function getSearch() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('q');
+    }
+
     const foundItemsCount = (query) =>{
         let counter = 0;
-        itemsState.filter((item) => item.name.toLowerCase().includes(query.toLowerCase())).forEach(() => counter++);
+        const qry = query.toLowerCase()
+        itemsState.filter((item) => item.name.toLowerCase().includes(qry)
+        || (item.category.toLowerCase().includes(qry))
+        || (item.subcategory.toLowerCase().includes(qry))).forEach(() => counter++);
         return counter;
     }
 
@@ -73,29 +81,15 @@ export default function SearchPage(props){
         return foundItemList;
     }
 
-    function getSearch() {
-        const params = new URLSearchParams(window.location.search);
-        return params.get('q');
-    }
-
         return (
             <div className="main_container">
                 {getHeader()}
                 <div className="main_body">
-                    <div className={"aside_container"}>
-                        <Aside
-                            // category1={"Topwear"}
-                            // category2={"Bottomwear"}
-                            // category3={"Shoes"}
-                            // category4={"Sport"}
-                            filterState={filterState}
-                            setFilterState={setFilterState}
-                        />
-                    </div>
-
-                    <div>
-                        <CardList cards={foundItems(search)}/>
-                    </div>
+                    <Aside
+                        filterState={filterState}
+                        setFilterState={setFilterState}
+                    />
+                    <CardList cards={foundItems(search)}/>
                 </div>
             </div>
         )

@@ -1,20 +1,18 @@
 .cart_main_container{
     width: 85%;
-    border: 1px solid black;
     margin: auto;
 }
 
 .cart_item_container{
     border: 1px solid black;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    max-height: 125px;
     list-style-type: none;
+    margin: 15px 0;
 }
 
 .cart_img_container{
     width: 30%;
-    border: 1px solid red;
 }
 
 .cart_img_container > img {
@@ -22,13 +20,33 @@
     max-height: 100%;
 }
 
-.cart_body_container{
+.cart_item_body{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item_details{
     list-style-type: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.delete_button_container{
+#cost_details{
+    margin-top: 25px;
+}
 
+#checkout_btn{
+    font-size: 20px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#checkout_btn:hover{
+    cursor: pointer;
+    background-color: #989898;
 }
