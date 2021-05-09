@@ -2,40 +2,11 @@ import Modal from "../Modal";
 import React, {useState} from 'react';
 import {registerUserAction} from "../../../store/actions/userActions";
 
-
-
 export default function Register({open, onClose, redirect}){
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
-    // function handleSubmit(e){
-    //     e.preventDefault();
-    //         if (confirmPassword !== password){
-    //             alert("Passwords did not match!");
-    //             setPassword("");
-    //             setConfirmPassword("");
-    //             return null;
-    //         }
-    //     const newAccount = {
-    //         name: name,
-    //         email: email,
-    //         password: password,
-    //         id: getNextId()
-    //     };
-    //     let accountCopy = accounts;
-    //     accountCopy.push(newAccount);
-    //     dispatch(setAccount(accountCopy));
-    //     alert("Account added!");
-    //     onClose();
-    //     /*RESET FORM*/
-    //     setName("");
-    //     setEmail("");
-    //     setPassword("");
-    //     setConfirmPassword("");
-    // }
 
     function handleSubmitFetch(e){
         e.preventDefault();

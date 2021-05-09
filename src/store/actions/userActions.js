@@ -5,26 +5,14 @@ import {AuthHeader} from "../../auth/AuthHeader";
  * Register user
  */
 export const registerUserAction = newAccount => {
-    return dispatch => {
-        return fetch(API_URL + "/registration", {
-            method: "POST",
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({newAccount})
-        })
-            .then(resp => resp.json())
-            .then(json => {
-                if (json.message) {
-                    console.log("ERROR")
-                } else {
-                    localStorage.setItem("token", json)
-                    dispatch(loginUser(json.user))
-                    console.log("Sent, token:" + json);
-                }
-            })
-            .catch(function (err) {
-                alert("ERROR:" + err)
-            });
-    }
+     fetch(API_URL + "/registration", {
+        method: "POST",
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(newAccount)
+    })
+        .catch(function (err) {
+            alert("ERROR:" + err)
+        });
 }
 
 /**
@@ -67,8 +55,10 @@ export const getUser = () => {
         if (token) {
             return fetch(API_URL + "/authenticate/getUser", {
                 method: "POST",
-                headers: {'Authorization': AuthHeader(true).get('Authorization'),
-                    'Content-type':AuthHeader(true).get('Content-type')},
+                headers: {
+                    'Authorization': AuthHeader(true).get('Authorization'),
+                    'Content-type': AuthHeader(true).get('Content-type')
+                },
                 body: JSON.parse(token)
             })
                 .then(response => response.json())
@@ -93,8 +83,10 @@ export const getUser = () => {
 const createCartOnLogin = (userId) => {
     fetch(`${API_URL}/order/createCart/${userId}`, {
         method: "POST",
-        headers: {'Authorization': AuthHeader(true).get('Authorization'),
-            'Content-type':AuthHeader(true).get('Content-type')}
+        headers: {
+            'Authorization': AuthHeader(true).get('Authorization'),
+            'Content-type': AuthHeader(true).get('Content-type')
+        }
     })
         .catch(function (err) {
             alert("Error:" + err)

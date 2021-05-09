@@ -28,7 +28,6 @@ export default function Header() {
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
 
-
     useEffect(() => {
         if(localStorage.getItem("token") === null){
             // logoutUser()
