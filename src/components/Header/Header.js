@@ -8,13 +8,13 @@ import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
-import {getOrders} from "../../store/actions/orderActions";
 import {getUser} from "../../store/actions/userActions";
 import {getCartItems} from "../../store/actions/cartActions";
 
 //FontAwesome
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingCart, faStar, faUser} from "@fortawesome/free-solid-svg-icons";
+import {getItems} from "../../store/actions/itemActions";
 
 export default function Header() {
     // Keeping track of modal's state.
@@ -32,9 +32,12 @@ export default function Header() {
     useEffect(() => {
         if(localStorage.getItem("token") === null){
             // logoutUser()
-        } else (
-            dispatch(getUser(), getCartItems(loggedInUser.id))
-        )
+        } else {
+            dispatch(getUser())
+            dispatch(getItems()) // get the users items.
+            dispatch(getCartItems(loggedInUser.id))
+            console.log("Logged in user OBJECT",loggedInUser)
+        }
     }, [])
 
     const loginComponent = () => {

@@ -70,11 +70,13 @@ export function checkOutCart(userId) {
             headers: {'Authorization': AuthHeader(true).get('Authorization'),
                 'Content-type':AuthHeader(true).get('Content-type')}
             })
-            .then(dispatch({
-                type: "EMPTY_CART"
-            }))
+            .then(
+                dispatch({type: "EMPTY_CART"})
+            )
             .catch(function (err) {
                 alert("ERROR: " + err);
             }
-        )}
+        )
+    }
 }
+

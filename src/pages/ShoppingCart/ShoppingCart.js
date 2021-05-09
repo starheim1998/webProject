@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import "./ShoppingCart.css"
 import {deleteCartItem, getCartItems} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
+import {getItems} from "../../store/actions/itemActions";
 
 export default function ShoppingCart() {
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -22,24 +23,14 @@ export default function ShoppingCart() {
     }
 
     useEffect(() => {
-        if (checkLogin()){
-            dispatch(getCartItems(currentUserState.id))
-        } else {
-            history.push("/");
-        }
+        dispatch(getItems()) // get items for userstate if he refreshses? TODO: COMMENT bad?
+        dispatch(getCartItems(currentUserState.id))
     }, [])
 
-    const checkLogin = () => {
-        if (localStorage.getItem("token") === null || currentUserState.isLoggedIn === false){
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     const getItem = (cartItem) => {
-        console.log(itemsState)
-        console.log(itemsState.find((item) => item.id === cartItem))
+        // console.log(itemsState)
+        // console.log(itemsState.find((item) => item.id === cartItem))
         return itemsState.find((item) => item.id === cartItem);
     }
 
@@ -54,17 +45,20 @@ export default function ShoppingCart() {
      */
 
     const addBody = () => {
-        if (cartState.length === 0) {
+        if (localStorage.getItem("token") === null) {
+            history.push("/");
+        } else if (cartState.length === 0) {
             return <p>The shopping cart is empty </p>
         } else {
-            console.log("LENGTH:" , cartState.length)
-            console.log(cartState)
+            // console.log("LENGTH:" , cartState.length)
+            // console.log(cartState)
             const counts = [];
             cartState.forEach(function (itemId) {
                 counts[itemId] = (counts[itemId] || 0) + 1;
             });
             const uniqueCart = new Set(cartState)
             let uniqueList = [...uniqueCart]
+            //console.log("MY USER STATE IN CHECKOUT", currentUserState)
             return (
                 uniqueList.map((cartItem) =>
                     renderItem(getItem(cartItem), counts[cartItem]))
@@ -73,8 +67,8 @@ export default function ShoppingCart() {
     }
 
     const renderItem = (item, quantity) => {
-        console.log("ITEM", item)
-        console.log("QUANITYT", quantity)
+        // console.log("ITEM", item)
+        // console.log("QUANITYT", quantity)
         // add to sum state
         const sum = item.price * quantity
         totalSum += sum

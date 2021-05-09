@@ -73,6 +73,7 @@ export const getUser = () => {
             })
                 .then(response => response.json())
                 .then(json => {
+                    console.log(JSON.stringify(json))
                     if (json.message) {
                         console.log("'get user' error")
                         // dispatch(logoutUser())
