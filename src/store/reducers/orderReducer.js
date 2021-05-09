@@ -6,9 +6,9 @@ const initialState = {
 export default function orderReducer(state = initialState, action){
     switch (action.type){
         case "FETCH_ORDERS":
-            console.log(state.orders)
+            console.log(action.payload)
             return {
-                orderItems: action.payload
+                orders: action.payload
             }
         default:
             return state

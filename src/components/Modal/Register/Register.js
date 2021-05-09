@@ -1,22 +1,15 @@
 import Modal from "../Modal";
-import {useDispatch, useSelector} from "react-redux";
 import React, {useState} from 'react';
 import {registerUserAction} from "../../../store/actions/userActions";
 
 
 
 export default function Register({open, onClose, redirect}){
-    const accounts = useSelector(state => state.accountReducer.accounts);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-
-    function getNextId() {
-        const maxId = accounts.reduce((maxId, account) => Math.max(account.id, maxId), -1);
-        return maxId + 1;
-    }
 
     // function handleSubmit(e){
     //     e.preventDefault();

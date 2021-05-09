@@ -10,19 +10,11 @@ import Home from "./pages/Home/Home";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchPage from "./pages/SearchPage/SearchPage";
-import {useDispatch} from "react-redux";
-import {useEffect} from "react";
-
-import {initialItems} from "./initialItems";
 import AccountPage from "./pages/AccountPage/AccountPage";
 
 
 function App() {
-    // const dispatch = useDispatch();
-    //
-    // useEffect(() => {
-    //     dispatch(setItems(initialItems))
-    // }, [dispatch])
+
 
 
     return (

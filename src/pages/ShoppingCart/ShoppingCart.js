@@ -31,45 +31,6 @@ export default function ShoppingCart() {
         return itemsState.find((item) => item.id === cartItem);
     }
 
-    // const handleQuantityChange = (cartItem, event) => {
-    //      const updatedValue = event.target.value;
-    //      dispatch((updateQuantity(cartItem.itemId, updatedValue)));
-    //      console.log(cartItem.quantity);
-    // }
-
-    const renderItem = (item, quantity) => {
-        console.log("ITEM", item)
-        console.log("QUANITYT", quantity)
-        return (
-            <div className={"cart_item_container"} key={item.id}>
-                <div className={"cart_img_container"}>
-                    <img src={item.img} alt={item.name}/>
-                </div>
-                <div className={"cart_body_container"}>
-                    <p>{item.name}</p>
-                    <p>Size: {item.size}</p>
-                    <p>Color: {item.color}</p>
-                    <p>Quantity: {quantity}</p>
-                </div>
-                <div>
-                    <p>Price: {item.price} kr</p>
-                </div>
-                <div>
-                    <p>Total: kr</p>
-
-                </div>
-                <div className={"amount_container"}>
-                    Amount:
-                    <input type="number" min={1}/>
-
-                </div>
-                <div className={"delete_button_container"}>
-                    <button onClick={() => deleteHandler(item)}> DELETE</button>
-                </div>
-            </div>
-        )
-    }
-
 
     /**
      * Add body to shopping cart. First if: it is only accessible by a logged in user.
@@ -79,6 +40,7 @@ export default function ShoppingCart() {
      * @returns {JSX.Element|*[]} Renders the JSX of the shopping cart page with the items of the user,
      * the quantity of equal items and an option to checkout.
      */
+
     const addBody = () => {
         if (localStorage.getItem("token") === null) {
             history.push("/");
@@ -97,6 +59,31 @@ export default function ShoppingCart() {
             )
         }
     }
+
+    const renderItem = (item, quantity) => {
+        console.log("ITEM", item)
+        console.log("QUANITYT", quantity)
+        return (
+            <ul className={"cart_item_container"} key={item.id}>
+                <div className={"cart_img_container"}>
+                    <img src={item.img} alt={item.name}/>
+                </div>
+                <ul className={"cart_body_container"}>
+                    <li>{item.name}</li>
+                    <li>Size: {item.size}</li>
+                    <li>Color: {item.colors}</li>
+                </ul>
+                <li>Price: {item.price} kr</li>
+                <li>Quantity: {quantity}</li>
+                <li>Total: {item.price * quantity} kr</li>
+
+                <li className={"delete_button_container"}>
+                    <button onClick={() => deleteHandler(item)}> DELETE</button>
+                </li>
+            </ul>
+        )
+    }
+
     return (
         <div className={"cart_main_container"}>
             <h3>Shopping cart</h3>

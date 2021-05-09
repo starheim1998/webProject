@@ -1,15 +1,13 @@
 import SearchBar from "../SearchBar/SearchBar";
 import {Link} from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import NavBar2 from "../NavBar/NavBar2"
 import "./Header.css";
 import cart from "./../../img/cart.png";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router";
-import accountReducer from "../../store/reducers/accountReducer";
 
 export default function Header() {
     // Keeping track of modal's state.
@@ -22,15 +20,6 @@ export default function Header() {
     const loggedInState = useSelector(state => state.accountReducer.isLoggedIn);
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
 
-
-    // const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // useEffect(()=>{
-    //     if(loggedInState) {
-    //         setIsLoggedIn(true)
-    //     } else {
-    //         setIsLoggedIn(false);
-    //     }
-    // },[loggedInUser])
 
     const loginComponent = () => {
         if (!loggedInState) { // => loggedInState must refer to localstorage

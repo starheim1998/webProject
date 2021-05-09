@@ -1,4 +1,3 @@
-import {useState} from "react";
 import DropDownMenu from "./DropDownMenu";
 import NavItem from "./NavItem";
 import "./NavBar2.css"

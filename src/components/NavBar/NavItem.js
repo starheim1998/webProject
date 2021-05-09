@@ -1,4 +1,3 @@
-import DropDownMenu from "./DropDownMenu";
 import {useEffect, useState} from "react";
 import "./NavItem.css"
 import {useDispatch, useSelector} from "react-redux";
@@ -8,7 +7,6 @@ import {toggleNavBar} from "../../store/actions/navBarActions";
 export default function NavItem(props){
     const {name} = props
     const [isSelected, setSelected] = useState(false);
-    const navBarState = useSelector((state) => state.navBarReducer.isOpen);
     const dispatch = useDispatch();
 
 

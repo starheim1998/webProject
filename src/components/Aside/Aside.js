@@ -1,24 +1,9 @@
 import "./Aside.css"
-import {useEffect, useRef, useState} from "react";
 
 
 export default function Aside(props){
 
     const {filterState, setFilterState} = props
-
-    // let selectedCategory = null;
-    //
-    // const changeSelectedCategory = (span) => {
-    //     console.log(selectedCategory)
-    //     if(span === selectedCategory){
-    //         return;
-    //     }
-    //     if(selectedCategory !== null){
-    //         selectedCategory.classList.toggle("selectedCategory");
-    //     }
-    //     selectedCategory = span;
-    //     selectedCategory.classList.toggle("selectedCategory");
-    // }
 
     const handleSizeChange = (e) => {
         e.preventDefault();
@@ -43,9 +28,6 @@ export default function Aside(props){
             category: e.target.title,
             subcategory: ""
         })
-
-        // changeSelectedCategory(e.target);
-
     }
 
     const handleSubcategoryChange = (e) => {
@@ -55,9 +37,6 @@ export default function Aside(props){
             subcategory: e.target.title,
             category: ""
         })
-
-        // changeSelectedCategory(e.target);
-
     }
 
     return(

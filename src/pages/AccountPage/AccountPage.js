@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import {logoutUser} from "../../store/actions/userActions";
 import {useHistory} from "react-router";
-import Orders from "../../components/Orders/Orders";
+import Order from "../../components/Order/Order";
 import "./AccountPage.css";
 import {useEffect} from "react";
 import {getOrders} from "../../store/actions/orderActions";
@@ -10,59 +10,57 @@ export default function AccountPage() {
     const dispatch = useDispatch();
     const history = useHistory()
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
-    const orderState = useSelector((state) => state.orderReducer.orderItems)
+    const orderState = useSelector((state) => state.orderReducer.orders)
 
     useEffect(() => {
+        if(localStorage.getItem("token") === null){
+            history.push("/");
+            console.log("heiii")
+        }
         dispatch(getOrders(loggedInUser.id))
         console.log(orderState)
-    }, [])
+
+    }, [dispatch])
 
     function logout(){
         dispatch(logoutUser())
         history.push("/")
     }
 
-    /*ONLY ACCESSIBLE FOR LOGGED IN USER*/
-    // Alternativt?: "checkValidToken, if null or invalid -> history.push("/")";
-    const loggedInCheck = () => {
-        if(localStorage.getItem("token") === null){
-            history.push("/");
-        }
-        return (
-            <h1>{loggedInUser.name}</h1>
-        )
-    }
 
     const addBody = () => {
         console.log(orderState)
-        return (
+        return(
             orderState.map((order) => {
-                renderOrder(order)
+                // renderOrder(order)
+                return(
+                    renderOrder(order)
+                )
             })
         )
     }
 
     const renderOrder = (order) => {
+        // orderState.map(order)
+        console.log(order.items.name)
         return(
-            <div>
-                <Orders items={order.items} date={order.date}/>
+            <div key={order.id}>
+                <Order items={order.items}/>
             </div>
         )
     }
 
-
     return (
-        <div>
-            {loggedInCheck()}
-
+        <div className={""}>
+            <h1>{loggedInUser.name}</h1>
             <div className={"aboveOrders"}>
-            <h3>Order:</h3>
+            <h3>Items:</h3>
+            <h3>Quantity:</h3>
             <h3>Total sum:</h3>
             <h3>Date:</h3>
             <h3>Status:</h3>
             </div>
-
-            {/*{addBody()}*/}
+            {addBody()}
             <button onClick={logout}>LOGOUT</button>
         </div>
     )

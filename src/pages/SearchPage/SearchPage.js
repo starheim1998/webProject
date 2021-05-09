@@ -3,16 +3,12 @@ import {useParams} from "react-router";
 import Aside from "../../components/Aside/Aside";
 import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
-import {API_URL} from "../../config";
-import {getCartItems} from "../../store/actions/cartActions";
 import {useDispatch, useSelector} from "react-redux";
 import {getItems} from "../../store/actions/itemActions";
 
 export default function SearchPage(props){
 
-    //const itemsState = useSelector((state) => state.itemReducer.items)
     const itemsState = useSelector((state) => state.itemReducer.items);
-    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
     const [search, setSearch] = useState("");
     const [filterState, setFilterState] = useState({
         category: "",
@@ -30,7 +26,6 @@ export default function SearchPage(props){
     const {selectedCategory} = props;
 
     useEffect(() => {
-        // loadItems()
         setSearch(getSearch)
         dispatch(getItems())
         console.log("itemstate", itemsState)
@@ -89,10 +84,10 @@ export default function SearchPage(props){
                 <div className="main_body">
                     <div className={"aside_container"}>
                         <Aside
-                            category1={"Topwear"}
-                            category2={"Bottomwear"}
-                            category3={"Shoes"}
-                            category4={"Sport"}
+                            // category1={"Topwear"}
+                            // category2={"Bottomwear"}
+                            // category3={"Shoes"}
+                            // category4={"Sport"}
                             filterState={filterState}
                             setFilterState={setFilterState}
                         />

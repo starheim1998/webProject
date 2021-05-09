@@ -1,12 +1,18 @@
-import "./Orders.css";
+import "./Order.css";
 
-export default function Orders({items, sum, date, status}) {
+export default function Order({items, quantity, sum, date, status}) {
+
+    const itemList = []
+    items.forEach((item) => {
+        itemList.push(item.name)
+    })
+    console.log(itemList)
 
     return(
         <div className={"ordersWrapper"}>
             <div className={"orders"}>
                 <li>
-                    {items}
+                    {itemList}
                 </li>
                 {/*<p>{sum}</p>*/}
                 <p>{date}</p>
