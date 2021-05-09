@@ -58,6 +58,34 @@ export const loginUserAction = (loginUserInfo) => {
 }
 
 /**
+ * Get user
+ * @returns {(function(*): (Promise<void>|undefined))|*}
+ */
+export const getUser = () => {
+    return dispatch => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            return fetch(API_URL + "/authenticate/getUser", {
+                method: "POST",
+                headers: {'Authorization': AuthHeader(true).get('Authorization'),
+                    'Content-type':AuthHeader(true).get('Content-type')},
+                body: JSON.parse(token)
+            })
+                .then(response => response.json())
+                .then(json => {
+                    if (json.message) {
+                        console.log("'get user' error")
+                        // dispatch(logoutUser())
+                    } else {
+                        dispatch(loginUser(json))
+                    }
+                })
+        }
+    }
+}
+
+
+/**
  * Create an empty cart on login, if user does not have one already.
  * @param userId of the user involved.
  */
@@ -70,36 +98,6 @@ const createCartOnLogin = (userId) => {
         .catch(function (err) {
             alert("Error:" + err)
         })
-}
-
-
-/**
- * Get user
- * @returns {(function(*): (Promise<void>|undefined))|*}
- */
-export const getUserAction = () => {
-    return dispatch => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            return fetch(API_URL + "/authenticate/user", {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-                .then(response => response.json())
-                .then(json => {
-                    if (json.message) {
-                        console.log("'get user' error")
-                        dispatch(logoutUser())
-                    } else {
-                        dispatch(loginUser(json))
-                    }
-                })
-        }
-    }
 }
 
 /**

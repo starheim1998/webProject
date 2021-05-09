@@ -9,7 +9,7 @@ import Register from "../Modal/Register/Register";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
 import {getOrders} from "../../store/actions/orderActions";
-import {getUserAction, loginUser, logoutUser} from "../../store/actions/userActions";
+import {getUser} from "../../store/actions/userActions";
 
 export default function Header() {
     // Keeping track of modal's state.
@@ -23,9 +23,11 @@ export default function Header() {
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
 
     useEffect(() => {
-        if(localStorage.getItem("token") !== null){
-            dispatch(getUserAction())
-        }
+        if(localStorage.getItem("token") === null){
+            // logoutUser()
+        } else (
+            dispatch(getUser())
+        )
     }, [])
 
     const loginComponent = () => {
