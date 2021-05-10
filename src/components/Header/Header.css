@@ -21,6 +21,7 @@
 .icon{
     color: #484a4d;
 }
+
 .icon:hover{
     cursor: pointer;
 }
@@ -48,6 +49,16 @@
 .star_icon{
     font-size: 60px;
 }
+
+
+.titleAndIcon{
+    display: inherit;
+}
+
+.titleAndIcon:hover{
+    cursor: pointer;
+}
+
 
 .headerLoginRegisterButton{
     color: black;

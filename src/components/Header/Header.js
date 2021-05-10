@@ -110,8 +110,10 @@ export default function Header() {
         <div className="header_container">
             {/*first row of the header*/}
             <div className="first_row_header">
-                <FontAwesomeIcon icon={faStar} className={"icon star_icon"}
-                                 onClick={() => history.push("/")}/>
+                <div className={"titleAndIcon"} onClick={() => history.push("/")}>
+                    <FontAwesomeIcon icon={faStar} className={"icon star_icon"}/>
+                    <h1>Star</h1>
+                </div >
                 <SearchBar/>
                 {loginComponent()}
                 {shoppingCartButton()}

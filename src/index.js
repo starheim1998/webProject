@@ -9,10 +9,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
-import {persistStore} from "redux-persist";
-import {persistReducer} from "redux-persist";
-import storage from "redux-persist/lib/storage"
-import {PersistGate} from "redux-persist/integration/react"
+
 /**/
 import itemReducer from "./store/reducers/itemReducer";
 import cartReducer from "./store/reducers/cartReducer";

@@ -20,9 +20,9 @@ export default function Hero() {
             <img src={getHeroImage().img} alt={"hero"}/>
             <div className={"heroNOTphoto"}>
                 <h1>NEVER SEEN BEFORE SALE</h1>
-                <p>We are throwing a BIG sale this weekend for our brand new shoes!</p>
-                    <button onClick={redirect}>SHOP NOW</button>
+                <p>We are throwing a BIG sale this weekend for our brand new hat!</p>
+                <button onClick={redirect}>SHOP NOW</button>
             </div>
         </div>
-    ):null
+    ) : null
 }

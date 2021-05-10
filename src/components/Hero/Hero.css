@@ -12,6 +12,26 @@
     flex-direction: column;
     align-items: center;
     margin: 1% auto auto;
-    border: 1px solid black;
+    justify-content: flex-end;
 }
 
+.heroNOTphoto{
+    display: inherit;
+    flex-direction: inherit;
+    color: white;
+    padding-bottom: 50px;
+    background-color: rgba(0,0,0, 0.3);
+    border-radius: 12px;
+}
+
+.heroNOTphoto > button{
+    margin: auto;
+    width: 50%;
+    font-size: 20px;
+    border: none;
+    border-radius: inherit;
+}
+
+.heroNOTphoto > button:hover {
+    cursor: pointer;
+}
