@@ -1,6 +1,6 @@
 //Components
 import SearchBar from "../SearchBar/SearchBar";
-import NavBar2 from "../NavBar/NavBar2"
+import NavBar from "../NavBar/NavBar"
 import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
 
@@ -135,7 +135,7 @@ export default function Header() {
             </div>
             {/*navbar row*/}
             <div className="navbar_container">
-                <NavBar2/>
+                <NavBar/>
             </div>
         </div>
     )
