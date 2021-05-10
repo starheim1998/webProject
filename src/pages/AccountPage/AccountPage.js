@@ -1,10 +1,25 @@
-import {useDispatch, useSelector} from "react-redux";
-import {logoutUser} from "../../store/actions/userActions";
+// React
 import {useHistory} from "react-router";
-import Order from "../../components/Order/Order";
-import "./AccountPage.css";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
+
+// Components
+import Order from "../../components/Order/Order";
+
+// Actions
 import {getOrders} from "../../store/actions/orderActions";
+import {logoutUser} from "../../store/actions/userActions";
+
+// Styling
+import "./AccountPage.css";
+
+
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * Account page - Displays a list of orders committed by the logged in user
+ */
 
 export default function AccountPage() {
     const dispatch = useDispatch();
@@ -12,6 +27,10 @@ export default function AccountPage() {
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
     const orderState = useSelector((state) => state.orderReducer.orders)
 
+    /**
+     * If the user does not have a token, they are redirected to the home page
+     * Else the orders of the user are fetched from the database
+     */
     useEffect(() => {
         if(localStorage.getItem("token") === null){
             history.push("/");
@@ -21,12 +40,18 @@ export default function AccountPage() {
 
     }, [dispatch])
 
+    /**
+     * Logs out the user and redirects to the home page
+     */
     function logout(){
         dispatch(logoutUser())
         history.push("/")
     }
 
-
+    /**
+     * Adds the body of the page
+     * @returns returns an Order-component for each order by the user
+     */
     const addBody = () => {
         console.log(orderState)
         return(

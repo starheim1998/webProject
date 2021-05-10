@@ -13,6 +13,11 @@ import {getItems} from "../../store/actions/itemActions";
 import "./Item.css"
 
 /**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+
+/**
  * Page 'Item' - page for displaying an individual item from the database.
  */
 export default function Item() {

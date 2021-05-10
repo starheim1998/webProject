@@ -6,6 +6,13 @@ import CardList from "../../components/CardList/CardList";
 import {useDispatch, useSelector} from "react-redux";
 import {getItems} from "../../store/actions/itemActions";
 
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * Search page - Page displaying search results
+ */
+
 export default function SearchPage(props) {
 
     const {selectedCategory} = props;

@@ -1,7 +1,10 @@
+
+// Components
 import DropDownMenu from "./DropDown/DropDownMenu";
 import NavItem from "./NavItem";
+
+// Styling
 import "./NavBar.css"
-import {useSelector} from "react-redux";
 
 /**
  * @author Andreas Starheim Hernæs & Mathias van der Bend
