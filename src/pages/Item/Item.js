@@ -1,43 +1,49 @@
-import React, {useEffect, useState} from 'react';
+//React
+import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
+
+//Redux
 import {useDispatch, useSelector} from "react-redux";
-import {getCartItems, setCartItem} from "../../store/actions/cartActions";
+
+//Actions
+import {setCartItem} from "../../store/actions/cartActions";
 import {getItems} from "../../store/actions/itemActions";
+
+//Styling
 import "./Item.css"
 
+/**
+ * Page 'Item' - page for displaying an individual item from the database.
+ */
 export default function Item(){
     const currentUserState = useSelector((state) => state.accountReducer.currentUser);
-    const loggedInState = useSelector((state) => state.accountReducer.isLoggedIn);
     const itemsState = useSelector((state) => state.itemReducer.items)
-    const cartState = useSelector((state) => state.cartReducer.cartItems)
-
     const dispatch = useDispatch();
+
+    //Collect the parameter ID and use it to find the item in the redux state.
     let {id} = useParams();
 
-    // Code adapted from:
-    // https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
-
-    //TODO: fix double render issue - loop?
+    //Fetch items from the database to the redux store so we can collect it.
     useEffect(()=> {
         dispatch(getItems())
     },[id])
 
+    //Find the given item in the item state.
     const foundItem = () => {
         return itemsState.find((item) => item.id === parseInt(id))
     }
 
-    const handleAddToCart = (itemId) => {{
-        }
-        if (loggedInState) {
+    /*** Add item to cart if user is logged in. IF user is not logged in explain to user he/she needs to be logged in to add to cart.*/
+    const handleAddToCart = (itemId) => {
+        if (localStorage.getItem("token") !== null) {
             dispatch(setCartItem(currentUserState.id, itemId))
             alert(`Added ${foundItem().name} to the shopping cart`);
-            console.log("foundItem", foundItem());
-            console.log("cartstate", cartState);
         } else {
             alert('You must be logged in to add items to cart!')
         }
     }
 
+    /*** The item page with the foundItem details.*/
     return foundItem() ?(
         <div className={"item_wrapper"}>
             <div className={"img_wrapper"}>

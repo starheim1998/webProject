@@ -2,7 +2,10 @@ import {API_URL} from "../../config";
 import {AuthHeader} from "../../auth/AuthHeader";
 
 /**
- * Register user
+ * Register user - sends the provided registration form to the
+ * database. After submission the user will be told whether the
+ * registration was a success or failure. Failure indicates a
+ * taken email.
  */
 export const registerUserAction = newAccount => {
      fetch(API_URL + "/registration", {
@@ -24,9 +27,12 @@ export const registerUserAction = newAccount => {
 }
 
 /**
- * Login user
- * @param loginUserInfo
- * @returns {function(*): Promise<any>}
+ * Login user - sends the provided login-information to the database,
+ * if the user exists the user will be provided a token and registered
+ * as a currently logged in user in the redux state.
+ * @param loginUserInfo the login username and password.
+ * @returns {function(*): Promise<any>} is registered as logged in
+ * in the redux state.
  */
 export const loginUserAction = (loginUserInfo) => {
     return dispatch => {
@@ -53,8 +59,11 @@ export const loginUserAction = (loginUserInfo) => {
 }
 
 /**
- * Get user
- * @returns {(function(*): (Promise<void>|undefined))|*}
+ * Get user - Fetches user using the JWT token stored in localStorage, used to restore a previous
+ * 'logged in state' if the page is refreshed or the user logs in, does not log out
+ * but leaves the page for an hour, for example. He will be logged in when he returns.
+ * @returns {(function(*): (Promise<void>|undefined))|*} logs the user in using user details
+ * sent from the DB.
  */
 export const getUser = () => {
     return dispatch => {
@@ -72,7 +81,7 @@ export const getUser = () => {
                 .then(json => {
                     console.log(JSON.stringify(json))
                     if (json.message) {
-                        console.log("'get user' error")
+                        console.log("'getUser' DB-response error.")
                     } else {
                         dispatch(loginUser(json))
                     }
@@ -83,9 +92,9 @@ export const getUser = () => {
 
 
 /**
- * Redux LOGIN
- * @param userObject
- * @returns {{payload, type: string}}
+ * Login user and store his or her details in the currentUser state.
+ * @param userObject user to be added to the state.
+ * @returns {{payload, type: string}} user details.
  */
 export const loginUser = userObject => ({
     type: "LOGIN_USER",
@@ -93,7 +102,7 @@ export const loginUser = userObject => ({
 })
 
 /**
- * Logout user
+ * Logout user and revoke token.
  */
 export const logoutUser = () => (dispatch) => {
     localStorage.removeItem("token");

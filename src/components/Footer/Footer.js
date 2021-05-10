@@ -1,13 +1,14 @@
 import "./Footer.css";
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-/*Images*/
+/*Images for the links*/
 import facebook from "./../../img/facebook-32.jpg";
 import instagram from "./../../img/instagram-32.jpg";
 import twitter from "./../../img/twitter-32.jpg";
 
 /**
- * Footer component - the "bottom of the page" functionality following the entire web page.
+ * Footer component - the "bottom of the page" functionality following the entire web page with information such as
+ * social media links and contact details.
  */
 export default function Footer(){
     return(

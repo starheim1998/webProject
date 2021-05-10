@@ -1,20 +1,21 @@
 const initialState = {
-    isLoggedIn: false,
     currentUser: {}
 }
 
-export default function accountReducer(state = initialState, action) {
+/**
+ * User reducer - redux reducer used to store the logged in user's account details
+ * as an object.
+ */
+export default function userReducer(state = initialState, action) {
     switch (action.type) {
         case 'LOGIN_USER':
             return {
                 ...state,
-                isLoggedIn: true,
                 currentUser: action.payload
             }
         case 'LOGOUT_USER':
             return {
                 ...state,
-                isLoggedIn: false,
                 currentUser: {}
             }
         default:

@@ -1,32 +1,36 @@
+//Components
 import SearchBar from "../SearchBar/SearchBar";
 import NavBar2 from "../NavBar/NavBar2"
-import "./Header.css";
-import React, {useEffect, useState} from "react";
 import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
+
+//React
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
+import React, {useEffect, useState} from "react";
+
+//Redux Actions
 import {getUser} from "../../store/actions/userActions";
 import {getCartItems} from "../../store/actions/cartActions";
-
-//FontAwesome
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faShoppingCart, faStar, faUser} from "@fortawesome/free-solid-svg-icons";
 import {getItems} from "../../store/actions/itemActions";
 import {getOrders} from "../../store/actions/orderActions";
+
+//Styling
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faShoppingCart, faStar, faUser} from "@fortawesome/free-solid-svg-icons";
+import "./Header.css";
 
 export default function Header() {
     // Keeping track of modal's state.
     const [loginOpen, setLoginOpen] = useState(false);
     const [registerOpen, setRegisterOpen] = useState(false);
+
     const history = useHistory();
     const dispatch = useDispatch();
-
-    //Redux logged in state to track if the user is logged in or not.
-    const loggedInState = useSelector(state => state.accountReducer.isLoggedIn);
     const loggedInUser = useSelector(state => state.accountReducer.currentUser);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
 
+    //Logs in user if he/she has a token
     useEffect(() => {
         dispatch(getItems())
         if(localStorage.getItem("token") === null){
@@ -36,6 +40,7 @@ export default function Header() {
         }
     }, [])
 
+    //If the user is successfully logged in the cart items and orders will be loaded.
     useEffect(() => {
         if(localStorage.getItem("token") !== null){
             dispatch(getCartItems(loggedInUser.id))
@@ -54,6 +59,11 @@ export default function Header() {
         return counter
     }
 
+    /**
+     * If the users localStorage is empty we know he/she is not logged in and will provide an option to login or register.
+     * If the user has a valid token in localStorage the user will be logged in automatically by the dispatch(getUser())
+     * call done in the previous (first)useEffect.
+     */
     const loginComponent = () => {
         if (localStorage.getItem("token") === null) { // => loggedInState must refer to localstorage
             return (
@@ -86,6 +96,11 @@ export default function Header() {
         history.push("/accountPage/accountPage")
     }
 
+    /**
+     * Similar to the loginComponent, if the user has no token he/she will be redirected to login
+     * when trying to access the shopping cart. If he is logged in he/she will be redirected to his cart.
+     * @returns {JSX.Element}
+     */
     const shoppingCartButton = () => {
         if (localStorage.getItem("token")===null) {
             return (

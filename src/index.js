@@ -13,7 +13,7 @@ import thunk from 'redux-thunk';
 /**/
 import itemReducer from "./store/reducers/itemReducer";
 import cartReducer from "./store/reducers/cartReducer";
-import accountReducer from "./store/reducers/accountReducer";
+import userReducer from "./store/reducers/userReducer";
 import navBarReducer from "./store/reducers/navBarReducer";
 import orderReducer from "./store/reducers/orderReducer";
 /**
@@ -21,7 +21,7 @@ import orderReducer from "./store/reducers/orderReducer";
  */
 
 const rootReducer = combineReducers({itemReducer, cartReducer,
-    accountReducer, navBarReducer, orderReducer})
+    accountReducer: userReducer, navBarReducer, orderReducer})
 
 // const persistConfig = {
 //     key: "root",

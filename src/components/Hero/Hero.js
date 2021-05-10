@@ -4,6 +4,11 @@ import {useHistory} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {getItems} from "../../store/actions/itemActions";
 
+/**
+ * Hero component - acts as a prominent image with information regarding the most
+ * pressing or "hot" items available in the shop.
+ * @returns {JSX.Element|null} the hero component.
+ */
 export default function Hero() {
     const itemState = useSelector((state) => state.itemReducer.items);
     const dispatch = useDispatch();

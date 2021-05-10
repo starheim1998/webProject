@@ -1,6 +1,9 @@
 import {API_URL} from "../../config";
 
-
+/**
+ * Get items - fetches the items in the database
+ * and place them in the redux state.
+ */
 export function getItems(){
     return (dispatch) => {
         fetch(API_URL + "/item")
@@ -14,4 +17,8 @@ export function getItems(){
         })
     }
 }
+
+// Code inspired from:
+// https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
+
 

@@ -1,5 +1,5 @@
-import "./CardList.css";
 import ItemCard from "../ItemCard/ItemCard";
+import "./CardList.css";
 
 export default function CardList(props) {
     const {cards} = props;
