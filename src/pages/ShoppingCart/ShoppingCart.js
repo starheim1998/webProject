@@ -1,16 +1,24 @@
-import {useDispatch, useSelector} from "react-redux";
+//COMPONENTS
 import Checkout from "../../components/Modal/Checkout/Checkout";
+//REACT
 import {useEffect, useState} from "react";
-
-import "./ShoppingCart.css"
-import {deleteCartItem, getCartItems} from "../../store/actions/cartActions";
+import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router";
+//ACTIONS
+import {deleteCartItem, getCartItems} from "../../store/actions/cartActions";
 import {getItems} from "../../store/actions/itemActions";
 import {getUser} from "../../store/actions/userActions";
+//STYLING
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import "./ShoppingCart.css"
 
-
+/**
+ * Shopping cart page - Displays items inside users shopping cart: Empty with no items, unavailable for not logged in users.
+ * Here are several features; a field for quantity of items, delete item from shopping cart and list of all items in cart and
+ * total price of items in cart. Shopping cart is fetched and stored in the database, but handled by the redux state in front end.
+ * @return {JSX.Element} Shopping cart page.
+ */
 export default function ShoppingCart() {
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const itemsState = useSelector((state) => state.itemReducer.items);
@@ -21,13 +29,11 @@ export default function ShoppingCart() {
     let totalSum = 0;
     // template account for testing
 
-
     useEffect(() => {
         dispatch(getUser())
-        dispatch(getItems()) // get items for userstate if he refreshses? TODO: COMMENT bad?
+        dispatch(getItems())
         dispatch(getCartItems(currentUserState.id))
     }, [])
-
 
     const getItem = (cartItem) => {
         return itemsState.find((item) => item.id === cartItem);
@@ -46,7 +52,6 @@ export default function ShoppingCart() {
      * @returns {JSX.Element|*[]} Renders the JSX of the shopping cart page with the items of the user,
      * the quantity of equal items and an option to checkout.
      */
-
     const addBody = () => {
         if (localStorage.getItem("token") === null) {
             history.push("/");

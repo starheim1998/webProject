@@ -1,8 +1,12 @@
 import {API_URL} from "../../config";
 import {AuthHeader} from "../../auth/AuthHeader";
 
+/**
+ * Adds given item to cart of user with userId provided. Authorized using JWT.
+ * @param userId of user involved.
+ * @param itemId of item to be added.
+ */
 export function setCartItem(userId, itemId) {
-
     return (dispatch) => {
         return fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
             method: "POST",
@@ -20,6 +24,11 @@ export function setCartItem(userId, itemId) {
     }
 }
 
+/**
+ * Fetch all cart items of given user and place in redux store.
+ * @param userId of user's items to be fetched.
+ * @return {(function(*): void)|*} cart items.
+ */
 export function getCartItems(userId) {
     return (dispatch) => {
         fetch(API_URL + "/order/cart/" + userId, {
@@ -48,6 +57,11 @@ export function getCartItems(userId) {
     }
 }
 
+/**
+ * Deletes item from cart in redux & database.
+ * @param userId used to identify correct cart
+ * @param itemId used to identify correct item
+ */
 export function deleteCartItem(userId, itemId) {
     return dispatch => {
         return fetch(`${API_URL}/order/cart/delete/${userId}/${itemId}`, {
@@ -64,7 +78,10 @@ export function deleteCartItem(userId, itemId) {
     }
 }
 
-
+/**
+ * Checkout cart - empties cart and creates order of the cart items.
+ * @param userId of the cart to be checked out.
+ */
 export function checkOutCart(userId) {
     return dispatch => {
         return fetch(`${API_URL}/order/checkout/${userId}/`, {
