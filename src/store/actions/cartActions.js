@@ -51,7 +51,7 @@ export const fetchCartItems = items => ({
 export function deleteCartItem(userId, itemId) {
     return dispatch => {
         return fetch(`${API_URL}/order/cart/delete/${userId}/${itemId}`, {
-            method: "DELETE",
+            method: "PUT",
             headers: {'Authorization': AuthHeader(true).get('Authorization'),
                 'Content-type':AuthHeader(true).get('Content-type')}
         })
