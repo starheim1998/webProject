@@ -42,12 +42,12 @@ export default function AccountPage() {
     return (
         <div className={"accountPageWrapper"}>
             <h1>{loggedInUser.name}</h1>
-            <div className={"aboveOrders"}>
-            <h3>Items:</h3>
-            <h3>Total sum:</h3>
-            <h3>Date:</h3>
-            <h3>Status:</h3>
-            </div>
+            <ul className={"orderHeader"}>
+                <li>Items:</li>
+                <li>Total sum:</li>
+                <li>Date:</li>
+                <li>Status:</li>
+            </ul>
             {addBody()}
             <button onClick={logout}>LOGOUT</button>
         </div>

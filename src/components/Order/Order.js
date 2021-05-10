@@ -22,7 +22,7 @@ export default function Order({order}) {
 
     return(
         <div className={"orders"} key={order.id}>
-            <ul>
+            <ul className={"orderedItems"}>
                 {getItems()}
             </ul>
             <p>{getSum()} kr</p>

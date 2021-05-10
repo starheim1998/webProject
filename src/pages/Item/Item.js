@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {getCartItems, setCartItem} from "../../store/actions/cartActions";
 import {getItems} from "../../store/actions/itemActions";
+import "./Item.css"
 
 export default function Item(){
     const currentUserState = useSelector((state) => state.accountReducer.currentUser);
@@ -38,19 +39,25 @@ export default function Item(){
     }
 
     return foundItem() ?(
-        <div className={"item-wrapper"}>
-            <div className={"left-item"}>
+        <div className={"item_wrapper"}>
+            <div className={"img_wrapper"}>
                 <img src={foundItem().img} alt={foundItem().name}/>
             </div>
-            <div className={"right-item"}>
-                <h2>{foundItem().name}</h2>
-                <h4>{foundItem().description}</h4>
-                <h4>{foundItem().price}</h4>
-                <div>SIZE DROPDOWN</div>
-                <div>COLOR DROPDOWN</div>
-                <h4>Product details:{foundItem().details}</h4>
+            <div className={"body_wrapper"}>
+                <div className={"body_header"}>
+                    <h1>{foundItem().name}</h1>
+                    <h2>{foundItem().description}</h2>
+                </div>
+                <div className={"body_desc"}>
+                    <h3>Price: {foundItem().price} kr</h3>
+                    <h3>Color: {foundItem().colors} </h3>
+                    <h3>Size: {foundItem().size}</h3>
+                    <h3>Details: {foundItem().details} </h3>
+                </div>
+                <div className={"body_button_div"}>
+                    <button id="addToCartBtn" type="submit" onClick={() => handleAddToCart(foundItem().id)}> Add to cart </button>
+                </div>
             </div>
-            <button type="submit" onClick={() => handleAddToCart(foundItem().id)}> Add to cart </button>
         </div>
     ): null
 }
