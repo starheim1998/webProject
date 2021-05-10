@@ -36,7 +36,10 @@ export function getCartItems(userId) {
                         items.push(item.id)
                     })
                     console.log(items)
-                    dispatch(fetchCartItems(items))
+                    dispatch({
+                        type: "FETCH_CART_ITEMS",
+                        payload: items
+                    })
                 }
             })
             .catch(function (err) {
@@ -44,11 +47,6 @@ export function getCartItems(userId) {
             })
     }
 }
-
-export const fetchCartItems = items => ({
-    type: "FETCH_CART_ITEMS",
-    payload: items
-})
 
 export function deleteCartItem(userId, itemId) {
     return dispatch => {

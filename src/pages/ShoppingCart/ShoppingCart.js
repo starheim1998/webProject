@@ -82,7 +82,7 @@ export default function ShoppingCart() {
                         <li>Price: {item.price} kr</li>
                     </ul>
                     <li>Quantity: {quantity}</li>
-                    <li>Total: {totalSum} kr</li>
+                    <li>Total: {sum} kr</li>
 
                     <FontAwesomeIcon icon={faTimes} className={"deleteIcon"}
                                      onClick={() => deleteHandler(item)}> DELETE</FontAwesomeIcon>
