@@ -1,12 +1,24 @@
+/**
+ * @author Andreas Starhiem Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * The aside component in the search page. Makes it possible to filter between categories, colors and sizes.
+ */
+
 import "./Aside.css"
 import {useHistory} from "react-router";
 
 
 export default function Aside(props){
 
+    // State of current filter
     const {filterState, setFilterState, setSearch} = props
     const history = useHistory()
 
+    /**
+     * Change the size filter
+     * @param e event containing selected size
+     */
     const handleSizeChange = (e) => {
         e.preventDefault();
         setFilterState({
@@ -15,6 +27,10 @@ export default function Aside(props){
         )
     }
 
+    /**
+     * Change the color filter
+     * @param e event containing selected color
+     */
     const handleColorChange = (e) => {
         e.preventDefault();
         setFilterState({
@@ -23,6 +39,10 @@ export default function Aside(props){
         )
     }
 
+    /**
+     * Change the category filter
+     * @param e event containing selected category
+     */
     const handleCategoryChange = (e) => {
         e.preventDefault();
         setFilterState({
@@ -32,6 +52,10 @@ export default function Aside(props){
         })
     }
 
+    /**
+     * Change the subcategory filter
+     * @param e event containing selected subcategory
+     */
     const handleSubcategoryChange = (e) => {
         e.preventDefault();
         console.log(e.target.title)
@@ -42,6 +66,10 @@ export default function Aside(props){
         })
     }
 
+    /**
+     * Removes all filters and set the search-state to "".
+     * @param e event of the click
+     */
     const showAllItems = (e) => {
         e.preventDefault();
         setFilterState({
@@ -53,6 +81,9 @@ export default function Aside(props){
         history.push("/search?q=")
     }
 
+    /**
+     * Return JSX of the aside component.
+     */
     return(
 
         <form id={"aside_wrapper"}>

@@ -1,25 +1,34 @@
-import "./DropDownMenu.css"
-import DropDownItem from "./DropDownItem";
+
+//React
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {toggleNavBar} from "../../store/actions/navBarActions";
+
+//Components
+import DropDownItem from "./DropDownItem";
+import {toggleNavBar} from "../../../store/actions/navBarActions";
+
+//Styling
+import "./DropDownMenu.css"
+
+
 
 export default function DropDownMenu(){
 
-    const navBarState = useSelector((state) => state.navBarReducer.isOpen);
     const dispatch = useDispatch();
 
+    /**
+     * Set navbar state to false after clicking on dropdown item
+     */
     const toggleMenu = (e) => {
         setTimeout(() => {
             if (!e.target.classList.contains("desktop_menu")){
-                console.log(navBarState)
                 dispatch(toggleNavBar());
-                console.log(navBarState)
             }
         }, 150)
 
-        }
+    }
 
+    //TODO: COMMENT
     useEffect(() => {
         document.addEventListener("mousedown", toggleMenu)
         return () => {

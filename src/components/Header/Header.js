@@ -1,5 +1,5 @@
 import SearchBar from "../SearchBar/SearchBar";
-import NavBar2 from "../NavBar/NavBar2"
+import NavBar from "../NavBar/NavBar"
 import "./Header.css";
 import React, {useEffect, useState} from "react";
 import Login from "../Modal/Login/Login";
@@ -120,7 +120,7 @@ export default function Header() {
             </div>
             {/*navbar row*/}
             <div className="navbar_container">
-                <NavBar2/>
+                <NavBar/>
             </div>
         </div>
     )

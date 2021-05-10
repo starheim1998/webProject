@@ -1,4 +1,10 @@
-import {useEffect, useState} from "react";
+/**
+ * @author Andreas Starhiem Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * Nav Item component. Clicking the nav item opens an dropdown menu
+ */
+
 import "./NavItem.css"
 import {useDispatch, useSelector} from "react-redux";
 import {toggleNavBar} from "../../store/actions/navBarActions";
@@ -6,30 +12,17 @@ import {toggleNavBar} from "../../store/actions/navBarActions";
 
 export default function NavItem(props){
     const {name} = props
-    const [isSelected, setSelected] = useState(false);
     const dispatch = useDispatch();
 
-
-    useEffect(() => {
-        setSelected(false)
-    },[])
-
+    /**
+     * Clicking the nav item opens the dropdown menu
+     */
     const handleClick = () => {
-        console.log("hei")
         dispatch(toggleNavBar());
-        setSelected(true);
-    }
-
-    const getClassName = () => {
-        if (isSelected){
-            return "nav_item selected_nav_item"
-        } else {
-            return "nav_item"
-        }
     }
 
     return(
-        <div className={getClassName()} onClick={handleClick}>
+        <div className={"nav_item"} onClick={handleClick}>
                 <p>{name}</p>
         </div>
 
