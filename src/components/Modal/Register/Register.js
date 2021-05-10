@@ -22,7 +22,6 @@ export default function Register({open, onClose, redirect}){
             password: password,
         };
         registerUserAction(newAccount);
-        alert("Account added!");
         onClose();
     }
 

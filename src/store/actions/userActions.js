@@ -10,6 +10,14 @@ export const registerUserAction = newAccount => {
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(newAccount)
     })
+         .then(response => response.json())
+         .then(boolean => {
+             if(boolean){
+                 alert("Successfully registered user!")
+             } else {
+                 alert("Your email is already in use!")
+             }
+         })
         .catch(function (err) {
             alert("ERROR:" + err)
         });
