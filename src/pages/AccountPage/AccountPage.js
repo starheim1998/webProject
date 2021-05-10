@@ -42,7 +42,7 @@ export default function AccountPage() {
     return (
         <div className={"accountPageWrapper"}>
             <div className={"accountPageHeader"}>
-                <h1>{loggedInUser.name}</h1>
+                <h2>Your orders</h2>
                 <button style={{margin: "15px"}} onClick={logout}>LOGOUT</button>
             </div>
             <ul className={"orderHeader"}>

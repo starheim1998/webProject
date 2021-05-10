@@ -23,9 +23,9 @@
     background-color: #989898;
 }
 
-.accountPageHeader > h1 {
+.accountPageHeader > h2 {
     margin: auto;
-    padding-left: 30px;
+    padding-left: 10%;
 }
 
 .orderHeader{
