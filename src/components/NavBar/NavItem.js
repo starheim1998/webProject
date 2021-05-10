@@ -6,7 +6,7 @@
  */
 
 import "./NavItem.css"
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {toggleNavBar} from "../../store/actions/navBarActions";
 
 
