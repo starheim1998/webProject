@@ -1,5 +1,5 @@
 import "./Footer.css";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 
 /*Images*/
 import facebook from "./../../img/facebook-32.jpg";
@@ -20,9 +20,9 @@ export default function Footer(){
 
             <div className={"right-footer"}>
                 <nav>
-                    <NavLink to={"FACEBOOK LINK"}><img src={facebook} alt={"Facebook link"}/></NavLink>
-                    <NavLink to={"INSTAGRAM LINK"}><img src={instagram} alt={"Instagram link"}/></NavLink>
-                    <NavLink to={"TWITTER LINK"}><img src={twitter} alt={"Twitter link"}/></NavLink>
+                    <Link to={{ pathname: "https://www.facebook.com/" }} target="_blank"><img src={facebook} alt={"Facebook link"}/></Link>
+                    <Link to={{ pathname: "https://www.instagram.com/" }} target="_blank"><img src={instagram} alt={"Instagram link"}/></Link>
+                    <Link to={{ pathname: "https://www.Twitter.com/" }} target="_blank"><img src={twitter} alt={"Twitter link"}/></Link>
                 </nav>
             </div>
         </div>
