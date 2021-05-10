@@ -14,8 +14,6 @@ import AccountPage from "./pages/AccountPage/AccountPage";
 
 function App() {
 
-
-
     return (
     <div className="App">
       <Header/>

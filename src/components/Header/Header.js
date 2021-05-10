@@ -15,6 +15,7 @@ import {getCartItems} from "../../store/actions/cartActions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faShoppingCart, faStar, faUser} from "@fortawesome/free-solid-svg-icons";
 import {getItems} from "../../store/actions/itemActions";
+import {getOrders} from "../../store/actions/orderActions";
 
 export default function Header() {
     // Keeping track of modal's state.
@@ -29,15 +30,27 @@ export default function Header() {
     const cartState = useSelector((state) => state.cartReducer.cartItems);
 
     useEffect(() => {
+        dispatch(getItems())
         if(localStorage.getItem("token") === null){
             // logoutUser()
         } else {
             dispatch(getUser())
-            dispatch(getItems()) // get the users items.
-            dispatch(getCartItems(loggedInUser.id))
-            console.log("Logged in user OBJECT",loggedInUser)
         }
     }, [])
+
+    useEffect(() => {
+        if(localStorage.getItem("token") !== null){
+            dispatch(getCartItems(loggedInUser.id))
+            dispatch(getOrders(loggedInUser.id))
+        }
+    },[loggedInUser])
+
+
+    const getCartCounter = () => {
+        let counter = 0
+        cartState.forEach(() => counter++ )
+        return counter
+    }
 
     const loginComponent = () => {
         if (!loggedInState) { // => loggedInState must refer to localstorage
@@ -84,7 +97,7 @@ export default function Header() {
                     <FontAwesomeIcon  className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
                         history.push("/shoppingCart/shoppingCart")
                     }}/>
-                    <span id={"cart_number"}>{cartState.length}</span>
+                    <span id={"cart_number"}>{getCartCounter()}</span>
                 </div>
 
             )

@@ -1,8 +1,8 @@
 import Hero from "../../components/Hero/Hero";
 import "./Home.css";
 import CardList from "../../components/CardList/CardList";
-import {useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import {getItems} from "../../store/actions/itemActions";
 
 /**
@@ -13,25 +13,15 @@ import {getItems} from "../../store/actions/itemActions";
  */
 export default function Home(){
     const itemState = useSelector((state) => state.itemReducer.items);
+    const dispatch = useDispatch();
 
     useEffect(()=> {
-        getItems();
+        dispatch(getItems());
     },[])
 
     const getTrendingItems = () => {
-        let list = [];
-        list.push(itemState[1])
-        list.push(itemState[2])
-        list.push(itemState[5])
-        return list;
-    }
-
-    const getOnSaleItems = () => {
-        let saleList = [];
-        saleList.push(itemState[10])
-        saleList.push(itemState[11])
-        saleList.push(itemState[15])
-        return saleList;
+        return itemState.filter((item) => item.id === 1
+        || item.id === 2 || item.id === 3)
     }
 
 
@@ -47,7 +37,7 @@ export default function Home(){
                 <h2>For sale ..</h2>
                 <div className={"contentBox"}>
                     <p>Items for sale!</p>
-                    <CardList cards={getOnSaleItems()}/>
+                    {/*<CardList cards={getOnSaleItems()}/>*/}
                 </div>
             </div>
         </div>

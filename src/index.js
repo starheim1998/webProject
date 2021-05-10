@@ -9,6 +9,10 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
+import {persistStore} from "redux-persist";
+import {persistReducer} from "redux-persist";
+import storage from "redux-persist/lib/storage"
+import {PersistGate} from "redux-persist/integration/react"
 /**/
 import itemReducer from "./store/reducers/itemReducer";
 import cartReducer from "./store/reducers/cartReducer";
@@ -22,16 +26,26 @@ import orderReducer from "./store/reducers/orderReducer";
 const rootReducer = combineReducers({itemReducer, cartReducer,
     accountReducer, navBarReducer, orderReducer})
 
+// const persistConfig = {
+//     key: "root",
+//     storage,
+//     whitelist: [cartReducer, itemReducer]
+// }
+// const persistedReducer = persistReducer(persistConfig, rootReducer)
+//
 const reduxStore = createStore(
     rootReducer,
     compose(applyMiddleware(thunk))
 )
+//
+// const persistor = persistStore(reduxStore)
+
 
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={reduxStore}>
             <BrowserRouter>
-                <App/>
+                    <App/>
             </BrowserRouter>
         </Provider>
     </React.StrictMode>,

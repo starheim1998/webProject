@@ -27,7 +27,7 @@ export function getCartItems(userId) {
             .then((json) => {
                 console.log("JSON", (json))
                 if (json.message) { //if error
-                    alert("Failed to get cart items")
+                    console.log("Failed to get cart items")
                 } else {
                     let items = []
                     json.items.forEach((item) => {

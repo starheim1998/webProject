@@ -9,7 +9,7 @@ export function getOrders(userId){
             .then((response) => response.json())
             .then((json) => {
                 if(json.message) {
-                    alert("Failed to fetch orders")
+                    console.log("Failed to fetch orders")
                 } else {
                     console.log("response get orders: ", json)
                     let orders = []
