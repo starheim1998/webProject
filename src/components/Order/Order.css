@@ -6,7 +6,7 @@
     margin: auto;
     padding-right: 50px;
     max-width: 100%;
-    border-bottom: 1px solid black;
+    border-top: 1px solid black;
 }
 
 .orderedItems> li{

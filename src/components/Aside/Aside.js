@@ -117,6 +117,7 @@ export default function Aside(props){
                     </div>
                 </div>
 
+            <div className={"filter_container"}>
                 <p className={"aside_header"}>Filters</p>
                 <div className={"select_container"}>
                     <label>Size</label>
@@ -143,6 +144,9 @@ export default function Aside(props){
                         <option value="red">Red</option>
                     </select>
                 </div>
+            </div>
+
+
         </form>
     )
 }

@@ -1,8 +1,31 @@
 .accountPageWrapper{
     background-color: #F5F5F5;
-    border: 1px solid black;
     width: 70%;
     margin: auto;;
+    padding: 10px;
+}
+
+.accountPageHeader{
+    display: flex;
+    width: 100%;
+    margin: auto;
+}
+
+.accountPageHeader > button{
+    margin-right: auto;
+    padding: 10px;
+    border: 1px solid;
+    background-color: white;
+}
+
+.accountPageHeader > button:hover{
+    cursor: pointer;
+    background-color: #989898;
+}
+
+.accountPageHeader > h1 {
+    margin: auto;
+    padding-left: 30px;
 }
 
 .orderHeader{
@@ -12,7 +35,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid black;
 }
 
 

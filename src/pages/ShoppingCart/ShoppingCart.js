@@ -7,6 +7,9 @@ import {deleteCartItem, getCartItems} from "../../store/actions/cartActions";
 import {useHistory} from "react-router";
 import {getItems} from "../../store/actions/itemActions";
 import {getUser} from "../../store/actions/userActions";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMinusCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
+
 
 export default function ShoppingCart() {
     const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -19,10 +22,6 @@ export default function ShoppingCart() {
     // template account for testing
 
 
-    const deleteHandler = (item) => {
-        dispatch(deleteCartItem(currentUserState.id, item.id))
-    }
-
     useEffect(() => {
         dispatch(getUser())
         dispatch(getItems()) // get items for userstate if he refreshses? TODO: COMMENT bad?
@@ -32,6 +31,10 @@ export default function ShoppingCart() {
 
     const getItem = (cartItem) => {
         return itemsState.find((item) => item.id === cartItem);
+    }
+
+    const deleteHandler = (item) => {
+        dispatch(deleteCartItem(currentUserState.id, item.id))
     }
 
 
@@ -48,7 +51,7 @@ export default function ShoppingCart() {
         if (localStorage.getItem("token") === null) {
             history.push("/");
         } else if (cartState.length === 0) {
-            return <p>The shopping cart is empty </p>
+            return <p style={{marginBottom: 0}}>The shopping cart is empty </p>
         } else {
             const counts = [];
             cartState.forEach(function (itemId) {
@@ -81,7 +84,7 @@ export default function ShoppingCart() {
                     <li>Quantity: {quantity}</li>
                     <li>Total: {totalSum} kr</li>
 
-                    <button onClick={() => deleteHandler(item)}> DELETE</button>
+                    <FontAwesomeIcon icon={faTimes} className={"deleteIcon"} onClick={() => deleteHandler(item)}> DELETE</FontAwesomeIcon>
                 </div>
             </div>
         )

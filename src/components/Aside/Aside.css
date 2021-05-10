@@ -44,5 +44,8 @@
     padding: 3%;
     display: flex;
     justify-content: space-between;
+    border: 1px solid
+}
+.filter_container{
 }
 
