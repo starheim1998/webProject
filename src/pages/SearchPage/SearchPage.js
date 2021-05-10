@@ -88,6 +88,7 @@ export default function SearchPage(props){
                     <Aside
                         filterState={filterState}
                         setFilterState={setFilterState}
+                        setSearch = {setSearch}
                     />
                     <CardList cards={foundItems(search)}/>
                 </div>

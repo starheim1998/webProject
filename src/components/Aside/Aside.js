@@ -3,7 +3,7 @@ import "./Aside.css"
 
 export default function Aside(props){
 
-    const {filterState, setFilterState} = props
+    const {filterState, setFilterState, setSearch} = props
 
     const handleSizeChange = (e) => {
         e.preventDefault();
@@ -39,6 +39,16 @@ export default function Aside(props){
         })
     }
 
+    const showAllItems = (e) => {
+        e.preventDefault();
+        setFilterState({
+            ...filterState,
+            subcategory: "",
+            category: "",
+        })
+        setSearch("")
+    }
+
     return(
 
         <form id={"aside_wrapper"}>
@@ -47,7 +57,7 @@ export default function Aside(props){
                 <div id={"category_container"}>
                     <div className={"category_item"}>
                         <span className={"mainCategory category"} title={""}
-                        onClick={(e) => handleCategoryChange(e)}>All products</span>
+                        onClick={(e) => showAllItems(e)}>All products</span>
                     </div>
 
                     <div className={"category_item"}>

@@ -10,7 +10,6 @@ export default function Item(){
     const itemsState = useSelector((state) => state.itemReducer.items)
     const cartState = useSelector((state) => state.cartReducer.cartItems)
 
-    const [foundItem, setFoundItem] = useState([]);
     const dispatch = useDispatch();
     let {id} = useParams();
 
@@ -19,42 +18,39 @@ export default function Item(){
 
     //TODO: fix double render issue - loop?
     useEffect(()=> {
-        console.log("cart", cartState);
-
-        const foundItem = itemsState.find((item) => {
-                return item.id === parseInt(id);
-            });
-        setFoundItem(foundItem);
+        dispatch(getItems())
     },[id])
 
+    const foundItem = () => {
+        return itemsState.find((item) => item.id === parseInt(id))
+    }
+
     const handleAddToCart = (itemId) => {{
-            console.log("userState= ", currentUserState);
-            console.log("itemid", itemId);
         }
         if (loggedInState) {
             dispatch(setCartItem(currentUserState.id, itemId))
-            alert(`Added ${foundItem.name} to the shopping cart`);
-            console.log("foundItem", foundItem);
+            alert(`Added ${foundItem().name} to the shopping cart`);
+            console.log("foundItem", foundItem());
             console.log("cartstate", cartState);
         } else {
             alert('You must be logged in to add items to cart!')
         }
     }
 
-    return foundItem != null ? (
+    return foundItem() ?(
         <div className={"item-wrapper"}>
             <div className={"left-item"}>
-                <img src={foundItem.img} alt={foundItem.name}/>
+                <img src={foundItem().img} alt={foundItem().name}/>
             </div>
             <div className={"right-item"}>
-                <h2>{foundItem.name}</h2>
-                <h4>{foundItem.description}</h4>
-                <h4>{foundItem.price}</h4>
+                <h2>{foundItem().name}</h2>
+                <h4>{foundItem().description}</h4>
+                <h4>{foundItem().price}</h4>
                 <div>SIZE DROPDOWN</div>
                 <div>COLOR DROPDOWN</div>
-                <h4>Product details:{foundItem.details}</h4>
+                <h4>Product details:{foundItem().details}</h4>
             </div>
-            <button type="submit" onClick={() => handleAddToCart(foundItem.id)}> Add to cart </button>
+            <button type="submit" onClick={() => handleAddToCart(foundItem().id)}> Add to cart </button>
         </div>
-    ) :null
+    ): null
 }
