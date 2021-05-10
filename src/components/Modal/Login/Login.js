@@ -28,14 +28,14 @@ export default function Login({open, onClose, redirect}) {
                onClose={onClose}
                reDirect={redirect}
         >
-            <form onSubmit={handleSubmitFetch}>
+            <form onSubmit={handleSubmitFetch} className={"formModal"}>
                 <label>Email address:</label>
                 <input type={"text"} placeholder={"Your email address.."} value={email}
-                       onChange={(e) => setEmail(e.target.value)}/>
+                       onChange={(e) => setEmail(e.target.value)} required/>
                 <label>Password:</label>
                 <input type={"password"} placeholder={"Your password.."} value={password}
-                       onChange={(e) => setPassword(e.target.value)}/>
-                <input type={"submit"} value={"Log in!"}/>
+                       onChange={(e) => setPassword(e.target.value)} required/>
+                <input type={"submit"} value={"Log in!"} className={"submitButton"}/>
             </form>
         </Modal>
     )

@@ -2,6 +2,7 @@
 
 .header_container{
     border: 1px solid black;
+    padding-top: 10px;
 }
 
 .first_row_header{
@@ -47,8 +48,15 @@
 .star_icon{
     font-size: 60px;
 }
-/*a:hover, a:visited, a:link, a:active*/
-/*{*/
-/*    text-decoration: none;*/
-/*    color: black;*/
-/*}*/
+
+.headerLoginRegisterButton{
+    color: black;
+    background-color: white;
+    border: none;
+    font-size: 20px;
+}
+
+.headerLoginRegisterButton:hover{
+    cursor:pointer;
+    text-decoration: underline;
+}

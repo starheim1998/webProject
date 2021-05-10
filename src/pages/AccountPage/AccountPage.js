@@ -39,16 +39,8 @@ export default function AccountPage() {
         )
     }
 
-    // const renderOrder = (order) => {
-    //     // orderState.map(order)
-    //     console.log(order.items.name)
-    //     return(
-    //             <Order items={order.items} date={order.date}/>
-    //     )
-    // }
-
     return (
-        <div className={""}>
+        <div className={"accountPageWrapper"}>
             <h1>{loggedInUser.name}</h1>
             <div className={"aboveOrders"}>
             <h3>Items:</h3>

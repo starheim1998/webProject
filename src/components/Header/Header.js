@@ -1,8 +1,6 @@
 import SearchBar from "../SearchBar/SearchBar";
-import {Link} from "react-router-dom";
 import NavBar2 from "../NavBar/NavBar2"
 import "./Header.css";
-import cart from "./../../img/cart.png";
 import React, {useEffect, useState} from "react";
 import Login from "../Modal/Login/Login";
 import Register from "../Modal/Register/Register";
@@ -46,6 +44,10 @@ export default function Header() {
     },[loggedInUser])
 
 
+    /**
+     * Counts the amount of items in your shopping cart and displays it in the header.
+     * @returns {number} of items in the shopping cart.
+     */
     const getCartCounter = () => {
         let counter = 0
         cartState.forEach(() => counter++ )
@@ -53,11 +55,11 @@ export default function Header() {
     }
 
     const loginComponent = () => {
-        if (!loggedInState) { // => loggedInState must refer to localstorage
+        if (localStorage.getItem("token") === null) { // => loggedInState must refer to localstorage
             return (
                 <>
                     {/*//Modals for Login/Register*/}
-                    <button onClick={() => setLoginOpen(true)}>Login | Register</button>
+                    <button onClick={() => setLoginOpen(true)} className={"headerLoginRegisterButton"}>Login | Register</button>
                     <Login open={loginOpen} onClose={() => setLoginOpen(false)} redirect={() => {
                         setLoginOpen(false);
                         setRegisterOpen(true);

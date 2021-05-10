@@ -20,8 +20,8 @@ export default function Home(){
     },[])
 
     const getTrendingItems = () => {
-        return itemState.filter((item) => item.id === 1
-            || item.id === 2 || item.id === 3)
+        return itemState.filter((item) => item.id === 11
+            || item.id === 15 || item.id === 3)
     }
 
     const getOnSaleItems = () => {

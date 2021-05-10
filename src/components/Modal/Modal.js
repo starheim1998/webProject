@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom'
 import './Modal.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 export default function Modal({reDirect,
                                   open,
@@ -17,10 +19,11 @@ export default function Modal({reDirect,
         <>
             <div className={"overlay"} onClick={onClose}/>
             <div className={"modal-wrapper"}>
-                <button onClick={onClose} id={"exitButton"}>x</button>
+                {/*<button onClick={onClose} id={"exitButton"}>x</button>*/}
+                <FontAwesomeIcon icon={faTimes} onClick={onClose} id={"exitButton"}> </FontAwesomeIcon>
                 <h2>{title}</h2>
                     {children}
-                <p onClick={reDirect}>{textUnder}</p>
+                <p onClick={reDirect} className={"textUnder"}> {textUnder} </p>
             </div>
         </>,
         document.getElementById('portal')

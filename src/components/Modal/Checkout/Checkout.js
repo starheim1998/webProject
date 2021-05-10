@@ -29,20 +29,20 @@ export default function Checkout({open, onClose, redirect}) {
                open={open}
                onClose={onClose}
                reDirect={redirect}>
-            <form onSubmit={handleCheckout}>
+            <form onSubmit={handleCheckout} className={"formModal"}>
                 <label>Name:</label>
-                <input type={"text"} placeholder={"Your name here.."}/>
+                <input type={"text"} placeholder={"Your name here.."} required/>
                 <label>Address:</label>
-                <input type={"text"} placeholder={"Your address here.."}/>
+                <input type={"text"} placeholder={"Your address here.."} required/>
                 <label>Email:</label>
-                <input type={"text"} placeholder={"Your email here.."}/>
+                <input type={"text"} placeholder={"Your email here.."} required/>
                 <label>Card number:</label>
-                <input type={"number"} placeholder={"Your card number here.."}/>
+                <input type={"number"} placeholder={"Your card number here.."} required/>
                 <label>Expiration date:</label>
-                <input type={"date"} placeholder={"Your expiration date here.."}/>
+                <input type={"date"} placeholder={"Your expiration date here.."} required/>
                 <label>CVC:</label>
-                <input type={"number"} placeholder={"Your CVC here.."}/>
-                <input type={"submit"} value={"Checkout!"}/>
+                <input type={"number"} placeholder={"Your CVC here.."} required/>
+                <input type={"submit"} value={"Checkout!"} className={"submitButton"}/>
             </form>
         </Modal>
     );

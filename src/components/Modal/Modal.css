@@ -1,3 +1,4 @@
+
 .modal-wrapper{
     position: fixed;
     top: 50%;
@@ -8,8 +9,10 @@
     z-Index: 1000;
     display: flex;
     flex-direction: column;
+    width: 20%;
 }
 
+/*Overlay is everything outside of the modal. Clicking anything outside this area will close the modal.*/
 .overlay{
     position: fixed;
     top: 0;
@@ -27,6 +30,7 @@
 
 .modal-wrapper h2{
     text-align: center;
+    font-size: 30px;
 }
 
 .modal-wrapper input{
@@ -34,6 +38,26 @@
 }
 
 #exitButton{
-    max-width: 15px;
-    text-align: center;
+   font-size: 200%;
+}
+
+#exitButton:hover{
+    cursor: pointer;
+}
+
+.textUnder:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.formModal > input{
+
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+.formModal .submitButton{
+    color: white;
+    background-color: black;
+    border: none;
 }

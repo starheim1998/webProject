@@ -7,3 +7,9 @@
     border-bottom: 1px solid black;
 }
 
+.orders > ul{
+    /*width: 10%;*/
+    min-width: 20%;
+    max-width: 20%;
+}
+

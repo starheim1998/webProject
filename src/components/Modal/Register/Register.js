@@ -1,6 +1,7 @@
 import Modal from "../Modal";
 import React, {useState} from 'react';
 import {registerUserAction} from "../../../store/actions/userActions";
+import "./Register.css";
 
 export default function Register({open, onClose, redirect}){
     const [name, setName] = useState("");
@@ -31,21 +32,21 @@ export default function Register({open, onClose, redirect}){
                    open={open}
                    onClose={onClose}
                    reDirect={redirect}>
-                <form onSubmit={handleSubmitFetch}>
+                <form onSubmit={handleSubmitFetch} className={"formModal"}>
                     <label>Name:</label>
                     <input type={"text"} placeholder={"Your name here.."} value={name}
-                           onChange={(e) => setName(e.target.value)}/>
+                           onChange={(e) => setName(e.target.value)} required/>
                     <label>Email address:</label>
                     <input type={"text"} placeholder={"Your email address.."} value={email}
-                           onChange={(e) => setEmail(e.target.value)}/>
+                           onChange={(e) => setEmail(e.target.value)} required/>
                     <label>Password:</label>
                     <input type={"password"} placeholder={"Your password.."} value={password}
-                           onChange={(e) => setPassword(e.target.value)}/>
+                           onChange={(e) => setPassword(e.target.value)} required/>
                     <label>Confirm Password:</label>
                     <input type={"password"} placeholder={"Confirm password.."}
                            value={confirmPassword}
-                           onChange={(e) => setConfirmPassword(e.target.value)}/>
-                    <input type={"submit"} value={"Register now!"}/>
+                           onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                    <input type={"submit"} value={"Register now!"} className={"submitButton"}/>
                 </form>
             </Modal>
         )
