@@ -1,10 +1,14 @@
+// React
 import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import {useParams} from "react-router";
+// Actions
+// Components
 import Aside from "../../components/Aside/Aside";
-import "./SearchPage.css"
 import CardList from "../../components/CardList/CardList";
-import {useDispatch, useSelector} from "react-redux";
-import {getItems} from "../../store/actions/itemActions";
+// Styling
+import "./SearchPage.css"
+
 
 /**
  * @author Andreas Starheim Hernæs & Mathias van der Bend
@@ -16,9 +20,9 @@ import {getItems} from "../../store/actions/itemActions";
 export default function SearchPage(props) {
 
     const {selectedCategory} = props;
-    const dispatch = useDispatch();
     const itemsState = useSelector((state) => state.itemReducer.items);
     const [search, setSearch] = useState("");
+    // State containing current filters
     const [filterState, setFilterState] = useState({
         category: "",
         subcategory: "",
@@ -26,13 +30,11 @@ export default function SearchPage(props) {
         colors: ""
     });
 
-
-    //TODO: implement this functionality
-    // get selected category from navbar
-
+    /**
+     *
+     */
     useEffect(() => {
         setSearch(getSearch)
-        dispatch(getItems())
         console.log("itemstate", itemsState)
     }, [useParams()])
 

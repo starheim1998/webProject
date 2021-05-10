@@ -6,6 +6,9 @@ import NavItem from "./NavItem";
 // Styling
 import "./NavBar.css"
 
+// React
+import {useSelector} from "react-redux";
+
 /**
  * @author Andreas Starheim Hernæs & Mathias van der Bend
  * @version v1.0
