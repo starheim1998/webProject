@@ -34,14 +34,12 @@ export default function Home(){
         <div>
             <Hero/>
             <div className={"home-container"}>
-                <h2>Trending right now...</h2>
+                <h2>Trending right now</h2>
                 <div className={"contentBox"}>
-                    <p>Items trending!</p>
                     <CardList cards={getTrendingItems()}/>
                 </div>
-                <h2>For sale ..</h2>
+                <h2>For sale</h2>
                 <div className={"contentBox"}>
-                    <p>Items for sale!</p>
                     <CardList cards={getOnSaleItems()}/>
                 </div>
             </div>
