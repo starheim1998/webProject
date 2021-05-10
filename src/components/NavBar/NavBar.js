@@ -1,14 +1,16 @@
-/**
- * @author Andreas Starhiem Hernæs & Mathias van der Bend
- * @version v1.0
- *
- * The navbar component in the header. Makes it possible to find items by category
- */
 
 import DropDownMenu from "./DropDown/DropDownMenu";
 import NavItem from "./NavItem";
 import "./NavBar.css"
 import {useSelector} from "react-redux";
+
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * The navbar component in the header. Makes it possible to find items by category
+ */
+
 
 
 export default function NavBar(){

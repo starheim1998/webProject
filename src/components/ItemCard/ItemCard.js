@@ -1,13 +1,21 @@
 import "./ItemCard.css";
-import {Link} from "react-router-dom";
 import {useHistory} from "react-router";
 
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * ItemCard component - Represents a single item-card in the CardList
+ */
 
 export default function ItemCard({item}){
     // attributes of the product
     const {id, img, name, price, description} = item;
     const history = useHistory();
 
+    /**
+     * Redirects to the ItemPage displaying the selected item
+     */
     const clickItemHandler = () => {
         history.push("/Item/" + id)
     }

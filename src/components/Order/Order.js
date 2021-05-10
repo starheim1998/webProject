@@ -1,8 +1,18 @@
 import "./Order.css";
 
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ * Represents an order item on the account page
+ * @param order Order to display
+ * @returns {JSX.Element}
+ */
+
 export default function Order({order}) {
 
-
+    /**
+     * Returns a JSX list of the items on the order
+     */
     const getItems = ()  => {
         return(
             order.items.map((item) => {
@@ -12,6 +22,10 @@ export default function Order({order}) {
         )
     }
 
+    /**
+     * Get the total sum of an order
+     * @returns total sum
+     */
     const getSum = () => {
         let sum = 0
         order.items.forEach((item) => {

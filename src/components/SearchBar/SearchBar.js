@@ -3,16 +3,26 @@ import "./SearchBar.css"
 import {useState} from "react";
 import {useHistory} from "react-router";
 
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * Search Bar component - Redirecting to search page with the search input
+ */
+
 export default function SearchBar() {
     const [input, setInput] = useState("");
     const history = useHistory()
 
+    /**
+     * Handles a search. Redirects to the search page with the search input
+     * @param e
+     */
     const handleSearch = (e) => {
         e.preventDefault();
         if(input.trim() !== ""){
             history.push("/search?q=" + input);
         }
-
         //clear search field
         setInput("");
     }

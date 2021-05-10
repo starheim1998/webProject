@@ -10,6 +10,13 @@ import {toggleNavBar} from "../../../store/actions/navBarActions";
 //Styling
 import "./DropDownMenu.css"
 
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * Dropdown menu component
+ */
+
 
 
 export default function DropDownMenu(){

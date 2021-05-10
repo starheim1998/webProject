@@ -1,14 +1,13 @@
-/**
- * @author Andreas Starhiem Hernæs & Mathias van der Bend
- * @version v1.0
- *
- * Nav Item component. Clicking the nav item opens an dropdown menu
- */
-
 import "./NavItem.css"
 import {useDispatch} from "react-redux";
 import {toggleNavBar} from "../../store/actions/navBarActions";
 
+/**
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
+ * @version v1.0
+ *
+ * Nav Item component. Clicking the nav item opens an dropdown menu
+ */
 
 export default function NavItem(props){
     const {name} = props

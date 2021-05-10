@@ -1,13 +1,12 @@
+import "./Aside.css"
+import {useHistory} from "react-router";
+
 /**
- * @author Andreas Starhiem Hernæs & Mathias van der Bend
+ * @author Andreas Starheim Hernæs & Mathias van der Bend
  * @version v1.0
  *
  * The aside component in the search page. Makes it possible to filter between categories, colors and sizes.
  */
-
-import "./Aside.css"
-import {useHistory} from "react-router";
-
 
 export default function Aside(props){
 
