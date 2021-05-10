@@ -1,4 +1,3 @@
-
 import DropDownMenu from "./DropDown/DropDownMenu";
 import NavItem from "./NavItem";
 import "./NavBar.css"
@@ -13,7 +12,7 @@ import {useSelector} from "react-redux";
 
 
 
-export default function NavBar(){
+export default function NavBar() {
 
     /**
      * State of the navbar - true if open, false if closed
@@ -26,8 +25,8 @@ export default function NavBar(){
      * @returns {JSX.Element}
      */
     const renderDropDown = () => {
-        if(navBarState){
-            return(
+        if (navBarState) {
+            return (
                 <DropDownMenu/>
             )
         } else {

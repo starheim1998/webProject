@@ -6,8 +6,10 @@ export function setCartItem(userId, itemId) {
     return (dispatch) => {
         return fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
             method: "POST",
-            headers: {'Authorization': AuthHeader(true).get('Authorization'),
-                      'Content-type':AuthHeader(true).get('Content-type')}
+            headers: {
+                'Authorization': AuthHeader(true).get('Authorization'),
+                'Content-type': AuthHeader(true).get('Content-type')
+            }
         })
             .then(
                 dispatch({
@@ -21,7 +23,7 @@ export function setCartItem(userId, itemId) {
 export function getCartItems(userId) {
     return (dispatch) => {
         fetch(API_URL + "/order/cart/" + userId, {
-            headers: {'Authorization':AuthHeader(false).get('Authorization')}
+            headers: {'Authorization': AuthHeader(false).get('Authorization')}
         })
             .then((response) => response.json())
             .then((json) => {
@@ -52,8 +54,10 @@ export function deleteCartItem(userId, itemId) {
     return dispatch => {
         return fetch(`${API_URL}/order/cart/delete/${userId}/${itemId}`, {
             method: "PUT",
-            headers: {'Authorization': AuthHeader(true).get('Authorization'),
-                'Content-type':AuthHeader(true).get('Content-type')}
+            headers: {
+                'Authorization': AuthHeader(true).get('Authorization'),
+                'Content-type': AuthHeader(true).get('Content-type')
+            }
         })
             .then(dispatch({
                 type: "DELETE_CART_ITEM",
@@ -67,16 +71,18 @@ export function checkOutCart(userId) {
     return dispatch => {
         return fetch(`${API_URL}/order/checkout/${userId}/`, {
             method: "PUT",
-            headers: {'Authorization': AuthHeader(true).get('Authorization'),
-                'Content-type':AuthHeader(true).get('Content-type')}
-            })
+            headers: {
+                'Authorization': AuthHeader(true).get('Authorization'),
+                'Content-type': AuthHeader(true).get('Content-type')
+            }
+        })
             .then(
                 dispatch({type: "EMPTY_CART"})
             )
             .catch(function (err) {
-                alert("ERROR: " + err);
-            }
-        )
+                    alert("ERROR: " + err);
+                }
+            )
     }
 }
 

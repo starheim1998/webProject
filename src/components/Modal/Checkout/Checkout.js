@@ -1,21 +1,31 @@
+//React
 import React from 'react';
-import './Checkout.css';
+//Components
 import Modal from "../Modal";
+//Redux
 import {useDispatch, useSelector} from "react-redux";
+//Actions
 import {checkOutCart} from "../../../store/actions/cartActions";
 
+
+/**
+ * Checkout modal component - simulates a user transaction, empties the shopping cart after successful checkout,
+ * sending the checkout items to an "order list".
+ * @param reDirect redirects to register modal.
+ * @param open useState in Header.js to indicate if the modal is open or not.
+ * @param onClose closes the modal.
+ * @return {JSX.Element|null} Checkout modal
+ */
 export default function Checkout({open, onClose, redirect}) {
-     const shoppingCartItems = useSelector(state => state.cartReducer.cartItems);
-     const dispatch = useDispatch();
+    const shoppingCartItems = useSelector(state => state.cartReducer.cartItems);
+    const dispatch = useDispatch();
     const currentUserState = useSelector((state) => state.accountReducer.currentUser);
 
     if (!open) return null /*Do nothing if not open*/
 
-    /*TODO: Items in shopping cart is removed from the database*/
-
-    function handleCheckout(e){
+    function handleCheckout(e) {
         e.preventDefault();
-        if(shoppingCartItems.length === 0){
+        if (shoppingCartItems.length === 0) {
             alert("No items in cart.");
             return null;
         }

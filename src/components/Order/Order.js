@@ -13,12 +13,13 @@ export default function Order({order}) {
     /**
      * Returns a JSX list of the items on the order
      */
-    const getItems = ()  => {
-        return(
+    const getItems = () => {
+        return (
             order.items.map((item) => {
                 return (
                     <li>{item.name}</li>
-                )})
+                )
+            })
         )
     }
 
@@ -34,7 +35,7 @@ export default function Order({order}) {
         return sum
     }
 
-    return(
+    return (
         <div className={"orders"} key={order.id}>
             <ul className={"orderedItems"}>
                 {getItems()}

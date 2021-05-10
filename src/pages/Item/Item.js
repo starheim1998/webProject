@@ -15,7 +15,7 @@ import "./Item.css"
 /**
  * Page 'Item' - page for displaying an individual item from the database.
  */
-export default function Item(){
+export default function Item() {
     const currentUserState = useSelector((state) => state.accountReducer.currentUser);
     const itemsState = useSelector((state) => state.itemReducer.items)
     const dispatch = useDispatch();
@@ -24,9 +24,9 @@ export default function Item(){
     let {id} = useParams();
 
     //Fetch items from the database to the redux store so we can collect it.
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getItems())
-    },[id])
+    }, [id])
 
     //Find the given item in the item state.
     const foundItem = () => {
@@ -44,7 +44,7 @@ export default function Item(){
     }
 
     /*** The item page with the foundItem details.*/
-    return foundItem() ?(
+    return foundItem() ? (
         <div className={"item_wrapper"}>
             <div className={"img_wrapper"}>
                 <img src={foundItem().img} alt={foundItem().name}/>
@@ -61,9 +61,11 @@ export default function Item(){
                     <h3>Details: {foundItem().details} </h3>
                 </div>
                 <div className={"body_button_div"}>
-                    <button id="addToCartBtn" type="submit" onClick={() => handleAddToCart(foundItem().id)}> Add to cart </button>
+                    <button id="addToCartBtn" type="submit" onClick={() => handleAddToCart(foundItem().id)}> Add to
+                        cart
+                    </button>
                 </div>
             </div>
         </div>
-    ): null
+    ) : null
 }

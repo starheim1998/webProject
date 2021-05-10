@@ -1,6 +1,5 @@
-
-export function toggleNavBar(){
-    return function(dispatch){
+export function toggleNavBar() {
+    return function (dispatch) {
         dispatch({
             type: "TOGGLE_NAVBAR"
         })

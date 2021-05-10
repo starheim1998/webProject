@@ -1,13 +1,13 @@
 
-#aside_wrapper{
+#aside_wrapper {
     flex: 0 0 300px;
 }
 
-#category_container{
+#category_container {
 }
 
 
-#aside_wrapper .category_item{
+#aside_wrapper .category_item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,37 +15,38 @@
     border: 1px solid black;
 }
 
-.mainCategory{
+.mainCategory {
     font-size: larger;
 }
 
-.subcategory{
+.subcategory {
     font-size: smaller;
 }
 
-.category:hover{
+.category:hover {
     cursor: pointer;
     color: gray;
 }
 
-.selectedCategory{
+.selectedCategory {
     color: blue;
     font-weight: bold;
 }
 
-.aside_header{
+.aside_header {
     font-weight: bold;
     background-color: lightgrey;
     padding: 3%;
     margin: 0;
 }
 
-.select_container{
+.select_container {
     padding: 3%;
     display: flex;
     justify-content: space-between;
     border: 1px solid
 }
-.filter_container{
+
+.filter_container {
 }
 

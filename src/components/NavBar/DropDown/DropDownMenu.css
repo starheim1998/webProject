@@ -1,5 +1,5 @@
 
-.desktop_menu{
+.desktop_menu {
     border: 1px solid gray;
     display: flex;
     justify-content: center;
@@ -9,17 +9,17 @@
     padding: 10px 40px 40px 40px;
 }
 
-.categoryMenu{
+.categoryMenu {
     margin: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.categoryMenu a:first-of-type{
+.categoryMenu a:first-of-type {
     font-weight: bold;
     font-size: 1.5em;
 }
 
-.categoryMenu :not(a:first-of-type):hover{
+.categoryMenu :not(a:first-of-type):hover {
     color: lightgray;
 }

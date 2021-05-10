@@ -31,7 +31,6 @@ export default function AccountPage() {
         console.log(orderState)
         return(
             orderState.map((order) => {
-                // renderOrder(order)
                 return(
                     <Order order={order}/>
                 )

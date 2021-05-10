@@ -9,7 +9,7 @@ import {toggleNavBar} from "../../store/actions/navBarActions";
  * Nav Item component. Clicking the nav item opens an dropdown menu
  */
 
-export default function NavItem(props){
+export default function NavItem(props) {
     const {name} = props
     const dispatch = useDispatch();
 
@@ -20,9 +20,9 @@ export default function NavItem(props){
         dispatch(toggleNavBar());
     }
 
-    return(
+    return (
         <div className={"nav_item"} onClick={handleClick}>
-                <p>{name}</p>
+            <p>{name}</p>
         </div>
 
     )

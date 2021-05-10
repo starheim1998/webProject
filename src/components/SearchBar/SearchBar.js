@@ -20,7 +20,7 @@ export default function SearchBar() {
      */
     const handleSearch = (e) => {
         e.preventDefault();
-        if(input.trim() !== ""){
+        if (input.trim() !== "") {
             history.push("/search?q=" + input);
         }
         //clear search field

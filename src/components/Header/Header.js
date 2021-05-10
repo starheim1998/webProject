@@ -33,7 +33,7 @@ export default function Header() {
     //Logs in user if he/she has a token
     useEffect(() => {
         dispatch(getItems())
-        if(localStorage.getItem("token") === null){
+        if (localStorage.getItem("token") === null) {
             // logoutUser()
         } else {
             dispatch(getUser())
@@ -42,11 +42,11 @@ export default function Header() {
 
     //If the user is successfully logged in the cart items and orders will be loaded.
     useEffect(() => {
-        if(localStorage.getItem("token") !== null){
+        if (localStorage.getItem("token") !== null) {
             dispatch(getCartItems(loggedInUser.id))
             dispatch(getOrders(loggedInUser.id))
         }
-    },[loggedInUser])
+    }, [loggedInUser])
 
 
     /**
@@ -55,7 +55,7 @@ export default function Header() {
      */
     const getCartCounter = () => {
         let counter = 0
-        cartState.forEach(() => counter++ )
+        cartState.forEach(() => counter++)
         return counter
     }
 
@@ -69,7 +69,9 @@ export default function Header() {
             return (
                 <>
                     {/*//Modals for Login/Register*/}
-                    <button onClick={() => setLoginOpen(true)} className={"headerLoginRegisterButton"}>Login | Register</button>
+                    <button onClick={() => setLoginOpen(true)} className={"headerLoginRegisterButton"}>Login |
+                        Register
+                    </button>
                     <Login open={loginOpen} onClose={() => setLoginOpen(false)} redirect={() => {
                         setLoginOpen(false);
                         setRegisterOpen(true);
@@ -102,16 +104,16 @@ export default function Header() {
      * @returns {JSX.Element}
      */
     const shoppingCartButton = () => {
-        if (localStorage.getItem("token")===null) {
+        if (localStorage.getItem("token") === null) {
             return (
-                <FontAwesomeIcon  className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
+                <FontAwesomeIcon className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
                     setLoginOpen(true)
                 }}/>
             )
         } else {
             return (
                 <div className={"cart_div"}>
-                    <FontAwesomeIcon  className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
+                    <FontAwesomeIcon className={"icon cart_icon"} icon={faShoppingCart} onClick={() => {
                         history.push("/shoppingCart/shoppingCart")
                     }}/>
                     <span id={"cart_number"}>{getCartCounter()}</span>
@@ -128,7 +130,7 @@ export default function Header() {
                 <div className={"titleAndIcon"} onClick={() => history.push("/")}>
                     <FontAwesomeIcon icon={faStar} className={"icon star_icon"}/>
                     <h1>Star</h1>
-                </div >
+                </div>
                 <SearchBar/>
                 {loginComponent()}
                 {shoppingCartButton()}

@@ -1,10 +1,9 @@
-
 const initialState = {
     cartItems: []
 }
 
-export default function cartReducer(state = initialState, action){
-    switch (action.type){
+export default function cartReducer(state = initialState, action) {
+    switch (action.type) {
         case "FETCH_CART_ITEMS":
             return {
                 cartItems: action.payload

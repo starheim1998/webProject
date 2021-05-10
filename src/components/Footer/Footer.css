@@ -1,20 +1,20 @@
 
-.footer_container{
+.footer_container {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     border-top: 1px solid black;
 }
 
-.left-footer p{
+.left-footer p {
     font-size: 10px;
 }
 
-.left-footer h4{
+.left-footer h4 {
     margin-bottom: 0;
 }
 
-.right-footer nav{
+.right-footer nav {
     width: 130px;
     display: flex;
     justify-content: space-between;

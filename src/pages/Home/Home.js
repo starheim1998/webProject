@@ -1,24 +1,30 @@
+//Components
 import Hero from "../../components/Hero/Hero";
-import "./Home.css";
 import CardList from "../../components/CardList/CardList";
+//React
+import {useEffect} from "react";
+//Redux
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
+//Actions
 import {getItems} from "../../store/actions/itemActions";
+//Styling
+import "./Home.css";
 
 /**
- * Home menu. We hardcoded the items for sale / trending categories as we did not see the implementation of it to
- * further develop our skills more than we already know / have .
- * @returns {JSX.Element}
- * @constructor
+ * Home page - initial page of the website. Meant for displaying recent acquisitions, on sale items, trending items, etc.
+ * @returns {JSX.Element} home page.
  */
-export default function Home(){
+export default function Home() {
     const itemState = useSelector((state) => state.itemReducer.items);
     const dispatch = useDispatch();
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getItems());
-    },[])
+    }, [])
 
+    //We manually set items to trending and on sale. This is implementation which would follow
+    //having items be more frequently watched or have an "on sale field" which we do not have time or feel the need
+    //to implement to fulfill the requirements of the project.
     const getTrendingItems = () => {
         return itemState.filter((item) => item.id === 11
             || item.id === 15 || item.id === 3)

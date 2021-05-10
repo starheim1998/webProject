@@ -1,8 +1,12 @@
+//React
 import React, {useEffect} from 'react';
-import "./Hero.css";
 import {useHistory} from "react-router";
+//Redux
 import {useDispatch, useSelector} from "react-redux";
+//Actions
 import {getItems} from "../../store/actions/itemActions";
+//Styling
+import "./Hero.css";
 
 /**
  * Hero component - acts as a prominent image with information regarding the most
@@ -14,11 +18,17 @@ export default function Hero() {
     const dispatch = useDispatch();
     const history = useHistory()
 
-    function redirect(){history.push("/item/15/");}
+    function redirect() {
+        history.push("/item/15/");
+    }
 
-    useEffect(()=> {dispatch(getItems());},[])
+    useEffect(() => {
+        dispatch(getItems());
+    }, [])
 
-    const getHeroImage = () => {return itemState.find(item => item.id === 15)}
+    const getHeroImage = () => {
+        return itemState.find(item => item.id === 15)
+    } //Find item with ID 15 in itemState
 
     return getHeroImage() ? (
         <div className={"hero-container"}>

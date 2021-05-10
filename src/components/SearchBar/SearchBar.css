@@ -1,10 +1,10 @@
 
-.search_container{
+.search_container {
     display: flex;
     align-items: center;
 }
 
-.search_container > input[type=text]{
+.search_container > input[type=text] {
     padding: 5%;
     width: 80%;
 }

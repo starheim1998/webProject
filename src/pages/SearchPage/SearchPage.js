@@ -6,7 +6,7 @@ import CardList from "../../components/CardList/CardList";
 import {useDispatch, useSelector} from "react-redux";
 import {getItems} from "../../store/actions/itemActions";
 
-export default function SearchPage(props){
+export default function SearchPage(props) {
 
     const {selectedCategory} = props;
     const dispatch = useDispatch();
@@ -34,17 +34,17 @@ export default function SearchPage(props){
         return params.get('q');
     }
 
-    const foundItemsCount = (query) =>{
+    const foundItemsCount = (query) => {
         let counter = 0;
         const qry = query.toLowerCase()
         itemsState.filter((item) => item.name.toLowerCase().includes(qry)
-        || (item.category.toLowerCase().includes(qry))
-        || (item.subcategory.toLowerCase().includes(qry))).forEach(() => counter++);
+            || (item.category.toLowerCase().includes(qry))
+            || (item.subcategory.toLowerCase().includes(qry))).forEach(() => counter++);
         return counter;
     }
 
     const getHeader = () => {
-        if(search !== "") {
+        if (search !== "") {
             return (
                 <h3>Search result: "{search}" ({foundItemsCount(search)})</h3>
             );
@@ -59,19 +59,18 @@ export default function SearchPage(props){
     const foundItems = (query) => {
         let foundItemList = [];
         const qry = query.toLowerCase();
-            {
+        {
             itemsState.filter((item) =>
                 (item.name.toLowerCase().includes(qry)
-                || (item.category.toLowerCase().includes(qry))
-                || (item.subcategory.toLowerCase().includes(qry)))
+                    || (item.category.toLowerCase().includes(qry))
+                    || (item.subcategory.toLowerCase().includes(qry)))
                 && (item.category.toLowerCase() === filterState.category.toLowerCase() || filterState.category === "")
                 && (item.subcategory.toLowerCase() === filterState.subcategory.toLowerCase() || filterState.subcategory === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
-                    || filterState.size === ""
-                    // TODO: discuss shoe size issue
-                    || item.size === "")
+                || filterState.size === ""
+                || item.size === "")
                 && (item.colors.toLowerCase().includes(filterState.colors.toLowerCase())
-                    || filterState.colors === ""))
+                || filterState.colors === ""))
                 .map((item) => {
                     foundItemList.push(item)
                 })
@@ -79,17 +78,17 @@ export default function SearchPage(props){
         return foundItemList;
     }
 
-        return (
-            <div className="main_container">
-                {getHeader()}
-                <div className="main_body">
-                    <Aside
-                        filterState={filterState}
-                        setFilterState={setFilterState}
-                        setSearch = {setSearch}
-                    />
-                    <CardList cards={foundItems(search)}/>
-                </div>
+    return (
+        <div className="main_container">
+            {getHeader()}
+            <div className="main_body">
+                <Aside
+                    filterState={filterState}
+                    setFilterState={setFilterState}
+                    setSearch={setSearch}
+                />
+                <CardList cards={foundItems(search)}/>
             </div>
-        )
+        </div>
+    )
 }

@@ -10,8 +10,8 @@ import twitter from "./../../img/twitter-32.jpg";
  * Footer component - the "bottom of the page" functionality following the entire web page with information such as
  * social media links and contact details.
  */
-export default function Footer(){
-    return(
+export default function Footer() {
+    return (
         <div className="footer_container">
             <div className={"left-footer"}>
                 <h4>Contact us</h4>
@@ -21,9 +21,12 @@ export default function Footer(){
 
             <div className={"right-footer"}>
                 <nav>
-                    <Link to={{ pathname: "https://www.facebook.com/" }} target="_blank"><img src={facebook} alt={"Facebook link"}/></Link>
-                    <Link to={{ pathname: "https://www.instagram.com/" }} target="_blank"><img src={instagram} alt={"Instagram link"}/></Link>
-                    <Link to={{ pathname: "https://www.Twitter.com/" }} target="_blank"><img src={twitter} alt={"Twitter link"}/></Link>
+                    <Link to={{pathname: "https://www.facebook.com/"}} target="_blank"><img src={facebook}
+                                                                                            alt={"Facebook link"}/></Link>
+                    <Link to={{pathname: "https://www.instagram.com/"}} target="_blank"><img src={instagram}
+                                                                                             alt={"Instagram link"}/></Link>
+                    <Link to={{pathname: "https://www.Twitter.com/"}} target="_blank"><img src={twitter}
+                                                                                           alt={"Twitter link"}/></Link>
                 </nav>
             </div>
         </div>

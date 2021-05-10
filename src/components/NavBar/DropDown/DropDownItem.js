@@ -9,7 +9,7 @@ import "./DropDownItem.css"
  * @constructor
  */
 
-export default function DropDownItem(props){
+export default function DropDownItem(props) {
     const {category} = props;
 
     const redirectLink = () => {
@@ -17,6 +17,6 @@ export default function DropDownItem(props){
     }
 
     return (
-            <Link to={redirectLink()}>{category}</Link>
+        <Link to={redirectLink()}>{category}</Link>
     )
 }

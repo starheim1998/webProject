@@ -1,7 +1,6 @@
-
 //React
 import {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 //Components
 import DropDownItem from "./DropDownItem";
@@ -19,7 +18,7 @@ import "./DropDownMenu.css"
 
 
 
-export default function DropDownMenu(){
+export default function DropDownMenu() {
 
     const dispatch = useDispatch();
 
@@ -28,7 +27,7 @@ export default function DropDownMenu(){
      */
     const toggleMenu = (e) => {
         setTimeout(() => {
-            if (!e.target.classList.contains("desktop_menu")){
+            if (!e.target.classList.contains("desktop_menu")) {
                 dispatch(toggleNavBar());
             }
         }, 150)
@@ -41,7 +40,7 @@ export default function DropDownMenu(){
         return () => {
             document.removeEventListener("mousedown", toggleMenu)
         }
-    },[])
+    }, [])
 
     return (
 

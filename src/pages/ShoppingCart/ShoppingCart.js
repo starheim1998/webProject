@@ -8,7 +8,7 @@ import {useHistory} from "react-router";
 import {getItems} from "../../store/actions/itemActions";
 import {getUser} from "../../store/actions/userActions";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMinusCircle, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ShoppingCart() {
@@ -84,7 +84,8 @@ export default function ShoppingCart() {
                     <li>Quantity: {quantity}</li>
                     <li>Total: {totalSum} kr</li>
 
-                    <FontAwesomeIcon icon={faTimes} className={"deleteIcon"} onClick={() => deleteHandler(item)}> DELETE</FontAwesomeIcon>
+                    <FontAwesomeIcon icon={faTimes} className={"deleteIcon"}
+                                     onClick={() => deleteHandler(item)}> DELETE</FontAwesomeIcon>
                 </div>
             </div>
         )
@@ -94,11 +95,11 @@ export default function ShoppingCart() {
     const addSummary = () => {
         if (cartState.length !== 0) {
             let shipping = 150
-            if(totalSum >= 1000){
+            if (totalSum >= 1000) {
                 shipping = 0
             }
 
-            return(
+            return (
                 <div id={"cost_details"}>
                     <p>Free shipping over 1000 kr!</p>
                     <span>Sum: {totalSum} kr</span>
@@ -108,7 +109,8 @@ export default function ShoppingCart() {
                     <button id={"checkout_btn"} onClick={() => {
                         setCheckoutOpen(true)
                         history.replace("/ShoppingCart/ShoppingCart/Checkout");
-                    }}>Checkout </button>
+                    }}>Checkout
+                    </button>
                     <Checkout open={checkoutOpen}
                               onClose={() => {
                                   setCheckoutOpen(false)

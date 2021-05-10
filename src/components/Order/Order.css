@@ -9,11 +9,11 @@
     border-top: 1px solid black;
 }
 
-.orderedItems> li{
+.orderedItems > li {
     padding: 5px 0;
 }
 
-.orderedItems{
+.orderedItems {
     text-align: left;
     list-style-type: none;
     display: flex;

@@ -8,19 +8,19 @@ import {AuthHeader} from "../../auth/AuthHeader";
  * taken email.
  */
 export const registerUserAction = newAccount => {
-     fetch(API_URL + "/registration", {
+    fetch(API_URL + "/registration", {
         method: "POST",
         headers: {'Content-type': 'application/json'},
         body: JSON.stringify(newAccount)
     })
-         .then(response => response.json())
-         .then(boolean => {
-             if(boolean){
-                 alert("Successfully registered user!")
-             } else {
-                 alert("Your email is already in use!")
-             }
-         })
+        .then(response => response.json())
+        .then(boolean => {
+            if (boolean) {
+                alert("Successfully registered user!")
+            } else {
+                alert("Your email is already in use!")
+            }
+        })
         .catch(function (err) {
             alert("ERROR:" + err)
         });
