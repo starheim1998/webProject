@@ -23,20 +23,10 @@ import orderReducer from "./store/reducers/orderReducer";
 const rootReducer = combineReducers({itemReducer, cartReducer,
     accountReducer: userReducer, navBarReducer, orderReducer})
 
-// const persistConfig = {
-//     key: "root",
-//     storage,
-//     whitelist: [cartReducer, itemReducer]
-// }
-// const persistedReducer = persistReducer(persistConfig, rootReducer)
-//
 const reduxStore = createStore(
     rootReducer,
     compose(applyMiddleware(thunk))
 )
-//
-// const persistor = persistStore(reduxStore)
-
 
 ReactDOM.render(
     <React.StrictMode>

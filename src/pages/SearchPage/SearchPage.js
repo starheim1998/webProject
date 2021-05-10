@@ -73,7 +73,7 @@ export default function SearchPage() {
     }
 
     /**
-     *
+     * Get the items matching search value and filter state
      * @param query
      * @returns {[]}
      */
