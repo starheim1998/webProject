@@ -66,8 +66,8 @@ export default function SearchPage(props){
                 (item.name.toLowerCase().includes(qry)
                 || (item.category.toLowerCase().includes(qry))
                 || (item.subcategory.toLowerCase().includes(qry)))
-                && (item.category === filterState.category || filterState.category === "")
-                && (item.subcategory === filterState.subcategory || filterState.subcategory === "")
+                && (item.category.toLowerCase() === filterState.category.toLowerCase() || filterState.category === "")
+                && (item.subcategory.toLowerCase() === filterState.subcategory.toLowerCase() || filterState.subcategory === "")
                 && (item.size.toLowerCase() === filterState.size.toLowerCase()
                     || filterState.size === ""
                     // TODO: discuss shoe size issue

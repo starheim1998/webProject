@@ -1,9 +1,11 @@
 import "./Aside.css"
+import {useHistory} from "react-router";
 
 
 export default function Aside(props){
 
     const {filterState, setFilterState, setSearch} = props
+    const history = useHistory()
 
     const handleSizeChange = (e) => {
         e.preventDefault();
@@ -32,6 +34,7 @@ export default function Aside(props){
 
     const handleSubcategoryChange = (e) => {
         e.preventDefault();
+        console.log(e.target.title)
         setFilterState({
             ...filterState,
             subcategory: e.target.title,
@@ -47,6 +50,7 @@ export default function Aside(props){
             category: "",
         })
         setSearch("")
+        history.push("/search?q=")
     }
 
     return(
