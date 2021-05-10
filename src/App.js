@@ -11,7 +11,6 @@ import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
 
-
 function App() {
 
     return (

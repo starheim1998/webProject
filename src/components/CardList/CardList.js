@@ -3,14 +3,9 @@ import ItemCard from "../ItemCard/ItemCard";
 
 export default function CardList(props) {
     const {cards} = props;
-
-    return(
+    return  (
         <div id={"card_list_wrapper"}>
-            {cards.map((card) =>
-                // <div className={"item_card_container"} key={card.id}>
-                    <ItemCard item={card}/>
-                // </div>
-            )}
+            {cards.map((card) => <ItemCard item={card}/>)}
         </div>
     )
 }

@@ -24,7 +24,7 @@ export function getOrders(userId){
                 }
             })
             .catch(function (err){
-                alert("ERROR: " + err)
+                alert("ERROR: get orders error:  " + err)
         })
     }
 }

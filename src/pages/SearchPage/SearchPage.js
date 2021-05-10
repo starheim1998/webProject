@@ -20,7 +20,6 @@ export default function SearchPage(props){
     });
 
 
-
     //TODO: implement this functionality
     // get selected category from navbar
 
@@ -29,7 +28,6 @@ export default function SearchPage(props){
         dispatch(getItems())
         console.log("itemstate", itemsState)
     }, [useParams()])
-
 
     function getSearch() {
         const params = new URLSearchParams(window.location.search);

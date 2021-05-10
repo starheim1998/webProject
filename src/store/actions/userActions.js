@@ -36,11 +36,10 @@ export const loginUserAction = (loginUserInfo) => {
                     localStorage.setItem("token", JSON.stringify(json.jwt))
                     console.log("Jwt token:" + localStorage.getItem("token"));
                     dispatch(loginUser(json))
-                    createCartOnLogin(JSON.stringify(json.id))
                 }
             })
             .catch(function (err) {
-                alert("ERROR:" + err)
+                console.log("ERROR:" + err)
             });
     }
 }
@@ -66,7 +65,6 @@ export const getUser = () => {
                     console.log(JSON.stringify(json))
                     if (json.message) {
                         console.log("'get user' error")
-                        // dispatch(logoutUser())
                     } else {
                         dispatch(loginUser(json))
                     }
@@ -75,23 +73,6 @@ export const getUser = () => {
     }
 }
 
-
-/**
- * Create an empty cart on login, if user does not have one already.
- * @param userId of the user involved.
- */
-const createCartOnLogin = (userId) => {
-    fetch(`${API_URL}/order/createCart/${userId}`, {
-        method: "POST",
-        headers: {
-            'Authorization': AuthHeader(true).get('Authorization'),
-            'Content-type': AuthHeader(true).get('Content-type')
-        }
-    })
-        .catch(function (err) {
-            alert("Error:" + err)
-        })
-}
 
 /**
  * Redux LOGIN

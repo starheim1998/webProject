@@ -21,7 +21,12 @@ export default function Home(){
 
     const getTrendingItems = () => {
         return itemState.filter((item) => item.id === 1
-        || item.id === 2 || item.id === 3)
+            || item.id === 2 || item.id === 3)
+    }
+
+    const getOnSaleItems = () => {
+        return itemState.filter((item) => item.id === 4
+            || item.id === 5 || item.id === 6)
     }
 
 
@@ -37,7 +42,7 @@ export default function Home(){
                 <h2>For sale ..</h2>
                 <div className={"contentBox"}>
                     <p>Items for sale!</p>
-                    {/*<CardList cards={getOnSaleItems()}/>*/}
+                    <CardList cards={getOnSaleItems()}/>
                 </div>
             </div>
         </div>

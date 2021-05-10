@@ -38,7 +38,7 @@ export function getCartItems(userId) {
                 }
             })
             .catch(function (err) {
-                alert("ERROR: " + err);
+                alert("ERROR:" + err);
             })
     }
 }

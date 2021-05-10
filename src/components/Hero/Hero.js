@@ -9,7 +9,7 @@ export default function Hero() {
      * */
     const history = useHistory()
     function redirect(){
-        history.push("/item/0/");
+        history.push("/item/11/");
     }
 /***/
     return (
