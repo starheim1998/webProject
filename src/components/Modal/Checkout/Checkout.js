@@ -19,7 +19,7 @@ import {checkOutCart} from "../../../store/actions/cartActions";
 export default function Checkout({open, onClose, redirect}) {
     const shoppingCartItems = useSelector(state => state.cartReducer.cartItems);
     const dispatch = useDispatch();
-    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
+    const currentUserState = useSelector((state) => state.userReducer.currentUser);
 
     if (!open) return null /*Do nothing if not open*/
 

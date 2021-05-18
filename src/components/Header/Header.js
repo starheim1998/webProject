@@ -27,7 +27,7 @@ export default function Header() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const loggedInUser = useSelector(state => state.accountReducer.currentUser);
+    const loggedInUser = useSelector(state => state.userReducer.currentUser);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
 
     //Logs in user if he/she has a token

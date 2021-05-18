@@ -21,7 +21,7 @@ import "./Item.css"
  * Page 'Item' - page for displaying an individual item from the database.
  */
 export default function Item() {
-    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
+    const currentUserState = useSelector((state) => state.userReducer.currentUser);
     const itemsState = useSelector((state) => state.itemReducer.items)
     const dispatch = useDispatch();
 

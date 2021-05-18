@@ -24,7 +24,7 @@ import "./AccountPage.css";
 export default function AccountPage() {
     const dispatch = useDispatch();
     const history = useHistory()
-    const loggedInUser = useSelector(state => state.accountReducer.currentUser);
+    const loggedInUser = useSelector(state => state.userReducer.currentUser);
     const orderState = useSelector((state) => state.orderReducer.orders)
 
     /**

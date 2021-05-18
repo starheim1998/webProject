@@ -21,11 +21,11 @@ import orderReducer from "./store/reducers/orderReducer";
  */
 
 const rootReducer = combineReducers({itemReducer, cartReducer,
-    accountReducer: userReducer, navBarReducer, orderReducer})
+    userReducer, navBarReducer, orderReducer})
 
 const reduxStore = createStore(
     rootReducer,
-    compose(applyMiddleware(thunk))
+    applyMiddleware(thunk)
 )
 
 ReactDOM.render(

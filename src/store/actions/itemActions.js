@@ -17,8 +17,3 @@ export function getItems() {
             })
     }
 }
-
-// Code inspired from:
-// https://github.com/NTNU-SysDev/react-demo-shop-with-api/tree/master/webapp/src
-
-

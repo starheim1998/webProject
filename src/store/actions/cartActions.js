@@ -8,7 +8,7 @@ import {AuthHeader} from "../../auth/AuthHeader";
  */
 export function setCartItem(userId, itemId) {
     return (dispatch) => {
-        return fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
+         fetch(`${API_URL}/order/add/${userId}/${itemId}`, {
             method: "POST",
             headers: {
                 'Authorization': AuthHeader(true).get('Authorization'),
@@ -36,7 +36,6 @@ export function getCartItems(userId) {
         })
             .then((response) => response.json())
             .then((json) => {
-                console.log("JSON", (json))
                 if (json.message) { //if error
                     console.log("Failed to get cart items")
                 } else {

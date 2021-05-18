@@ -23,17 +23,10 @@ export default function ShoppingCart() {
     const [checkoutOpen, setCheckoutOpen] = useState(false);
     const itemsState = useSelector((state) => state.itemReducer.items);
     const cartState = useSelector((state) => state.cartReducer.cartItems);
-    const currentUserState = useSelector((state) => state.accountReducer.currentUser);
+    const currentUserState = useSelector((state) => state.userReducer.currentUser);
     const dispatch = useDispatch();
     const history = useHistory();
     let totalSum = 0;
-    // template account for testing
-
-    useEffect(() => {
-        dispatch(getUser())
-        dispatch(getItems())
-        dispatch(getCartItems(currentUserState.id))
-    }, [])
 
     const getItem = (cartItem) => {
         return itemsState.find((item) => item.id === cartItem);
